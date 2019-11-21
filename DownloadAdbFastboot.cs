@@ -24,7 +24,7 @@ namespace RedmiNote7ToolC
             startDownload();
         }
         
-            private void startDownload()
+        private void startDownload()
         {
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
@@ -34,6 +34,7 @@ namespace RedmiNote7ToolC
             });
             thread.Start();
         }
+
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             this.BeginInvoke((MethodInvoker)delegate {
@@ -44,6 +45,7 @@ namespace RedmiNote7ToolC
                 ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
             });
         }
+
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             this.BeginInvoke((MethodInvoker)delegate {

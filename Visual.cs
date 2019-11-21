@@ -19,7 +19,10 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
-        private static StringBuilder cmdOutput = null;
+        [System.ComponentModel.Browsable(false)]
+        public System.IO.StreamReader StandardOutput { get; }
+        public static string Title { get; set; }
+        public static int Read { get; set; }
 
         public long GetDirectorySize(string path)
         {
@@ -45,14 +48,6 @@ namespace RedmiNote7ToolC
             Label1.Text = "CPU Usage: " + cpu.NextValue() + " %";
 
             System.Threading.Thread.Sleep(1000);
-        }
-
-        private static void SortOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
-        {
-            if (!String.IsNullOrEmpty(outLine.Data))
-            {
-                cmdOutput.Append(Environment.NewLine + outLine.Data);
-            }
         }
 
         public bool Ping(string host)
@@ -150,34 +145,74 @@ namespace RedmiNote7ToolC
             {
                 try
                 {
-                    cmdOutput = new StringBuilder("");
                     System.Diagnostics.Process process = new System.Diagnostics.Process();
                     System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                     startInfo.FileName = @"C:\adb\fastboot.exe";
-                    startInfo.Arguments = "/C fastboot oem lock";
+                    startInfo.Arguments = "/C oem lock";
                     process.StartInfo = startInfo;
+                    Console.WriteLine(@"\n\n Locking Bootloader... \n\n");
                     process.Start();
-
-                    process.OutputDataReceived += new DataReceivedEventHandler(SortOutputHandler);
-
-                    
-                    TextBox2.Text += cmdOutput;
+                    Console.WriteLine(process);
+                    process.WaitForExit();
+                    System.Threading.Thread.Sleep(500);
                 }
                 catch (Exception er)
                 {
                     MessageBox.Show("Error: " + er, "Bootloader: Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                } 
             }
             else
             {
                 MessageBox.Show("Lock Bootloader canceled...", "Bootloader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
                 System.Threading.Thread.Sleep(500);
+            }
         }
 
         private void boottwrp_Click(object sender, EventArgs e)
         {
+            
+            
+            try
+            {
+
+                if (Ping("www.google.com") == true)
+                {
+                        if (!File.Exists(@"C:\TWRP\twrp.img"))
+                        {
+                        MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadtwrp = new DownloadTWRP();
+                        downloadtwrp.Show();
+
+                    } 
+                    else
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process process = new System.Diagnostics.Process();
+                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                            startInfo.FileName = @"C:\adb\fastboot.exe";
+                            startInfo.Arguments = @"/C boot C:\adb\TWRP\twrp.img";
+                            process.StartInfo = startInfo;
+                            Console.WriteLine(@"\n\n Locking Bootloader... \n\n");
+                            process.Start();
+                            Console.WriteLine(process);
+                            process.WaitForExit();
+                            System.Threading.Thread.Sleep(500);
+                        }
+                        catch (Exception er)
+                        {
+                            MessageBox.Show("Error: " + er, "BOOT TWRP: Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download files!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Forms.Application.Restart();
+            }
 
         }
 
@@ -188,17 +223,36 @@ namespace RedmiNote7ToolC
 
         private void AdbFastbootFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string Proc = "Explorer.exe";
+            string Args = ControlChars.Quote + System.IO.Path.Combine(@"C:\", "adb") + ControlChars.Quote;
+            Process.Start(Proc, Args);
         }
 
         private void MiFlashFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string Proc = "Explorer.exe";
+                string Args = ControlChars.Quote + System.IO.Path.Combine(@"C:\", @"adb\MI") + ControlChars.Quote;
+                Process.Start(Proc, Args);
+            } catch (Exception er)
+            {
+                MessageBox.Show("Error: " +er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void MiUnlockFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string Proc = "Explorer.exe";
+                string Args = ControlChars.Quote + System.IO.Path.Combine(@"C:\", @"adb\MIUnlock") + ControlChars.Quote;
+                Process.Start(Proc, Args);
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,12 +312,56 @@ namespace RedmiNote7ToolC
 
         private void EnterEDLModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("Are you sure that you wan to enter to EDL mode? This can´t be undone!", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                    startInfo.FileName = @"C:\adb\fastboot_edl.exe";
+                    startInfo.Arguments = "/C reboot-edl";
+                    process.StartInfo = startInfo;
+                    Console.WriteLine(@"\n\n Locking Bootloader... \n\n");
+                    process.Start();
+                    Console.WriteLine(process);
+                    process.WaitForExit();
+                    System.Threading.Thread.Sleep(500);
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Error: " + er, "EDL: Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("EDL canceled...", "EDL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Threading.Thread.Sleep(500);
+            }
         }
 
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string[] paths = System.IO.Directory.GetFiles(@"C:\adb\MI", "XiaoMiFlash.exe");
 
+            if (paths.Length > 0)
+            {
+                try
+                {
+                    var proc = new System.Diagnostics.Process();
+                    proc = Process.Start(@"C:\adb\MI\XiaoMiFlash.exe", "");
+                } 
+                catch 
+                {
+                    MessageBox.Show("XiaoMiFlash closed...", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error on loading XiaoMiFlash, seems to be missing......", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }     
         }
 
         private void OpenFlashToolStripMenuItem_Click(object sender, EventArgs e)
