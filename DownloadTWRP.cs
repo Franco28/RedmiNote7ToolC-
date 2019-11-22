@@ -24,18 +24,18 @@ namespace RedmiNote7ToolC
 
         private void DownloadTWRP_Load(object sender, EventArgs e)
         {
-            string[] paths = Directory.GetFiles(@"C:\adb\.settings\TWRP\", " *.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\TWRP\", "OrangeFox-R10.0_2-Stable-lavender.zip");
             if (paths.Length > 0)
             {
-                infoReader = new System.IO.FileInfo("");
-                infoReader = FileSystem.GetFileInfo(@"C:\adb\.settings\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+                infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
+                infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
 
                 if (infoReader.Length > 40900000)
                 {
                     Directory.SetCurrentDirectory(@"C:\adb\TWRP");
 
-                    string zipPath = @"C:\adb\.settings\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
-                    string extractPath = @"C:\adb\.settings\TWRP";
+                    string zipPath = @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
+                    string extractPath = @"C:\adb\TWRP";
 
                     ZipFile.ExtractToDirectory(zipPath, extractPath);
 
@@ -61,7 +61,7 @@ namespace RedmiNote7ToolC
                 WebClient client = new WebClient();
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\.settings\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+                client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
             });
             thread.Start();
         }
@@ -84,8 +84,8 @@ namespace RedmiNote7ToolC
 
                 Directory.SetCurrentDirectory(@"C:\adb\TWRP");
 
-                string zipPath = @"C:\adb\.settings\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
-                string extractPath = @"C:\adb\.settings\TWRP";
+                string zipPath = @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
+                string extractPath = @"C:\adb\TWRP";
 
                 ZipFile.ExtractToDirectory(zipPath, extractPath);
 
@@ -93,11 +93,6 @@ namespace RedmiNote7ToolC
                 visual.Show();
                 base.Dispose(Disposing);
             });
-        }
-
-        private void DownloadTWRP_Closed(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Application.Restart();
         }
 
     }

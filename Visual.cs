@@ -72,36 +72,36 @@ namespace RedmiNote7ToolC
             else if ((!System.IO.Directory.Exists(@"C:\adb")))
                 System.IO.Directory.CreateDirectory(@"C:\adb");
 
-            try
-            {
-
-                if (Ping("www.google.com") == true)
-                {
-                        if (!File.Exists(@"C:\adb\adb.exe"))
-                        {
-                            base.Dispose(Disposing);
-                            var downloadadb = new DownloadAdbFastboot();
-                            downloadadb.Show();
-                        }
-                    }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Can´t connect to the server to download files!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                base.Dispose(Disposing);
-            }
-
             if (!Directory.Exists(@"C:\adb\.settings"))
                 Directory.CreateDirectory(@"C:\adb\.settings");
 
-            if (!Directory.Exists(@"C:\adb\.settings\TWRP"))
-                Directory.CreateDirectory(@"C:\adb\.settings\TWRP");
+            if (!Directory.Exists(@"C:\adb\TWRP"))
+                Directory.CreateDirectory(@"C:\adb\TWRP");
 
             if (!Directory.Exists(@"C:\adb\MI"))
                 Directory.CreateDirectory(@"C:\adb\MI");
 
             if (!Directory.Exists(@"C:\adb\MIUnlock"))
                 Directory.CreateDirectory(@"C:\adb\MIUnlock");
+
+
+            if (!File.Exists(@"C:\adb\adb.exe"))
+            {
+                try
+                {
+                    if (Ping("www.google.com") == true)
+                    {
+                        base.Dispose(Disposing);
+                        var downloadadb = new DownloadAdbFastboot();
+                        downloadadb.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download files!, Please connect to the Network and open again the Tool", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    base.Dispose(Disposing);
+                }
+            }
 
             TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             Label3.Text = "User: " + Environment.UserName;
@@ -171,47 +171,47 @@ namespace RedmiNote7ToolC
 
         private void boottwrp_Click(object sender, EventArgs e)
         {
-            
-            
-            try
+
+            if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
             {
-
-                if (Ping("www.google.com") == true)
+                try
                 {
-                        if (!File.Exists(@"C:\TWRP\twrp.img"))
-                        {
-                        MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadtwrp = new DownloadTWRP();
-                        downloadtwrp.Show();
-
-                    } 
-                    else
+                    if (Ping("www.google.com") == true)
                     {
-                        try
-                        {
-                            System.Diagnostics.Process process = new System.Diagnostics.Process();
-                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                            startInfo.FileName = @"C:\adb\fastboot.exe";
-                            startInfo.Arguments = @"/C boot C:\adb\TWRP\twrp.img";
-                            process.StartInfo = startInfo;
-                            Console.WriteLine(@"\n\n Locking Bootloader... \n\n");
-                            process.Start();
-                            Console.WriteLine(process);
-                            process.WaitForExit();
-                            System.Threading.Thread.Sleep(500);
-                        }
-                        catch (Exception er)
-                        {
-                            MessageBox.Show("Error: " + er, "BOOT TWRP: Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var downloadtwrp = new DownloadTWRP();
+                        base.Dispose(Disposing);
+                        downloadtwrp.Show();
                     }
                 }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Can´t connect to the server to download files!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                System.Windows.Forms.Application.Restart();
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.Application.Restart();
+                }
+         
+                } 
+                else
+                {
+
+                try
+                {
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                    startInfo.FileName = @"C:\adb\fastboot.exe";
+                    startInfo.Arguments = @"/C boot C:\adb\TWRP\recovery.img";
+                    process.StartInfo = startInfo;
+                    Console.WriteLine(@"\n\n Locking Bootloader... \n\n");
+                    process.Start();
+                    Console.WriteLine(process);
+                    process.WaitForExit();
+                    System.Threading.Thread.Sleep(500);
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Error: " + er, "BOOT TWRP: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
@@ -237,7 +237,7 @@ namespace RedmiNote7ToolC
                 Process.Start(Proc, Args);
             } catch (Exception er)
             {
-                MessageBox.Show("Error: " +er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " +er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -332,7 +332,7 @@ namespace RedmiNote7ToolC
                 }
                 catch (Exception er)
                 {
-                    MessageBox.Show("Error: " + er, "EDL: Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error: " + er, "EDL: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -384,7 +384,7 @@ namespace RedmiNote7ToolC
 
         private void UninstallTool_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Do you want to Remove all files? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Do you want to Remove all files? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
              if (result == DialogResult.Yes)
                 {
@@ -396,7 +396,7 @@ namespace RedmiNote7ToolC
                     if (Directory.Exists(root))
                         this.Controls.Clear();
                         Directory.Delete(root, true);
-                        MessageBox.Show("All files removed! " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("All files removed! " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         base.Dispose(Disposing);
                
                     }
@@ -407,6 +407,14 @@ namespace RedmiNote7ToolC
                         base.Refresh();
                     }
                 }
-            }        
+            }
+
+        private void Visual_Closed(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            base.Refresh();
+            base.Dispose(Disposing);
+        }
+
     }
 }
