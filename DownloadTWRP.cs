@@ -40,6 +40,7 @@ namespace RedmiNote7ToolC
                     ZipFile.ExtractToDirectory(zipPath, extractPath);
 
                     var visual = new Visual();
+                    visual.Dispose();
                     visual.Show();
                     base.Dispose(Disposing);
                 }
