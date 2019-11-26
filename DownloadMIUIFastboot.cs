@@ -1,6 +1,6 @@
 ﻿
 /* (C) 2019 Franco28 */
-/* Basic Tool for Redmi Note 7 */
+/* Basic Tool C# for Redmi Note 7 */
 
 using System;
 using System.ComponentModel;
@@ -9,22 +9,45 @@ using System.IO.Compression;
 using System.Net;
 using System.IO;
 using System.Threading;
+using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
-    public partial class DownloadAdbFastboot : Form
+    public partial class DownloadMIUIFastboot : Form
     {
-
+        private FileInfo infoReader;
         WebClient client = new WebClient();
 
-        public DownloadAdbFastboot()
+        public DownloadMIUIFastboot()
         {
             InitializeComponent();
         }
 
-        private void DownloadAdbFastboot_Load(object sender, EventArgs e)
+        private void unzip(object file, string filepath)
         {
-            startDownload();
+            string zipPath = @"C:\adb\" + file;
+            string extractPath = @"C:\adb\" + filepath;
+
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
+        }
+
+        private void checkfiles()
+        {
+            infoReader = new System.IO.FileInfo("lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+
+            if (infoReader.Length > 3100000000)
+            {
+
+                unzip(@"xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz", @"xiaomiglobalfastboot");
+
+                closeform();
+            }
+            else
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Xiaomi Firmware", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
         }
 
         private void closeform()
@@ -34,12 +57,31 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
+        private void DownloadMIUIFastboot_Load(object sender, EventArgs e)
+        {
+
+            Directory.SetCurrentDirectory(@"C:\adb\xiaomiglobalfastboot");
+
+            string[] paths = Directory.GetFiles(@"C:\adb\xiaomiglobalfastboot\", "lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+            if (paths.Length > 0)
+            {
+
+                checkfiles();
+
+            }
+            else
+            {
+                startDownload();
+            }
+
+        }
+
         private void startDownload()
         {
             Thread thread = new Thread(() => {
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/adb.zip"), @"C:\adb\adb.zip");
+                client.DownloadFileAsync(new Uri("http://bigota.d.miui.com/V11.0.4.0.PFGMIXM/lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz"), @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
             });
             thread.Start();
         }
@@ -74,23 +116,17 @@ namespace RedmiNote7ToolC
             this.BeginInvoke((MethodInvoker)delegate {
                 TextBox1.Text = "Download completed... Extracting files!";
 
-                Directory.SetCurrentDirectory(@"C:\adb");
-
-                string zipPath = "adb.zip";
-                string extractPath = @"C:\adb";
-
-                ZipFile.ExtractToDirectory(zipPath, extractPath);
+                unzip(@"xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz", @"xiaomiglobalfastboot");
 
                 string FileToDelete;
 
-                FileToDelete = @"C:\adb\adb.zip";
+                FileToDelete = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz";
 
                 if (System.IO.File.Exists(FileToDelete) == true)
                     System.IO.File.Delete(FileToDelete);
 
-                MessageBox.Show(@"adb & fastboot installed in C:\adb", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 closeform();
+
             });
         }
 

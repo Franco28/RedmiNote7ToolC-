@@ -1,6 +1,6 @@
 ﻿
 /* (C) 2019 Franco28 */
-/* Basic Tool for Redmi Note 7 */
+/* Basic Tool C# for Redmi Note 7 */
 
 using System;
 using System.ComponentModel;
@@ -22,33 +22,50 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
+        private void unzip(object file, string filepath)
+        {
+            string zipPath = @"C:\adb\"+file;
+            string extractPath = @"C:\adb\"+filepath;
+
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
+        }
+
+        private void checkfiles()
+        {
+            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+
+            if (infoReader.Length > 40900000)
+            {
+
+                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
+
+                closeform();
+            }
+            else
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+        }
+
+        private void closeform()
+        {
+            var visual = new Visual();
+            visual.Dispose();
+            base.Dispose(Disposing);
+        }
+
         private void DownloadTWRP_Load(object sender, EventArgs e)
         {
+            Directory.SetCurrentDirectory(@"C:\adb\TWRP");
+
             string[] paths = Directory.GetFiles(@"C:\adb\TWRP\", "OrangeFox-R10.0_2-Stable-lavender.zip");
             if (paths.Length > 0)
             {
-                infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
-                infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
 
-                if (infoReader.Length > 40900000)
-                {
-                    Directory.SetCurrentDirectory(@"C:\adb\TWRP");
+                checkfiles();
 
-                    string zipPath = @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
-                    string extractPath = @"C:\adb\TWRP";
-
-                    ZipFile.ExtractToDirectory(zipPath, extractPath);
-
-                    var visual = new Visual();
-                    visual.Dispose();
-                    visual.Show();
-                    base.Dispose(Disposing);
-                }
-                else
-                {
-                    MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    startDownload();
-                }
             } 
             else
             {
@@ -83,16 +100,10 @@ namespace RedmiNote7ToolC
             this.BeginInvoke((MethodInvoker)delegate {
                 TextBox1.Text = "Download completed... Extracting files!";
 
-                Directory.SetCurrentDirectory(@"C:\adb\TWRP");
+                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
 
-                string zipPath = @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip";
-                string extractPath = @"C:\adb\TWRP";
+                closeform();
 
-                ZipFile.ExtractToDirectory(zipPath, extractPath);
-
-                var visual = new Visual();
-                visual.Show();
-                base.Dispose(Disposing);
             });
         }
 

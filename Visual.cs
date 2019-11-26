@@ -1,6 +1,6 @@
 ﻿
 /* (C) 2019 Franco28 */
-/* Basic Tool for Redmi Note 7 */
+/* Basic Tool C# for Redmi Note 7 */
 
 using Microsoft.VisualBasic;
 using System;
@@ -143,6 +143,14 @@ namespace RedmiNote7ToolC
             if (!Directory.Exists(@"C:\adb\MIUnlock"))
                 Directory.CreateDirectory(@"C:\adb\MIUnlock");
 
+            if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot"))
+                Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot");
+
+            if (!Directory.Exists(@"C:\adb\xiaomieu"))
+                Directory.CreateDirectory(@"C:\adb\xiaomieu");
+
+            if (!Directory.Exists(@"C:\adb\xiaomiglobalrecovery"))
+                Directory.CreateDirectory(@"C:\adb\xiaomiglobalrecovery");
 
             if (!File.Exists(@"C:\adb\adb.exe"))
             {
@@ -304,22 +312,63 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+                try
+                {
+                    if (Ping("www.google.com") == true)
+                    {
+                        MessageBox.Show("Can´t find Firmware images...", "Firmware Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadfastbootmiui = new DownloadMIUIFastboot();
+                        base.Dispose(Disposing);
+                        downloadfastbootmiui.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.Application.Restart();
+                }
         }
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                OpenFolder(@"adb\xiaomiglobalfastboot");
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+            if (System.IO.File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") & System.IO.File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe") == true)
+            {
+                BrowserCheck.StartBrowser("MicrosoftEdge.exe", "https://xiaomifirmwareupdater.com/miui/");
+            }
+            else
+            {
+                BrowserCheck.StartBrowser("Chrome.exe", "https://xiaomifirmwareupdater.com/miui/");
+            }
         }
 
         private void DownloadLatestMIUIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+                try
+                {
+                    if (Ping("www.google.com") == true)
+                    {
+                        MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadmiuirom = new DownloadMIUIRecovery();
+                        downloadmiuirom.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi Recovery ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.Application.Restart();
+                }
         }
 
         private void OpenFolderXiaomiGlobalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -329,7 +378,14 @@ namespace RedmiNote7ToolC
 
         private void XiaomiGlobalPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (System.IO.File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") & System.IO.File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe") == true)
+            {
+                BrowserCheck.StartBrowser("MicrosoftEdge.exe", "https://c.mi.com/oc/miuidownload/detail?device=1700360");
+            }
+            else
+            {
+                BrowserCheck.StartBrowser("Chrome.exe", "https://c.mi.com/oc/miuidownload/detail?device=1700360");
+            }
         }
 
         private void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -344,7 +400,14 @@ namespace RedmiNote7ToolC
 
         private void XiaomieuPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (System.IO.File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") & System.IO.File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe") == true)
+            {
+                BrowserCheck.StartBrowser("MicrosoftEdge.exe", "https://xiaomi.eu/community/");
+            }
+            else
+            {
+                BrowserCheck.StartBrowser("Chrome.exe", "https://xiaomi.eu/community/");
+            }
         }
 
         private void DownloadMiFlash2018ToolStripMenuItem_Click(object sender, EventArgs e)

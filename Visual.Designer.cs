@@ -1,4 +1,8 @@
-﻿namespace RedmiNote7ToolC
+﻿
+/* (C) 2019 Franco28 */
+/* Basic Tool C# for Redmi Note 7 */
+
+namespace RedmiNote7ToolC
 {
     partial class Visual
     {
@@ -222,9 +226,9 @@
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIFastbootImageToolStripMenuItem.Image")));
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Name = "DownloadLatestMIUIFastbootImageToolStripMenuItem";
-            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Size = new System.Drawing.Size(544, 22);
-            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Text = "Download Latest MIUI Fastboot Image";
-            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 10 Firmware";
+            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
+            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Text = "Download MIUI Fastboot Firmware V11.0.4.0.PFGMIXM";
+            this.DownloadLatestMIUIFastbootImageToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 Firmware";
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIFastbootImageToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem1
@@ -264,9 +268,9 @@
             this.DownloadLatestMIUIToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.DownloadLatestMIUIToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIToolStripMenuItem.Image")));
             this.DownloadLatestMIUIToolStripMenuItem.Name = "DownloadLatestMIUIToolStripMenuItem";
-            this.DownloadLatestMIUIToolStripMenuItem.Size = new System.Drawing.Size(544, 22);
-            this.DownloadLatestMIUIToolStripMenuItem.Text = "Download Latest MIUI Recovery Global: V10.3.10.0.PFGMIXM";
-            this.DownloadLatestMIUIToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 10";
+            this.DownloadLatestMIUIToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
+            this.DownloadLatestMIUIToolStripMenuItem.Text = "Download MIUI Recovery: V11.0.4.0.PFGMIXM";
+            this.DownloadLatestMIUIToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11";
             this.DownloadLatestMIUIToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIToolStripMenuItem_Click);
             // 
             // OpenFolderXiaomiGlobalToolStripMenuItem
@@ -306,9 +310,9 @@
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image")));
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Name = "DownloadLatestMIUIByXiaomieuToolStripMenuItem";
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Size = new System.Drawing.Size(544, 22);
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download Latest MIUI by Xiaomi.eu: 9.11.14 v11";
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ToolTipText = "Click me to download latest MIUI by Xiaomi.eu";
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download Latest MIUI by Xiaomi.eu: 9.11.21 v11";
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 by Xiaomi.eu";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click);
             // 
             // OpenFolderXiaomieuToolStripMenuItem
@@ -345,7 +349,7 @@
             this.DownloadMiFlash2018ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.DownloadMiFlash2018ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadMiFlash2018ToolStripMenuItem.Image")));
             this.DownloadMiFlash2018ToolStripMenuItem.Name = "DownloadMiFlash2018ToolStripMenuItem";
-            this.DownloadMiFlash2018ToolStripMenuItem.Size = new System.Drawing.Size(544, 22);
+            this.DownloadMiFlash2018ToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
             this.DownloadMiFlash2018ToolStripMenuItem.Text = "Download Mi Flash 20181115";
             this.DownloadMiFlash2018ToolStripMenuItem.ToolTipText = "Download Mi Flash, use this for now to flash fastboot images";
             this.DownloadMiFlash2018ToolStripMenuItem.Click += new System.EventHandler(this.DownloadMiFlash2018ToolStripMenuItem_Click);
@@ -358,7 +362,7 @@
             this.DownloadMiUnlockToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.DownloadMiUnlockToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadMiUnlockToolStripMenuItem.Image")));
             this.DownloadMiUnlockToolStripMenuItem.Name = "DownloadMiUnlockToolStripMenuItem";
-            this.DownloadMiUnlockToolStripMenuItem.Size = new System.Drawing.Size(544, 22);
+            this.DownloadMiUnlockToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
             this.DownloadMiUnlockToolStripMenuItem.Text = "Download Mi Unlock";
             this.DownloadMiUnlockToolStripMenuItem.ToolTipText = "Download Mi Unlock Tool";
             this.DownloadMiUnlockToolStripMenuItem.Click += new System.EventHandler(this.DownloadMiUnlockToolStripMenuItem_Click);
