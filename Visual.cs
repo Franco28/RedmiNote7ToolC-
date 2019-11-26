@@ -13,10 +13,15 @@ namespace RedmiNote7ToolC
 {
     public partial class Visual : Form
     {
+        private PerformanceCounter ramCounter;
+        private PerformanceCounter cpuCounter;
 
         public Visual()
         {
             InitializeComponent();
+            InitializeRAMCounter();
+            InitialiseCPUCounter();
+            updateTimer_Tick();
         }
 
         [System.ComponentModel.Browsable(false)]
@@ -26,6 +31,34 @@ namespace RedmiNote7ToolC
 
         [DllImport("User32.dll" + "Win32.dll")]
         static extern int SetForegroundWindow(IntPtr point);
+
+        private void updateTimer_Tick()
+        {
+            Timer timer = new Timer();
+            timer.Interval = (1 * 1000); 
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+
+            this.Label1.Text = "RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
+            this.label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
+            this.Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+        }
+
+        private void InitialiseCPUCounter()
+        {
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
+        }
+
+        private void InitializeRAMCounter()
+        {
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            this.Label1.Text = "RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
+            this.label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
+            this.Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+        }
 
         public long GetDirectorySize(string path)
         {
@@ -38,23 +71,6 @@ namespace RedmiNote7ToolC
             }
             size /= 1000000;
             return size;
-        }
-
-        public void CPUShow()
-        { 
-            System.Threading.Thread.Sleep(1000);
-
-            PerformanceCounter cpu;
-
-            System.Threading.Thread.Sleep(1000);
-
-            cpu = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-
-            System.Threading.Thread.Sleep(1000);
-
-            Label1.Text = "CPU Usage: " + cpu.NextValue() + " %";
-
-            System.Threading.Thread.Sleep(1000);
         }
 
         public bool Ping(string host)
@@ -170,10 +186,10 @@ namespace RedmiNote7ToolC
                 }
             }
 
+            InitializeRAMCounter();
+            updateTimer_Tick();
             TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             Label3.Text = "User: " + Environment.UserName;
-            CPUShow();
-            Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
         }
 
         private void unlockbootloader_Click(object sender, EventArgs e)
@@ -215,7 +231,7 @@ namespace RedmiNote7ToolC
             else
             {
                 MessageBox.Show("Lock Bootloader canceled...", "Bootloader", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1000);
             }
         }
 
