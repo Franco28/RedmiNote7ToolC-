@@ -6,8 +6,9 @@ using Microsoft.VisualBasic;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using DownloadEngine;
+using System.Reflection;
 
 namespace RedmiNote7ToolC
 {
@@ -25,12 +26,6 @@ namespace RedmiNote7ToolC
         }
 
         [System.ComponentModel.Browsable(false)]
-        public System.IO.StreamReader StandardOutput { get; }
-        public static string Title { get; set; }
-        public static int Read { get; set; }
-
-        [DllImport("User32.dll" + "Win32.dll")]
-        static extern int SetForegroundWindow(IntPtr point);
 
         private void updateTimer_Tick()
         {
@@ -39,9 +34,9 @@ namespace RedmiNote7ToolC
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
-            this.Label1.Text = "RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
-            this.label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
-            this.Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+            Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
+            label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
+            Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
         }
 
         private void InitialiseCPUCounter()
@@ -53,11 +48,12 @@ namespace RedmiNote7ToolC
         {
             ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
         }
+
         private void timer_Tick(object sender, EventArgs e)
         {
-            this.Label1.Text = "RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
-            this.label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
-            this.Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+            Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
+            label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
+            Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
         }
 
         public long GetDirectorySize(string path)
@@ -126,16 +122,16 @@ namespace RedmiNote7ToolC
             }
         }
 
+        static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        {
+            Console.WriteLine(outLine.Data);
+        }
+
         public void OpenFolder(object folderpath)
         {
             string Proc = "Explorer.exe";
             string Args = ControlChars.Quote + System.IO.Path.Combine(@"C:\" + folderpath) + ControlChars.Quote;
             Process.Start(Proc, Args);
-        }
-
-        static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
-        {
-            Console.WriteLine(outLine.Data);
         }
 
         private void Visual_Load(object sender, EventArgs e)
@@ -373,13 +369,14 @@ namespace RedmiNote7ToolC
         {
                 try
                 {
-                    if (Ping("www.google.com") == true)
-                    {
-                        MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadmiuirom = new DownloadMIUIRecovery();
-                        downloadmiuirom.Show();
-                    }
+                if (Ping("www.google.com") == true)
+                {
+                    MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "Recovery ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var downloadmiuirecovery = new DownloadMIUIRecovery();
+                    downloadmiuirecovery.Show();
+
                 }
+            }
                 catch (Exception)
                 {
                     MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi Recovery ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -389,7 +386,14 @@ namespace RedmiNote7ToolC
 
         private void OpenFolderXiaomiGlobalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                OpenFolder(@"adb\xiaomiglobalrecovery");
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void XiaomiGlobalPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -411,7 +415,14 @@ namespace RedmiNote7ToolC
 
         private void OpenFolderXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                OpenFolder(@"adb\xiaomieu");
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void XiaomieuPageToolStripMenuItem_Click(object sender, EventArgs e)
