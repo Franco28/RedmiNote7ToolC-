@@ -30,7 +30,7 @@ namespace RedmiNote7ToolC
         private void closeform()
         {
             var visual = new Visual();
-            visual.Dispose();
+            visual.Show();
             base.Dispose(Disposing);
         }
 

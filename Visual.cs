@@ -7,8 +7,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using DownloadEngine;
-using System.Reflection;
 
 namespace RedmiNote7ToolC
 {
@@ -108,7 +106,7 @@ namespace RedmiNote7ToolC
                     MessageBox.Show("Option: " + command + " canceled", "Fastboot & ADB: Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 #pragma warning disable CS0253
-                else if (@" flash recovery C:\adb\TWRP\recovery.img" == command)
+                else if (@"flash recovery C:\adb\TWRP\recovery.img" == command)
 #pragma warning restore CS0253
                 {
                     MessageBox.Show("Hey! Now if you want to keep the recovery fully working, you must flash the following zip", "FLASH TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -136,33 +134,52 @@ namespace RedmiNote7ToolC
 
         private void Visual_Load(object sender, EventArgs e)
         {
+
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"C:\adb");
 
             if (dir.Exists)
+            {
                 Directory.SetCurrentDirectory(@"C:\adb");
+            }
             else if ((!System.IO.Directory.Exists(@"C:\adb")))
+            {
                 System.IO.Directory.CreateDirectory(@"C:\adb");
+            }
 
             if (!Directory.Exists(@"C:\adb\.settings"))
+            {
                 Directory.CreateDirectory(@"C:\adb\.settings");
+            }
 
             if (!Directory.Exists(@"C:\adb\TWRP"))
+            {
                 Directory.CreateDirectory(@"C:\adb\TWRP");
+            }
 
             if (!Directory.Exists(@"C:\adb\MI"))
+            {
                 Directory.CreateDirectory(@"C:\adb\MI");
+            }
 
             if (!Directory.Exists(@"C:\adb\MIUnlock"))
+            {
                 Directory.CreateDirectory(@"C:\adb\MIUnlock");
+            }
 
             if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot"))
+            {
                 Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot");
+            }
 
             if (!Directory.Exists(@"C:\adb\xiaomieu"))
+            {
                 Directory.CreateDirectory(@"C:\adb\xiaomieu");
+            }
 
             if (!Directory.Exists(@"C:\adb\xiaomiglobalrecovery"))
+            {
                 Directory.CreateDirectory(@"C:\adb\xiaomiglobalrecovery");
+            }
 
             if (!File.Exists(@"C:\adb\adb.exe"))
             {
@@ -184,6 +201,7 @@ namespace RedmiNote7ToolC
 
             InitializeRAMCounter();
             updateTimer_Tick();
+            System.Threading.Thread.Sleep(3000);
             TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             Label3.Text = "User: " + Environment.UserName;
         }
@@ -534,6 +552,11 @@ namespace RedmiNote7ToolC
         {
             this.Controls.Clear();
             base.Refresh();
+            foreach (var process in Process.GetProcessesByName("RedmiNote7Tool"))
+            {
+                process.Kill();
+            }
+            Application.ExitThread();
             base.Dispose(Disposing);
         }
 
