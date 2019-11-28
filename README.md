@@ -1,4 +1,4 @@
-# Redmi Note 7 Tool
+# Redmi Note 7 Tool 
 
 Tool based on C#
 
@@ -22,7 +22,7 @@ Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/Redmi
 
 ### Home Tool
 
-![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7Tool/master/tool.png "Tool")
+![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/tool.png "Tool")
 
 ## Built With
 
