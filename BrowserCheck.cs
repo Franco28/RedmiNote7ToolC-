@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿
+/* (C) 2019 Franco28 */
+/* Basic Tool C# for Redmi Note 7 */
+
+using System.Diagnostics;
 
 namespace RedmiNote7ToolC
 {

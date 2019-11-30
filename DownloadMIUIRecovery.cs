@@ -35,7 +35,9 @@ namespace RedmiNote7ToolC
             {
                 System.Threading.Thread.Sleep(1000);
 
-                closeform();
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
             }
             else
             {
@@ -53,8 +55,6 @@ namespace RedmiNote7ToolC
 
         private void KillAsync()
         {
-            client.Dispose();
-            client.CancelAsync();
             this.Controls.Clear();
             this.Refresh();
             client.Dispose();
@@ -70,9 +70,7 @@ namespace RedmiNote7ToolC
             string[] paths = Directory.GetFiles(@"C:\adb\xiaomiglobalrecovery\", "miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
             if (paths.Length > 0)
             {
-
                 checkfiles();
-
             }
             else
             {
@@ -80,7 +78,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        public void startDownload()
+        private void startDownload()
         {
             if (!this.IsDisposed)
             {
@@ -95,11 +93,14 @@ namespace RedmiNote7ToolC
             }
             else 
             {
+                Thread.EndThreadAffinity();
+                client.Dispose();
+                client.CancelAsync();
                 KillAsync();
             }
         }
 
-        public void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             try
             {
@@ -107,11 +108,11 @@ namespace RedmiNote7ToolC
                 {
                     this.BeginInvoke((MethodInvoker)delegate
                     {
-
                         double bytesIn = double.Parse(e.BytesReceived.ToString());
                         double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
                         double percentage = bytesIn / totalBytes * 100;
                         TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                        textBox2.Text = percentage + " %";
                         ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
                     });
                 }
@@ -130,7 +131,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             if (!this.IsDisposed)
             {
@@ -139,20 +140,24 @@ namespace RedmiNote7ToolC
 
                     TextBox1.Text = "Download completed!";
 
-                    closeform();
+                    client.Dispose();
+                    client.CancelAsync();
+                    KillAsync();
                 });
             }
             else
             {
                 client.Dispose();
                 client.CancelAsync();
+                KillAsync();
             }
         }
 
-        private void DownloadMIUIRecovery_Disposed(object sender, EventArgs e)
+        private void DownloadMIUIRecovery_Closed(object sender, EventArgs e)
         {
             client.Dispose();
             client.CancelAsync();
+            KillAsync();
         }
 
     }

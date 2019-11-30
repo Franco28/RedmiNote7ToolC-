@@ -3,6 +3,7 @@
 /* Basic Tool C# for Redmi Note 7 */
 
 using Microsoft.VisualBasic;
+using RegawMOD.Android;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +18,7 @@ namespace RedmiNote7ToolC
 
         public Visual()
         {
+            VersionTest.Main();
             InitializeComponent();
             InitializeRAMCounter();
             InitialiseCPUCounter();
@@ -80,39 +82,39 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void FastbootExe(object fpath, string command)
+        public void FastbootExe(string fpath, string command)
         {
             try
             {
                 System.Diagnostics.ProcessStartInfo procStartInfo =
-                    new System.Diagnostics.ProcessStartInfo(@"C:\adb"+fpath, " /c " + command);
+                    new System.Diagnostics.ProcessStartInfo(" /c " + @"C:\adb" +fpath, command);
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
-
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.RedirectStandardError = true;
                 proc.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
                 proc.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
-
-                procStartInfo.UseShellExecute = true;
-                procStartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                procStartInfo.UseShellExecute = false;
                 procStartInfo.CreateNoWindow = true;
                 proc.StartInfo = procStartInfo;
                 proc.Start();
                 Console.WriteLine(procStartInfo);
                 proc.WaitForExit();
+                do
+                {
+                  Application.DoEvents(); 
+                } while (!proc.HasExited); 
 
                 if (proc.HasExited == true)
                 {
                     MessageBox.Show("Option: " + command + " canceled", "Fastboot & ADB: Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-#pragma warning disable CS0253
                 else if (@"flash recovery C:\adb\TWRP\recovery.img" == command)
-#pragma warning restore CS0253
                 {
                     MessageBox.Show("Hey! Now if you want to keep the recovery fully working, you must flash the following zip", "FLASH TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     OpenFolder(@"adb\TWRP");
                 }
 
+                proc.StandardOutput.ReadToEnd(); 
             }
             catch (Exception objException)
             {
@@ -134,7 +136,6 @@ namespace RedmiNote7ToolC
 
         private void Visual_Load(object sender, EventArgs e)
         {
-
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"C:\adb");
 
             if (dir.Exists)
@@ -201,8 +202,6 @@ namespace RedmiNote7ToolC
 
             InitializeRAMCounter();
             updateTimer_Tick();
-            System.Threading.Thread.Sleep(3000);
-            TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             Label3.Text = "User: " + Environment.UserName;
         }
 
@@ -251,7 +250,6 @@ namespace RedmiNote7ToolC
 
         private void boottwrp_Click(object sender, EventArgs e)
         {
-
             if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
             {
                 try
@@ -273,7 +271,26 @@ namespace RedmiNote7ToolC
                 } 
                 else
                 {
-                FastbootExe(@"\fastboot.exe", @"boot recovery C:\adb\TWRP\recovery.img");
+                TextBox2.Text = "Checking device connection...";
+
+                AndroidController android = null;
+                android = AndroidController.Instance;
+                if (android.HasConnectedDevices)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    TextBox2.Text = "Booting TWRP OrangeFox...";
+                    System.Threading.Thread.Sleep(1000);
+                    FastbootExe(@"\fastboot.exe", @"boot recovery C:\adb\TWRP\recovery.img");
+                    System.Threading.Thread.Sleep(500);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
+                else
+                {
+                    TextBox2.Text = "Please connect your device...";
+                    System.Threading.Thread.Sleep(1000);
+                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Boot: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
             }
 
         }
@@ -301,7 +318,26 @@ namespace RedmiNote7ToolC
             }
             else
             {
-                FastbootExe(@"\fastboot.exe", @"flash recovery C:\adb\TWRP\recovery.img");
+                TextBox2.Text = "Checking device connection...";
+
+                AndroidController android = null;
+                android = AndroidController.Instance;
+                if (android.HasConnectedDevices)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    TextBox2.Text = "Booting TWRP OrangeFox...";
+                    System.Threading.Thread.Sleep(1000);
+                    FastbootExe(@"\fastboot.exe", @"flash recovery C:\adb\TWRP\recovery.img");
+                    System.Threading.Thread.Sleep(500);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
+                else
+                {
+                    TextBox2.Text = "Please connect your device...";
+                    System.Threading.Thread.Sleep(1000);
+                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
             } 
         }
 
@@ -346,9 +382,8 @@ namespace RedmiNote7ToolC
                 {
                     if (Ping("www.google.com") == true)
                     {
-                        MessageBox.Show("Can´t find Firmware images...", "Firmware Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Can´t find Firmware image...", "Firmware Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         var downloadfastbootmiui = new DownloadMIUIFastboot();
-                        base.Dispose(Disposing);
                         downloadfastbootmiui.Show();
                     }
                 }
@@ -392,7 +427,6 @@ namespace RedmiNote7ToolC
                     MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "Recovery ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     var downloadmiuirecovery = new DownloadMIUIRecovery();
                     downloadmiuirecovery.Show();
-
                 }
             }
                 catch (Exception)
@@ -467,12 +501,31 @@ namespace RedmiNote7ToolC
 
         private void EnterEDLModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure that you wan to enter to EDL mode? This can´t be undone!", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show("Are you sure that you wan to enter to EDL mode?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
-                FastbootExe(@"\fastboot_edl.exe", @" reboot-edl");
-                System.Threading.Thread.Sleep(500);
+                TextBox2.Text = "Checking device connection...";
+
+                AndroidController android = null;
+                android = AndroidController.Instance;
+                if (android.HasConnectedDevices)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    TextBox2.Text = "Entering to EDL mode...";
+                    System.Threading.Thread.Sleep(1000);
+                    FastbootExe(@"\fastboot_edl.exe", @" reboot-edl");
+                    System.Threading.Thread.Sleep(500);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
+                else
+                {
+                    TextBox2.Text = "Please connect your device...";
+                    System.Threading.Thread.Sleep(1000);
+                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "EDL: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
+
             }
             else
             {
@@ -548,8 +601,9 @@ namespace RedmiNote7ToolC
                 }
             }
 
-        private void Visual_Closed(object sender, EventArgs e)
+        public void Visual_Disposed(object sender, EventArgs e)
         {
+            File.Delete(@"C:\adb\.settings\net.txt");
             this.Controls.Clear();
             base.Refresh();
             foreach (var process in Process.GetProcessesByName("RedmiNote7Tool"))
