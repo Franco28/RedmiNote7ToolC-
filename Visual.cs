@@ -239,7 +239,26 @@ namespace RedmiNote7ToolC
 
             if (result == DialogResult.Yes)
             {
-                FastbootExe(@"\fastboot.exe", @"oem lock");
+                TextBox2.Text = "Checking device connection...";
+
+                AndroidController android = null;
+                android = AndroidController.Instance;
+                if (android.HasConnectedDevices)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    TextBox2.Text = "Locking bootloader...";
+                    System.Threading.Thread.Sleep(1000);
+                    FastbootExe(@"\fastboot.exe", @"oem lock");
+                    System.Threading.Thread.Sleep(500);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
+                else
+                {
+                    TextBox2.Text = "Please connect your device...";
+                    System.Threading.Thread.Sleep(1000);
+                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Bootloader: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                }
             }
             else
             {
@@ -258,7 +277,6 @@ namespace RedmiNote7ToolC
                     {
                         MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         var downloadtwrp = new DownloadTWRP();
-                        base.Dispose(Disposing);
                         downloadtwrp.Show();
                     }
                 }
@@ -305,7 +323,6 @@ namespace RedmiNote7ToolC
                     {
                         MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         var downloadtwrp = new DownloadTWRP();
-                        base.Dispose(Disposing);
                         downloadtwrp.Show();
                     }
                 }
