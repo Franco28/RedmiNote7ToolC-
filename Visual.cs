@@ -11,10 +11,12 @@ using System.Windows.Forms;
 
 namespace RedmiNote7ToolC
 {
+
     public partial class Visual : Form
     {
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
+        Device device; AndroidController android = null; string serial;
 
         public Visual()
         {
@@ -23,6 +25,7 @@ namespace RedmiNote7ToolC
             InitializeRAMCounter();
             InitialiseCPUCounter();
             updateTimer_Tick();
+            android = AndroidController.Instance; 
         }
 
         [System.ComponentModel.Browsable(false)]
@@ -188,7 +191,6 @@ namespace RedmiNote7ToolC
                 {
                     if (Ping("www.google.com") == true)
                     {
-                        base.Dispose(Disposing);
                         var downloadadb = new DownloadAdbFastboot();
                         downloadadb.Show();
                     }
@@ -200,9 +202,14 @@ namespace RedmiNote7ToolC
                 }
             }
 
+
             InitializeRAMCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + Environment.UserName;
+
+            TextBox2.AppendText("Battery Status: " + device.Battery.Level.ToString() + Environment.NewLine); 
+            TextBox2.AppendText("Battery Temperature: " + device.Battery.Temperature + Environment.NewLine); 
+
         }
 
         private void unlockbootloader_Click(object sender, EventArgs e)
@@ -241,8 +248,6 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Checking device connection...";
 
-                AndroidController android = null;
-                android = AndroidController.Instance;
                 if (android.HasConnectedDevices)
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -291,8 +296,6 @@ namespace RedmiNote7ToolC
                 {
                 TextBox2.Text = "Checking device connection...";
 
-                AndroidController android = null;
-                android = AndroidController.Instance;
                 if (android.HasConnectedDevices)
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -337,8 +340,6 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Checking device connection...";
 
-                AndroidController android = null;
-                android = AndroidController.Instance;
                 if (android.HasConnectedDevices)
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -524,8 +525,6 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Checking device connection...";
 
-                AndroidController android = null;
-                android = AndroidController.Instance;
                 if (android.HasConnectedDevices)
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -549,6 +548,16 @@ namespace RedmiNote7ToolC
                 MessageBox.Show("EDL canceled...", "EDL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 System.Threading.Thread.Sleep(500);
             }
+        }
+
+        private void rebootBootloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rebootRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -588,7 +597,8 @@ namespace RedmiNote7ToolC
 
         private void Help_Click(object sender, EventArgs e)
         {
-
+            var h = new Help();
+            h.Show();
         }
 
         private void UninstallTool_Click(object sender, EventArgs e)
@@ -623,7 +633,7 @@ namespace RedmiNote7ToolC
             File.Delete(@"C:\adb\.settings\net.txt");
             this.Controls.Clear();
             base.Refresh();
-            foreach (var process in Process.GetProcessesByName("RedmiNote7Tool"))
+            foreach (var process in Process.GetProcessesByName("RedmiNote7Tool" + "adb" + "fastboot" + "fastboot_edl" + "AdbWinApi.dll" + "AdbWinUsbApi.dll"))
             {
                 process.Kill();
             }

@@ -22,6 +22,19 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
+        public void KillAsync()
+        {
+            client.Dispose();
+            client.CancelAsync();
+            this.Controls.Clear();
+            this.Refresh();
+            base.Dispose(Disposing);
+            var visual = new Visual();
+            visual.Refresh();
+            return;
+        }
+
+
         private void checkfiles()
         {
             TextBox1.Text = "Checking file...";
@@ -35,8 +48,6 @@ namespace RedmiNote7ToolC
             {
                 System.Threading.Thread.Sleep(1000);
 
-                client.Dispose();
-                client.CancelAsync();
                 KillAsync();
             }
             else
@@ -44,23 +55,6 @@ namespace RedmiNote7ToolC
                 MessageBox.Show(@"File is corrupted \: , downloading again!", "Xiaomi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
             }
-        }
-
-        private void closeform()
-        {
-            var visual = new Visual();
-            visual.Dispose();
-            base.Dispose(Disposing);
-        }
-
-        private void KillAsync()
-        {
-            this.Controls.Clear();
-            this.Refresh();
-            client.Dispose();
-            client.CancelAsync();
-            closeform();
-            return;
         }
 
         private void DownloadMIUIRecovery_Load(object sender, EventArgs e)
@@ -78,7 +72,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void startDownload()
+        public void startDownload()
         {
             if (!this.IsDisposed)
             {
@@ -93,9 +87,6 @@ namespace RedmiNote7ToolC
             }
             else 
             {
-                Thread.EndThreadAffinity();
-                client.Dispose();
-                client.CancelAsync();
                 KillAsync();
             }
         }
@@ -120,14 +111,13 @@ namespace RedmiNote7ToolC
                 {
                     client.Dispose();
                     client.CancelAsync();
-                    MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    KillAsync();
                 }
             }
             catch (Exception er)
             {
                 MessageBox.Show("Error:" +er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                client.Dispose();
-                client.CancelAsync();
+                KillAsync();
             }
         }
 
@@ -139,24 +129,19 @@ namespace RedmiNote7ToolC
                 {
 
                     TextBox1.Text = "Download completed!";
-
-                    client.Dispose();
-                    client.CancelAsync();
+                 
                     KillAsync();
                 });
             }
             else
             {
-                client.Dispose();
-                client.CancelAsync();
                 KillAsync();
             }
         }
 
         private void DownloadMIUIRecovery_Closed(object sender, EventArgs e)
         {
-            client.Dispose();
-            client.CancelAsync();
+            MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             KillAsync();
         }
 

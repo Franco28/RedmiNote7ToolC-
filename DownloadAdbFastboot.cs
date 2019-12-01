@@ -22,76 +22,113 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
+        public void KillAsync()
+        {
+            client.Dispose();
+            client.CancelAsync();
+            this.Controls.Clear();
+            this.Refresh();
+            base.Dispose(Disposing);
+            var visual = new Visual();
+            visual.Refresh();
+            return;
+        }
+
         private void DownloadAdbFastboot_Load(object sender, EventArgs e)
         {
             startDownload();
         }
 
-        private void closeform()
-        {
-            var visual = new Visual();
-            visual.Show();
-            base.Dispose(Disposing);
-        }
-
-        private void startDownload()
-        {
-            Thread thread = new Thread(() => {
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/adb.zip"), @"C:\adb\adb.zip");
-            });
-            thread.Start();
-        }
-
-        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        public void startDownload()
         {
             if (!this.IsDisposed)
             {
-                this.BeginInvoke((MethodInvoker)delegate {
-
-                    double bytesIn = double.Parse(e.BytesReceived.ToString());
-                    double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                    double percentage = bytesIn / totalBytes * 100;
-                    TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
-                    ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                Thread thread = new Thread(() =>
+                {
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/adb.zip"), @"C:\adb\adb.zip");
                 });
+
+                thread.Start();
             }
             else
             {
-                client.Dispose();
-                client.CancelAsync();
-                this.Controls.Clear();
-                base.Refresh();
-                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                closeform();
-                return;
+                KillAsync();
+            }
+        }
+
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            try
+            {
+                if (!this.IsDisposed)
+                {
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        double bytesIn = double.Parse(e.BytesReceived.ToString());
+                        double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                        double percentage = bytesIn / totalBytes * 100;
+                        TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                        textBox2.Text = percentage + " %";
+                        ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                    });
+                }
+                else
+                {
+                    client.Dispose();
+                    client.CancelAsync();
+                    KillAsync();
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error:" + er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                KillAsync();
             }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            this.BeginInvoke((MethodInvoker)delegate {
-                TextBox1.Text = "Download completed... Extracting files!";
+                if (!this.IsDisposed)
+                {
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
 
-                Directory.SetCurrentDirectory(@"C:\adb");
+                        TextBox1.Text = "Download completed... Extracting files!";
 
-                string zipPath = "adb.zip";
-                string extractPath = @"C:\adb";
+                        Directory.SetCurrentDirectory(@"C:\adb");
 
-                ZipFile.ExtractToDirectory(zipPath, extractPath);
+                        string zipPath = "adb.zip";
+                        string extractPath = @"C:\adb";
 
-                string FileToDelete;
+                        ZipFile.ExtractToDirectory(zipPath, extractPath);
 
-                FileToDelete = @"C:\adb\adb.zip";
+                        string FileToDelete;
 
-                if (System.IO.File.Exists(FileToDelete) == true)
-                    System.IO.File.Delete(FileToDelete);
+                        FileToDelete = @"C:\adb\adb.zip";
 
-                MessageBox.Show(@"adb & fastboot installed in C:\adb", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (System.IO.File.Exists(FileToDelete) == true)
+                            System.IO.File.Delete(FileToDelete);
 
-                closeform();
-            });
+                        MessageBox.Show(@"adb & fastboot installed in C:\adb", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        KillAsync();
+                    });
+                }
+                else
+                {
+                    KillAsync();
+                }
+        }
+
+        public void DownloadAdbFastboot_Disposed(object sender, EventArgs e)
+        {
+            File.Delete(@"C:\adb\.settings\net.txt");
+            this.Controls.Clear();
+            base.Refresh();
+            Application.Restart();
+            base.Dispose(Disposing);
         }
 
     }
