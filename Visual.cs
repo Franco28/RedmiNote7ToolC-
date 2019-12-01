@@ -16,7 +16,7 @@ namespace RedmiNote7ToolC
     {
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
-        Device device; AndroidController android = null; string serial;
+        private Device device; AndroidController android = null; string serial;
 
         public Visual()
         {
@@ -206,10 +206,6 @@ namespace RedmiNote7ToolC
             InitializeRAMCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + Environment.UserName;
-
-            TextBox2.AppendText("Battery Status: " + device.Battery.Level.ToString() + Environment.NewLine); 
-            TextBox2.AppendText("Battery Temperature: " + device.Battery.Temperature + Environment.NewLine); 
-
         }
 
         private void unlockbootloader_Click(object sender, EventArgs e)
@@ -552,12 +548,46 @@ namespace RedmiNote7ToolC
 
         private void rebootBootloaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TextBox2.Text = "Checking device connection...";
 
+            if (android.HasConnectedDevices)
+            {
+                System.Threading.Thread.Sleep(1000);
+                TextBox2.Text = "Entering to Bootloader mode...";
+                System.Threading.Thread.Sleep(1000);
+                FastbootExe(@"\adb.exe", @" reboot bootloader");
+                System.Threading.Thread.Sleep(500);
+                TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+            }
+            else
+            {
+                TextBox2.Text = "Please connect your device...";
+                System.Threading.Thread.Sleep(1000);
+                MessageBox.Show("Device doesn´t found, Please connect the Phone", "BOOTLOADER: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+            }
         }
 
         private void rebootRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TextBox2.Text = "Checking device connection...";
 
+            if (android.HasConnectedDevices)
+            {
+                System.Threading.Thread.Sleep(1000);
+                TextBox2.Text = "Entering to Recovery mode...";
+                System.Threading.Thread.Sleep(1000);
+                FastbootExe(@"\adb.exe", @" reboot recovery");
+                System.Threading.Thread.Sleep(500);
+                TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+            }
+            else
+            {
+                TextBox2.Text = "Please connect your device...";
+                System.Threading.Thread.Sleep(1000);
+                MessageBox.Show("Device doesn´t found, Please connect the Phone", "RECOVERY: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+            }
         }
 
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
