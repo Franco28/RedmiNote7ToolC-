@@ -16,8 +16,6 @@ namespace RedmiNote7ToolC
     public partial class DownloadMIUIFastboot : Form
     {
         private FileInfo infoReader;
-        private int totalFiles;
-        private int filesExtracted;
         WebClient client = new WebClient();
 
         public DownloadMIUIFastboot()

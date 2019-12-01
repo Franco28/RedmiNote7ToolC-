@@ -21,8 +21,6 @@ namespace RedmiNote7ToolC
         }
 
         private FileInfo infoReader;
-        private int totalFiles;
-        private int filesExtracted;
         WebClient client = new WebClient();
 
         private void unzip(object file, string filepath)
