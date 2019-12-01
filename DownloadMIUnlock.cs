@@ -13,17 +13,17 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
-    public partial class DownloadMIUIFastboot : Form
+    public partial class DownloadMIUnlock : Form
     {
+        public DownloadMIUnlock()
+        {
+            InitializeComponent();
+        }
+
         private FileInfo infoReader;
         private int totalFiles;
         private int filesExtracted;
         WebClient client = new WebClient();
-
-        public DownloadMIUIFastboot()
-        {
-            InitializeComponent();
-        }
 
         private void unzip(object file, string filepath)
         {
@@ -49,12 +49,12 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+            infoReader = new System.IO.FileInfo("miflash_unlock-en-3.5.1108.44.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip");
 
             System.Threading.Thread.Sleep(3000);
 
-            if (infoReader.Length > 3100000000)
+            if (infoReader.Length > 48000000)
             {
                 System.Threading.Thread.Sleep(1000);
 
@@ -62,16 +62,16 @@ namespace RedmiNote7ToolC
             }
             else
             {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Fastboot Firmware", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
             }
         }
 
-        private void DownloadMIUIFastboot_Load(object sender, EventArgs e)
+        private void DownloadMIUnlock_Load(object sender, EventArgs e)
         {
-            Directory.SetCurrentDirectory(@"C:\adb\xiaomiglobalfastboot");
+            Directory.SetCurrentDirectory(@"C:\adb\MIUnlock\");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\xiaomiglobalfastboot\", "lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+            string[] paths = Directory.GetFiles(@"C:\adb\MIUnlock\", "miflash_unlock-en-3.5.1108.44.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -80,7 +80,6 @@ namespace RedmiNote7ToolC
             {
                 startDownload();
             }
-
         }
 
         public void startDownload()
@@ -91,7 +90,7 @@ namespace RedmiNote7ToolC
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("http://bigota.d.miui.com/V11.0.4.0.PFGMIXM/lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz"), @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
+                    client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/miflash_unlock-en-3.5.1108.44.zip"), @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip");
                 });
 
                 thread.Start();
@@ -142,11 +141,11 @@ namespace RedmiNote7ToolC
 
                     TextBox1.Text = "Download completed... Extracting files, this will take a while...";
 
-                    unzip(@"xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz", @"xiaomiglobalfastboot\MI");
+                    unzip(@"MIUnlock\miflash_unlock-en-3.5.1108.44.zip", @"MIUnlock");
 
                     string FileToDelete;
 
-                    FileToDelete = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz";
+                    FileToDelete = @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip";
 
                     if (System.IO.File.Exists(FileToDelete) == true)
                         System.IO.File.Delete(FileToDelete);
@@ -160,7 +159,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadMIUIFastboot_Disposed(object sender, EventArgs e)
+        private void DownloadMIUnlock_Disposed(object sender, EventArgs e)
         {
             MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             KillAsync();

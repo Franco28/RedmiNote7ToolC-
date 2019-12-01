@@ -16,7 +16,7 @@ namespace RedmiNote7ToolC
     {
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
-        private Device device; AndroidController android = null; string serial;
+        private AndroidController android;
 
         public Visual()
         {
@@ -160,9 +160,9 @@ namespace RedmiNote7ToolC
                 Directory.CreateDirectory(@"C:\adb\TWRP");
             }
 
-            if (!Directory.Exists(@"C:\adb\MI"))
+            if (!Directory.Exists(@"C:\adb\MIFlash"))
             {
-                Directory.CreateDirectory(@"C:\adb\MI");
+                Directory.CreateDirectory(@"C:\adb\MIFlash");
             }
 
             if (!Directory.Exists(@"C:\adb\MIUnlock"))
@@ -173,6 +173,11 @@ namespace RedmiNote7ToolC
             if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot"))
             {
                 Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot");
+            }
+
+            if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot\MI"))
+            {
+                Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot\MI");
             }
 
             if (!Directory.Exists(@"C:\adb\xiaomieu"))
@@ -371,7 +376,7 @@ namespace RedmiNote7ToolC
         {
             try
             {
-               OpenFolder(@"adb\MI");
+               OpenFolder(@"adb\MIFlash");
             } catch (Exception er)
             {
                 MessageBox.Show("Error: " +er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -505,12 +510,38 @@ namespace RedmiNote7ToolC
 
         private void DownloadMiFlash2018ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Ping("www.google.com") == true)
+                {
+                    MessageBox.Show("Can´t find Mi Flash...", "Mi FLash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var downloadmiflash = new DownloadMIFlash();
+                    downloadmiflash.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.Application.Restart();
+            }
         }
 
         private void DownloadMiUnlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Ping("www.google.com") == true)
+                {
+                    MessageBox.Show("Can´t find Mi Unlock...", "Mi Unlock Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var downloadmiunlock = new DownloadMIUnlock();
+                    downloadmiunlock.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.Application.Restart();
+            }
         }
 
         private void EnterEDLModeToolStripMenuItem_Click(object sender, EventArgs e)

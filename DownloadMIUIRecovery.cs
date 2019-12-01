@@ -34,7 +34,6 @@ namespace RedmiNote7ToolC
             return;
         }
 
-
         private void checkfiles()
         {
             TextBox1.Text = "Checking file...";
@@ -139,7 +138,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadMIUIRecovery_Closed(object sender, EventArgs e)
+        private void DownloadMIUIRecovery_Disposed(object sender, EventArgs e)
         {
             MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             KillAsync();

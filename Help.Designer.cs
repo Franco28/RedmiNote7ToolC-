@@ -52,6 +52,7 @@
             // 
             // contact
             // 
+            this.contact.BackColor = System.Drawing.Color.Gray;
             this.contact.Cursor = System.Windows.Forms.Cursors.Hand;
             this.contact.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.contact.FlatAppearance.BorderSize = 0;
@@ -66,7 +67,7 @@
             this.contact.Size = new System.Drawing.Size(131, 34);
             this.contact.TabIndex = 23;
             this.contact.Text = "Contact";
-            this.contact.UseVisualStyleBackColor = true;
+            this.contact.UseVisualStyleBackColor = false;
             this.contact.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
@@ -85,6 +86,7 @@
             // 
             // howtouseit
             // 
+            this.howtouseit.BackColor = System.Drawing.Color.Gray;
             this.howtouseit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.howtouseit.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.howtouseit.FlatAppearance.BorderSize = 0;
@@ -99,7 +101,7 @@
             this.howtouseit.Size = new System.Drawing.Size(152, 34);
             this.howtouseit.TabIndex = 25;
             this.howtouseit.Text = "How to use it?";
-            this.howtouseit.UseVisualStyleBackColor = true;
+            this.howtouseit.UseVisualStyleBackColor = false;
             this.howtouseit.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2

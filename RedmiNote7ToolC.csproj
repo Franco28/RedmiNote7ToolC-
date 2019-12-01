@@ -90,6 +90,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -110,6 +111,12 @@
     <Compile Include="DownloadAdbFastboot.Designer.cs">
       <DependentUpon>DownloadAdbFastboot.cs</DependentUpon>
     </Compile>
+    <Compile Include="DownloadMIFlash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadMIFlash.Designer.cs">
+      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
+    </Compile>
     <Compile Include="DownloadMIUIFastboot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +128,12 @@
     </Compile>
     <Compile Include="DownloadMIUIRecovery.Designer.cs">
       <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadMIUnlock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadMIUnlock.Designer.cs">
+      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
     </Compile>
     <Compile Include="DownloadTWRP.cs">
       <SubType>Form</SubType>
@@ -152,11 +165,17 @@
     <EmbeddedResource Include="DownloadAdbFastboot.resx">
       <DependentUpon>DownloadAdbFastboot.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DownloadMIFlash.resx">
+      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIUIFastboot.resx">
       <DependentUpon>DownloadMIUIFastboot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIUIRecovery.resx">
       <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadMIUnlock.resx">
+      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadTWRP.resx">
       <DependentUpon>DownloadTWRP.cs</DependentUpon>
