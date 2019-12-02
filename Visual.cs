@@ -20,7 +20,6 @@ namespace RedmiNote7ToolC
 
         public Visual()
         {
-            VersionTest.Main();
             InitializeComponent();
             InitializeRAMCounter();
             InitialiseCPUCounter();
@@ -89,13 +88,12 @@ namespace RedmiNote7ToolC
         {
             try
             {
+                Directory.SetCurrentDirectory(@"C:\adb\");
                 System.Diagnostics.ProcessStartInfo procStartInfo =
-                    new System.Diagnostics.ProcessStartInfo(" /c " + @"C:\adb" +fpath, command);
+                    new System.Diagnostics.ProcessStartInfo(@"C:\adb\" +fpath, command);
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.RedirectStandardError = true;
-                proc.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
-                proc.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
                 procStartInfo.UseShellExecute = false;
                 procStartInfo.CreateNoWindow = true;
                 proc.StartInfo = procStartInfo;
@@ -107,27 +105,16 @@ namespace RedmiNote7ToolC
                   Application.DoEvents(); 
                 } while (!proc.HasExited); 
 
-                if (proc.HasExited == true)
-                {
-                    MessageBox.Show("Option: " + command + " canceled", "Fastboot & ADB: Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (@"flash recovery C:\adb\TWRP\recovery.img" == command)
+                if (@"flash recovery recovery.img" == command)
                 {
                     MessageBox.Show("Hey! Now if you want to keep the recovery fully working, you must flash the following zip", "FLASH TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     OpenFolder(@"adb\TWRP");
                 }
-
-                proc.StandardOutput.ReadToEnd(); 
             }
             catch (Exception objException)
             {
                 MessageBox.Show("Error: " + objException, "Fastboot & ADB: Console", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
-        {
-            Console.WriteLine(outLine.Data);
         }
 
         public void OpenFolder(object folderpath)
@@ -291,30 +278,28 @@ namespace RedmiNote7ToolC
                     MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Windows.Forms.Application.Restart();
                 }
-         
-                } 
-                else
-                {
+            }
+            else
+            {
                 TextBox2.Text = "Checking device connection...";
-
                 if (android.HasConnectedDevices)
                 {
+                    Directory.SetCurrentDirectory(@"C:\adb\TWRP\");
                     System.Threading.Thread.Sleep(1000);
-                    TextBox2.Text = "Booting TWRP OrangeFox...";
+                    TextBox2.Text = "Booting into OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
-                    FastbootExe(@"\fastboot.exe", @"boot recovery C:\adb\TWRP\recovery.img");
-                    System.Threading.Thread.Sleep(500);
+                    FastbootExe(@"fastboot ", @"boot recovery.img");
+                    System.Threading.Thread.Sleep(3000);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
                 else
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Boot: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
             }
-
         }
 
         private void flashtwrp_Click(object sender, EventArgs e)
@@ -335,20 +320,23 @@ namespace RedmiNote7ToolC
                     MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Windows.Forms.Application.Restart();
                 }
-
             }
             else
             {
                 TextBox2.Text = "Checking device connection...";
-
                 if (android.HasConnectedDevices)
                 {
+                    Directory.SetCurrentDirectory(@"C:\adb\TWRP\");
                     System.Threading.Thread.Sleep(1000);
-                    TextBox2.Text = "Booting TWRP OrangeFox...";
+                    TextBox2.Text = "Flashing TWRP OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
-                    FastbootExe(@"\fastboot.exe", @"flash recovery C:\adb\TWRP\recovery.img");
-                    System.Threading.Thread.Sleep(500);
+                    FastbootExe(@"fastboot ", @"flash recovery recovery.img");
+                    System.Threading.Thread.Sleep(3000);
+                    FastbootExe(@"adb ", @"reboot recovery");
+                    TextBox2.Text = "Booting into OrangeFox...";
+                    System.Threading.Thread.Sleep(2000);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
+                    MessageBox.Show("TWRP Installed!", "Flash: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -586,7 +574,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Bootloader mode...";
                 System.Threading.Thread.Sleep(1000);
-                FastbootExe(@"\adb.exe", @" reboot bootloader");
+                FastbootExe(@"\adb ", @" reboot bootloader");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
@@ -608,7 +596,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Recovery mode...";
                 System.Threading.Thread.Sleep(1000);
-                FastbootExe(@"\adb.exe", @" reboot recovery");
+                FastbootExe(@"\adb ", @" reboot recovery");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }

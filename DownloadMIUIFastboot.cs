@@ -137,6 +137,8 @@ namespace RedmiNote7ToolC
             {
                 this.BeginInvoke((MethodInvoker)delegate
                 {
+                    client.Dispose();
+                    client.CancelAsync();
 
                     TextBox1.Text = "Download completed... Extracting files, this will take a while...";
 
@@ -158,8 +160,10 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadMIUIFastboot_Disposed(object sender, EventArgs e)
+        private void DownloadMIUIFastboot_Closed(object sender, EventArgs e)
         {
+            client.Dispose();
+            client.CancelAsync();
             MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             KillAsync();
         }

@@ -81,7 +81,6 @@ namespace RedmiNote7ToolC
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     client.DownloadFileAsync(new Uri("https://bigota.d.miui.com/V11.0.4.0.PFGMIXM/miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip"), @"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
                 });
-
                 thread.Start();
             }
             else 
@@ -92,54 +91,55 @@ namespace RedmiNote7ToolC
 
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            try
+            if (this.IsDisposed)
             {
-                if (!this.IsDisposed)
-                {
-                    this.BeginInvoke((MethodInvoker)delegate
-                    {
-                        double bytesIn = double.Parse(e.BytesReceived.ToString());
-                        double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                        double percentage = bytesIn / totalBytes * 100;
-                        TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
-                        textBox2.Text = percentage + " %";
-                        ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-                    });
-                }
-                else
-                {
-                    client.Dispose();
-                    client.CancelAsync();
-                    KillAsync();
-                }
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("Error:" +er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                client.Dispose();
+                client.CancelAsync();
                 KillAsync();
-            }
-        }
-
-        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (!this.IsDisposed)
-            {
-                this.BeginInvoke((MethodInvoker)delegate
-                {
-
-                    TextBox1.Text = "Download completed!";
-                 
-                    KillAsync();
-                });
             }
             else
             {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                    double bytesIn = double.Parse(e.BytesReceived.ToString());
+                    double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                    double percentage = bytesIn / totalBytes * 100;
+                    TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                    textBox2.Text = percentage + " %";
+                    ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                    }
+                });
+            }               
+        }
+   
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (this.IsDisposed)
+            {
+                client.Dispose();
+                client.CancelAsync();
                 KillAsync();
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                        TextBox1.Text = "Download completed!";
+
+                        KillAsync();
+                    }
+                });
             }
         }
 
         private void DownloadMIUIRecovery_Disposed(object sender, EventArgs e)
         {
+            client.Dispose();
+            client.CancelAsync();
             MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             KillAsync();
         }
