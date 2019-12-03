@@ -14,6 +14,8 @@ namespace RedmiNote7ToolC
 
     public partial class Visual : Form
     {
+        [System.ComponentModel.Browsable(false)]
+
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
         private AndroidController android;
@@ -27,15 +29,12 @@ namespace RedmiNote7ToolC
             android = AndroidController.Instance; 
         }
 
-        [System.ComponentModel.Browsable(false)]
-
         private void updateTimer_Tick()
         {
             Timer timer = new Timer();
             timer.Interval = (1 * 1000); 
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
-
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
@@ -193,8 +192,6 @@ namespace RedmiNote7ToolC
                     base.Dispose(Disposing);
                 }
             }
-
-
             InitializeRAMCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + Environment.UserName;
@@ -249,7 +246,7 @@ namespace RedmiNote7ToolC
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Bootloader: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Bootloader: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
             }
@@ -296,7 +293,7 @@ namespace RedmiNote7ToolC
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
             }
@@ -342,7 +339,7 @@ namespace RedmiNote7ToolC
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
             } 
@@ -427,20 +424,20 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                try
-                {
+           try
+           {
                 if (Ping("www.google.com") == true)
                 {
                     MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "Recovery ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     var downloadmiuirecovery = new DownloadMIUIRecovery();
                     downloadmiuirecovery.Show();
                 }
-            }
-                catch (Exception)
-                {
+           }
+           catch (Exception)
+           {
                     MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi Recovery ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Windows.Forms.Application.Restart();
-                }
+           }
         }
 
         private void OpenFolderXiaomiGlobalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -535,17 +532,15 @@ namespace RedmiNote7ToolC
         private void EnterEDLModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Are you sure that you wan to enter to EDL mode?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 TextBox2.Text = "Checking device connection...";
-
                 if (android.HasConnectedDevices)
                 {
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Entering to EDL mode...";
                     System.Threading.Thread.Sleep(1000);
-                    FastbootExe(@"\fastboot_edl.exe", @" reboot-edl");
+                    FastbootExe(@"\fastboot_edl ", @" reboot-edl");
                     System.Threading.Thread.Sleep(500);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
@@ -553,10 +548,9 @@ namespace RedmiNote7ToolC
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the Phone", "EDL: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "EDL: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
-
             }
             else
             {
@@ -568,7 +562,6 @@ namespace RedmiNote7ToolC
         private void rebootBootloaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox2.Text = "Checking device connection...";
-
             if (android.HasConnectedDevices)
             {
                 System.Threading.Thread.Sleep(1000);
@@ -582,7 +575,7 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Please connect your device...";
                 System.Threading.Thread.Sleep(1000);
-                MessageBox.Show("Device doesn´t found, Please connect the Phone", "BOOTLOADER: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "BOOTLOADER: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
         }
@@ -590,7 +583,6 @@ namespace RedmiNote7ToolC
         private void rebootRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox2.Text = "Checking device connection...";
-
             if (android.HasConnectedDevices)
             {
                 System.Threading.Thread.Sleep(1000);
@@ -604,7 +596,7 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Please connect your device...";
                 System.Threading.Thread.Sleep(1000);
-                MessageBox.Show("Device doesn´t found, Please connect the Phone", "RECOVERY: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "RECOVERY: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
         }
@@ -612,7 +604,6 @@ namespace RedmiNote7ToolC
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string[] paths = System.IO.Directory.GetFiles(@"C:\adb\MI", "XiaoMiFlash.exe");
-
             if (paths.Length > 0)
             {
                 try
@@ -653,7 +644,6 @@ namespace RedmiNote7ToolC
         private void UninstallTool_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Do you want to Remove all files? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
              if (result == DialogResult.Yes)
                 {
                     try
@@ -670,7 +660,7 @@ namespace RedmiNote7ToolC
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("The process failed: {0} " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Uninstall failed: {0} " + ex.Message, "Error: Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Controls.Clear();
                         base.Refresh();
                     }

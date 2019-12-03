@@ -16,6 +16,7 @@ namespace RedmiNote7ToolC
     public partial class DownloadTWRP : Form
     {
         private FileInfo infoReader;
+        WebClient client = new WebClient();
 
         public DownloadTWRP()
         {
@@ -30,23 +31,16 @@ namespace RedmiNote7ToolC
             ZipFile.ExtractToDirectory(zipPath, extractPath);
         }
 
-        private void checkfiles()
+        public void KillAsync()
         {
-            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
-
-            if (infoReader.Length > 40900000)
-            {
-
-                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
-
-                closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
-            }
+            client.Dispose();
+            client.CancelAsync();
+            this.Controls.Clear();
+            this.Refresh();
+            base.Dispose(Disposing);
+            var visual = new Visual();
+            visual.Refresh();
+            return;
         }
 
         private void closeform()
@@ -56,6 +50,36 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
+        private void checkfiles()
+        {
+            TextBox1.Text = "Checking file...";
+
+            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+
+            System.Threading.Thread.Sleep(3000);
+
+            if (infoReader.Length > 40900000)
+            {
+
+                TextBox1.Text = "Extracting files!";
+
+                System.Threading.Thread.Sleep(1000);
+
+                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
+
+                System.Threading.Thread.Sleep(1000);
+
+                KillAsync();
+                closeform();
+            }
+            else
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+        }
+
         private void DownloadTWRP_Load(object sender, EventArgs e)
         {
             Directory.SetCurrentDirectory(@"C:\adb\TWRP");
@@ -63,9 +87,7 @@ namespace RedmiNote7ToolC
             string[] paths = Directory.GetFiles(@"C:\adb\TWRP\", "OrangeFox-R10.0_2-Stable-lavender.zip");
             if (paths.Length > 0)
             {
-
                 checkfiles();
-
             } 
             else
             {
@@ -75,37 +97,74 @@ namespace RedmiNote7ToolC
 
         private void startDownload()
         {
-            Thread thread = new Thread(() => {
-                WebClient client = new WebClient();
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
-            });
-            thread.Start();
+            if (!this.IsDisposed)
+            {
+                Thread thread = new Thread(() =>
+                {
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+                });
+                thread.Start();
+            }
+            else
+            {
+                KillAsync();
+                closeform();
+            }
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            this.BeginInvoke((MethodInvoker)delegate {
-                double bytesIn = double.Parse(e.BytesReceived.ToString());
-                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                double percentage = bytesIn / totalBytes * 100;
-                TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
-                ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-            });
+            if (this.IsDisposed)
+            {
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                        double bytesIn = double.Parse(e.BytesReceived.ToString());
+                        double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                        double percentage = bytesIn / totalBytes * 100;
+                        TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                        textBox2.Text = percentage + " %";
+                        ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                    }
+                });
+            }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            this.BeginInvoke((MethodInvoker)delegate {
-                TextBox1.Text = "Download completed... Extracting files!";
-
-                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
-
+            if (this.IsDisposed)
+            {
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
                 closeform();
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                        TextBox1.Text = "Download completed... Extracting files!";
 
-            });
+                        unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
+
+                        KillAsync();
+                        closeform();
+                    }
+                });
+            }
+
         }
-
     }
 }

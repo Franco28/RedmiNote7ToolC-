@@ -34,6 +34,13 @@ namespace RedmiNote7ToolC
             return;
         }
 
+        private void closeform()
+        {
+            var visual = new Visual();
+            visual.Refresh();
+            base.Dispose(Disposing);
+        }
+
         private void checkfiles()
         {
             TextBox1.Text = "Checking file...";
@@ -48,6 +55,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+                closeform();
             }
             else
             {
@@ -86,6 +94,7 @@ namespace RedmiNote7ToolC
             else 
             {
                 KillAsync();
+                closeform();
             }
         }
 
@@ -96,6 +105,7 @@ namespace RedmiNote7ToolC
                 client.Dispose();
                 client.CancelAsync();
                 KillAsync();
+                closeform();
             }
             else
             {
@@ -121,6 +131,7 @@ namespace RedmiNote7ToolC
                 client.Dispose();
                 client.CancelAsync();
                 KillAsync();
+                closeform();
             }
             else
             {
@@ -131,18 +142,10 @@ namespace RedmiNote7ToolC
                         TextBox1.Text = "Download completed!";
 
                         KillAsync();
+                        closeform();
                     }
                 });
             }
         }
-
-        private void DownloadMIUIRecovery_Disposed(object sender, EventArgs e)
-        {
-            client.Dispose();
-            client.CancelAsync();
-            MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            KillAsync();
-        }
-
     }
 }
