@@ -25,7 +25,7 @@ Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/Redmi
 
 ### Uninstall
 
-- Click the trash icon on the Tool, this will remvoe all the folders used on C:\
+- Click the trash icon on the Tool, this will remove all the folders used on C:\adb
 
 ![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/trash.png "Trash")
 
@@ -36,7 +36,8 @@ Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/Redmi
 
 ### How it works
 
-- Exec the "RedmiNote7Tool" shortcut
+* When you finished the installation, the Tool will execute alone *
+- The installation will create a "RedmiNote7Tool" shortcut on desktop
 - Then you can use any option, remember if you want to download any file, this will check internet connection
 - If you want to flash any TWRP, this will be downloaded and flashed, but remember to put your device on Bootloader mode and ready to flash
 
