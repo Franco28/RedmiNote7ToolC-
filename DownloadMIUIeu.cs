@@ -12,10 +12,9 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
-    public partial class DownloadMIUIRecovery : Form
+    public partial class DownloadMIUIeu : Form
     {
-
-        public DownloadMIUIRecovery()
+        public DownloadMIUIeu()
         {
             InitializeComponent();
         }
@@ -46,12 +45,12 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
+            infoReader = new System.IO.FileInfo("xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
 
             System.Threading.Thread.Sleep(3000);
 
-            if (infoReader.Length > 1800000000)
+            if (infoReader.Length > 1600000000)
             {
                 System.Threading.Thread.Sleep(1000);
 
@@ -65,11 +64,11 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadMIUIRecovery_Load(object sender, EventArgs e)
+        private void DownloadMIUIeu_Load(object sender, EventArgs e)
         {
-            Directory.SetCurrentDirectory(@"C:\adb\xiaomiglobalrecovery");
+            Directory.SetCurrentDirectory(@"C:\adb\xiaomieu\");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\xiaomiglobalrecovery\", "miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\xiaomieu\", "xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -88,11 +87,11 @@ namespace RedmiNote7ToolC
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("https://bigota.d.miui.com/V11.0.4.0.PFGMIXM/miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip"), @"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
+                    client.DownloadFileAsync(new Uri("https://or1.androidfilehost.com/dl/1JG1cjBy8l5sxnXM9EqDzg/1575646034/4349826312261648885/xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip"), @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
                 });
                 thread.Start();
             }
-            else 
+            else
             {
                 KillAsync();
                 closeform();
@@ -114,17 +113,17 @@ namespace RedmiNote7ToolC
                 {
                     if (!this.IsDisposed)
                     {
-                    double bytesIn = double.Parse(e.BytesReceived.ToString());
-                    double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                    double percentage = bytesIn / totalBytes * 100;
-                    TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
-                    textBox2.Text = percentage + " %";
-                    ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                        double bytesIn = double.Parse(e.BytesReceived.ToString());
+                        double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                        double percentage = bytesIn / totalBytes * 100;
+                        TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                        textBox2.Text = percentage + " %";
+                        ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
                     }
                 });
-            }               
+            }
         }
-   
+
         private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             if (this.IsDisposed)

@@ -15,13 +15,14 @@ namespace RedmiNote7ToolC
 {
     public partial class DownloadMIUIFastboot : Form
     {
-        private FileInfo infoReader;
-        WebClient client = new WebClient();
 
         public DownloadMIUIFastboot()
         {
             InitializeComponent();
         }
+
+        private FileInfo infoReader;
+        WebClient client = new WebClient();
 
         private void unzip(object file, string filepath)
         {
@@ -43,6 +44,13 @@ namespace RedmiNote7ToolC
             return;
         }
 
+        private void closeform()
+        {
+            var visual = new Visual();
+            visual.Refresh();
+            base.Dispose(Disposing);
+        }
+
         private void checkfiles()
         {
             TextBox1.Text = "Checking file...";
@@ -57,6 +65,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+                closeform();
             }
             else
             {
@@ -91,22 +100,30 @@ namespace RedmiNote7ToolC
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     client.DownloadFileAsync(new Uri("http://bigota.d.miui.com/V11.0.4.0.PFGMIXM/lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz"), @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
                 });
-
                 thread.Start();
             }
             else
             {
                 KillAsync();
+                closeform();
             }
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            try
+            if (this.IsDisposed)
             {
-                if (!this.IsDisposed)
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
                 {
-                    this.BeginInvoke((MethodInvoker)delegate
+                    if (!this.IsDisposed)
                     {
                         double bytesIn = double.Parse(e.BytesReceived.ToString());
                         double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
@@ -114,59 +131,42 @@ namespace RedmiNote7ToolC
                         TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
                         textBox2.Text = percentage + " %";
                         ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-                    });
-                }
-                else
-                {
-                    client.Dispose();
-                    client.CancelAsync();
-                    KillAsync();
-                }
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("Error:" + er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                KillAsync();
+                    }
+                });
             }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-
-            if (!this.IsDisposed)
+            if (this.IsDisposed)
             {
-                this.BeginInvoke((MethodInvoker)delegate
-                {
-                    client.Dispose();
-                    client.CancelAsync();
-
-                    TextBox1.Text = "Download completed... Extracting files, this will take a while...";
-
-                    unzip(@"xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz", @"xiaomiglobalfastboot\MI");
-
-                    string FileToDelete;
-
-                    FileToDelete = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz";
-
-                    if (System.IO.File.Exists(FileToDelete) == true)
-                        System.IO.File.Delete(FileToDelete);
-
-                    KillAsync();
-                });
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
             }
             else
             {
-                KillAsync();
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                        TextBox1.Text = "Download completed... Extracting files, this will take a while...";
+
+                        unzip(@"xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz", @"xiaomiglobalfastboot\MI");
+
+                        string FileToDelete;
+
+                        FileToDelete = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz";
+
+                        if (System.IO.File.Exists(FileToDelete) == true)
+                            System.IO.File.Delete(FileToDelete);
+
+                        KillAsync();
+                        closeform();
+                    }
+                });
             }
         }
-
-        private void DownloadMIUIFastboot_Closed(object sender, EventArgs e)
-        {
-            client.Dispose();
-            client.CancelAsync();
-            MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            KillAsync();
-        }
-
     }
 }

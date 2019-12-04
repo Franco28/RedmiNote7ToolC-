@@ -93,7 +93,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading MI Flash...";
             this.Load += new System.EventHandler(this.DownloadMIFlash_Load);
-            this.Disposed += new System.EventHandler(this.DownloadMIFlash_Disposed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

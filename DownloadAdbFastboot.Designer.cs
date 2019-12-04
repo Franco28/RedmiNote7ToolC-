@@ -92,7 +92,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading adb and fastboot...";
             this.Load += new System.EventHandler(this.DownloadAdbFastboot_Load);
-            this.Disposed += new System.EventHandler(this.DownloadAdbFastboot_Disposed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

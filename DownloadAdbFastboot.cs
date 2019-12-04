@@ -9,17 +9,28 @@ using System.IO.Compression;
 using System.Net;
 using System.IO;
 using System.Threading;
+using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
     public partial class DownloadAdbFastboot : Form
     {
 
-        WebClient client = new WebClient();
-
         public DownloadAdbFastboot()
         {
             InitializeComponent();
+        }
+
+
+        private FileInfo infoReader;
+        WebClient client = new WebClient();
+
+        private void unzip(object file, string filepath)
+        {
+            string zipPath = @"C:\adb\" + file;
+            string extractPath = @"C:\adb\" + filepath;
+
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
         }
 
         public void KillAsync()
@@ -34,9 +45,56 @@ namespace RedmiNote7ToolC
             return;
         }
 
+        private void closeform()
+        {
+            var visual = new Visual();
+            visual.Refresh();
+            base.Dispose(Disposing);
+        }
+
+        private void checkfiles()
+        {
+            TextBox1.Text = "Checking file...";
+
+            infoReader = new System.IO.FileInfo("adb.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\adb.zip");
+
+            System.Threading.Thread.Sleep(3000);
+
+            if (infoReader.Length > 0.001162)
+            {
+
+                TextBox1.Text = "Extracting files!";
+
+                System.Threading.Thread.Sleep(1000);
+
+                unzip(@"adb.zip", @" ");
+
+                System.Threading.Thread.Sleep(1000);
+
+                KillAsync();
+                closeform();
+            }
+            else
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+        }
+
         private void DownloadAdbFastboot_Load(object sender, EventArgs e)
         {
-            startDownload();
+            Directory.SetCurrentDirectory(@"C:\adb\");
+
+            string[] paths = Directory.GetFiles(@"C:\adb\", "adb.zip");
+            if (paths.Length > 0)
+            {
+                checkfiles();
+            }
+            else
+            {
+                startDownload();
+            }
         }
 
         public void startDownload()
@@ -49,22 +107,30 @@ namespace RedmiNote7ToolC
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/adb.zip"), @"C:\adb\adb.zip");
                 });
-
                 thread.Start();
             }
             else
             {
                 KillAsync();
+                closeform();
             }
         }
 
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            try
+            if (this.IsDisposed)
             {
-                if (!this.IsDisposed)
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
                 {
-                    this.BeginInvoke((MethodInvoker)delegate
+                    if (!this.IsDisposed)
                     {
                         double bytesIn = double.Parse(e.BytesReceived.ToString());
                         double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
@@ -72,37 +138,31 @@ namespace RedmiNote7ToolC
                         TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
                         textBox2.Text = percentage + " %";
                         ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-                    });
-                }
-                else
-                {
-                    client.Dispose();
-                    client.CancelAsync();
-                    KillAsync();
-                }
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("Error:" + er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                KillAsync();
+                    }
+                });
             }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-                if (!this.IsDisposed)
+            if (this.IsDisposed)
+            {
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
                 {
-                    this.BeginInvoke((MethodInvoker)delegate
+                    if (!this.IsDisposed)
                     {
-
                         TextBox1.Text = "Download completed... Extracting files!";
 
-                        Directory.SetCurrentDirectory(@"C:\adb");
+                        Directory.SetCurrentDirectory(@"C:\adb\");
 
-                        string zipPath = "adb.zip";
-                        string extractPath = @"C:\adb";
-
-                        ZipFile.ExtractToDirectory(zipPath, extractPath);
+                        unzip(@"adb.zip", @" ");
 
                         string FileToDelete;
 
@@ -114,22 +174,10 @@ namespace RedmiNote7ToolC
                         MessageBox.Show(@"adb & fastboot installed in C:\adb", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         KillAsync();
-                    });
-                }
-                else
-                {
-                    KillAsync();
-                }
+                        closeform();
+                    }
+                });
+            }
         }
-
-        public void DownloadAdbFastboot_Disposed(object sender, EventArgs e)
-        {
-            File.Delete(@"C:\adb\.settings\net.txt");
-            this.Controls.Clear();
-            base.Refresh();
-            Application.Restart();
-            base.Dispose(Disposing);
-        }
-
     }
 }

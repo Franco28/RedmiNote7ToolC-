@@ -43,6 +43,13 @@ namespace RedmiNote7ToolC
             return;
         }
 
+        private void closeform()
+        {
+            var visual = new Visual();
+            visual.Refresh();
+            base.Dispose(Disposing);
+        }
+
         private void checkfiles()
         {
             TextBox1.Text = "Checking file...";
@@ -57,6 +64,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+                closeform();
             }
             else
             {
@@ -80,7 +88,7 @@ namespace RedmiNote7ToolC
             }
         }
 
-        public void startDownload()
+        private void startDownload()
         {
             if (!this.IsDisposed)
             {
@@ -90,22 +98,30 @@ namespace RedmiNote7ToolC
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/MiFlash20181115.zip"), @"C:\adb\MIFlash\MiFlash20181115.zip");
                 });
-
                 thread.Start();
             }
             else
             {
                 KillAsync();
+                closeform();
             }
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            try
+            if (this.IsDisposed)
             {
-                if (!this.IsDisposed)
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                this.BeginInvoke((MethodInvoker)delegate
                 {
-                    this.BeginInvoke((MethodInvoker)delegate
+                    if (!this.IsDisposed)
                     {
                         double bytesIn = double.Parse(e.BytesReceived.ToString());
                         double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
@@ -113,56 +129,42 @@ namespace RedmiNote7ToolC
                         TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
                         textBox2.Text = percentage + " %";
                         ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-                    });
-                }
-                else
-                {
-                    client.Dispose();
-                    client.CancelAsync();
-                    KillAsync();
-                }
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("Error:" + er, "Download Engine Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                KillAsync();
+                    }
+                });
             }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-
-            if (!this.IsDisposed)
+            if (this.IsDisposed)
             {
-                this.BeginInvoke((MethodInvoker)delegate
-                {
-
-                    TextBox1.Text = "Download completed... Extracting files, this will take a while...";
-
-                    unzip(@"MIFlash\MiFlash20181115.zip", @"MIFlash");
-
-                    string FileToDelete;
-
-                    FileToDelete = @"C:\adb\MIFlash\MiFlash20181115.zip";
-
-                    if (System.IO.File.Exists(FileToDelete) == true)
-                        System.IO.File.Delete(FileToDelete);
-
-                    KillAsync();
-                });
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
             }
             else
             {
-                KillAsync();
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    if (!this.IsDisposed)
+                    {
+                        TextBox1.Text = "Download completed... Extracting files, this will take a while...";
+
+                        unzip(@"MIFlash\MiFlash20181115.zip", @"MIFlash");
+
+                        string FileToDelete;
+
+                        FileToDelete = @"C:\adb\MIFlash\MiFlash20181115.zip";
+
+                        if (System.IO.File.Exists(FileToDelete) == true)
+                            System.IO.File.Delete(FileToDelete);
+
+                        KillAsync();
+                        closeform();
+                    }
+                });
             }
         }
-
-        private void DownloadMIFlash_Disposed(object sender, EventArgs e)
-        {
-            MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            KillAsync();
-        }
-
     }
-
 }

@@ -93,7 +93,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading MIUI V11.0.4.0.PFGMIXM Firmware...";
             this.Load += new System.EventHandler(this.DownloadMIUIFastboot_Load);
-            this.Closed += new System.EventHandler(this.DownloadMIUIFastboot_Closed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

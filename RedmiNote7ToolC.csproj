@@ -22,10 +22,16 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ProductName>RedmiNote7Tool</ProductName>
+    <PublisherName>Franco28</PublisherName>
+    <SuiteName>RedmiNote7Tool</SuiteName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.1.3</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -72,19 +78,54 @@
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>41AF2217FF5662CE13130444AA74250E5CDF6EF3</ManifestCertificateThumbprint>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AndroidLib, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\AndroidLib-master\AndroidLib\bin\x64\Debug\AndroidLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ClickOnceUninstaller">
+      <HintPath>..\..\Wunder.ClickOnceUninstaller-master\ClickOnceUninstaller\bin\x64\Debug\app.publish\ClickOnceUninstaller.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -116,6 +157,12 @@
     </Compile>
     <Compile Include="DownloadMIFlash.Designer.cs">
       <DependentUpon>DownloadMIFlash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadMIUIeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadMIUIeu.Designer.cs">
+      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
     </Compile>
     <Compile Include="DownloadMIUIFastboot.cs">
       <SubType>Form</SubType>
@@ -166,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIFlash.resx">
       <DependentUpon>DownloadMIFlash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadMIUIeu.resx">
+      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIUIFastboot.resx">
       <DependentUpon>DownloadMIUIFastboot.cs</DependentUpon>

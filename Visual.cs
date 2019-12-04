@@ -2,12 +2,12 @@
 /* (C) 2019 Franco28 */
 /* Basic Tool C# for Redmi Note 7 */
 
-using Microsoft.VisualBasic;
-using RegawMOD.Android;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using RegawMOD.Android;
 
 namespace RedmiNote7ToolC
 {
@@ -23,6 +23,7 @@ namespace RedmiNote7ToolC
         public Visual()
         {
             InitializeComponent();
+            create_main_folders();
             InitializeRAMCounter();
             InitialiseCPUCounter();
             updateTimer_Tick();
@@ -55,6 +56,45 @@ namespace RedmiNote7ToolC
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+        }
+
+        private void create_main_folders()
+        {
+                var paths = new[] { "C:\\adb\\", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+
+                foreach (var path in paths)
+                {
+                    try
+                    {
+                        if (Directory.Exists(path))
+                        {
+                        Directory.SetCurrentDirectory(@"C:\adb");
+                        continue;
+                        }
+
+                        var di = Directory.CreateDirectory(path);
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show("Error: " + er, "Creating Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            if (!File.Exists(@"C:\adb\adb.exe"))
+            {
+                try
+                {
+                    if (Ping("www.google.com") == true)
+                    {
+                        var downloadadb = new DownloadAdbFastboot();
+                        downloadadb.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download files!, Please connect to the Network and open again the Tool", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    base.Dispose(Disposing);
+                }
+            }
         }
 
         public long GetDirectorySize(string path)
@@ -125,73 +165,7 @@ namespace RedmiNote7ToolC
 
         private void Visual_Load(object sender, EventArgs e)
         {
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"C:\adb");
-
-            if (dir.Exists)
-            {
-                Directory.SetCurrentDirectory(@"C:\adb");
-            }
-            else if ((!System.IO.Directory.Exists(@"C:\adb")))
-            {
-                System.IO.Directory.CreateDirectory(@"C:\adb");
-            }
-
-            if (!Directory.Exists(@"C:\adb\.settings"))
-            {
-                Directory.CreateDirectory(@"C:\adb\.settings");
-            }
-
-            if (!Directory.Exists(@"C:\adb\TWRP"))
-            {
-                Directory.CreateDirectory(@"C:\adb\TWRP");
-            }
-
-            if (!Directory.Exists(@"C:\adb\MIFlash"))
-            {
-                Directory.CreateDirectory(@"C:\adb\MIFlash");
-            }
-
-            if (!Directory.Exists(@"C:\adb\MIUnlock"))
-            {
-                Directory.CreateDirectory(@"C:\adb\MIUnlock");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot\MI"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot\MI");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomieu"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomieu");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomiglobalrecovery"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomiglobalrecovery");
-            }
-
-            if (!File.Exists(@"C:\adb\adb.exe"))
-            {
-                try
-                {
-                    if (Ping("www.google.com") == true)
-                    {
-                        var downloadadb = new DownloadAdbFastboot();
-                        downloadadb.Show();
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download files!, Please connect to the Network and open again the Tool", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    base.Dispose(Disposing);
-                }
-            }
+            create_main_folders();
             InitializeRAMCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + Environment.UserName;
@@ -263,15 +237,21 @@ namespace RedmiNote7ToolC
             {
                 try
                 {
+                    TextBox2.Text = "Checking internet connection...";
+                    System.Threading.Thread.Sleep(3000);
+                    TextBox2.Text = "Checking internet connection: Please click the option again!";
                     if (Ping("www.google.com") == true)
                     {
+                        TextBox2.Text = "Checking internet connection: OK";
                         MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         var downloadtwrp = new DownloadTWRP();
                         downloadtwrp.Show();
+                        TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                     }
                 }
                 catch (Exception)
                 {
+                    TextBox2.Text = "Checking internet connection: ERROR";
                     MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Windows.Forms.Application.Restart();
                 }
@@ -380,6 +360,38 @@ namespace RedmiNote7ToolC
             }
         }
 
+        private void ClearAllFoldersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Do you want to clear all the folders? You will remove all files except for the important ones. " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+
+                var paths = new[] { "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+
+                foreach (var path in paths)
+                {
+                    try
+                    {
+                        if (Directory.Exists(path))
+                        {
+                            Directory.SetCurrentDirectory(@"C:\adb");
+                            Directory.Delete(path, true);
+                            MessageBox.Show("All Folders cleared! The app will restart!", "Clear Folders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            System.Windows.Forms.Application.Restart();
+                            continue;
+                        }
+
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show("Clearing Folders failed: {0} " + er.Message, "Error: Clear Folders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Controls.Clear();
+                        base.Refresh();
+                    }
+                }
+            }
+        }
+
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 try
@@ -466,7 +478,20 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Ping("www.google.com") == true)
+                {
+                    MessageBox.Show("Can´t find Xiaomi.eu ROM...", "Xiaomi.eu ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var downloadmiuieu = new DownloadMIUIeu();
+                    downloadmiuieu.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.Application.Restart();
+            }
         }
 
         private void OpenFolderXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -524,7 +549,7 @@ namespace RedmiNote7ToolC
             }
             catch (Exception)
             {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Unlock!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Windows.Forms.Application.Restart();
             }
         }
@@ -618,7 +643,7 @@ namespace RedmiNote7ToolC
             }
             else
             {
-                MessageBox.Show("Error on loading XiaoMiFlash, seems to be missing...", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error on loading XiaoMiFlash, seems to be missing... You can download it on Download Mi Flash", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }     
         }
 
@@ -648,15 +673,20 @@ namespace RedmiNote7ToolC
                 {
                     try
                     {
-                        Directory.SetCurrentDirectory(@"C:\");
+                    android.Dispose();
+                    Directory.SetCurrentDirectory(@"C:\");
                         var root = @"C:\adb";
 
                     if (Directory.Exists(root))
                         this.Controls.Clear();
-                        Directory.Delete(root, true);
-                        MessageBox.Show("All files removed! " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        base.Dispose(Disposing);
-               
+                    var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
+                    System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
+                    this.Controls.Clear();
+                    base.Refresh();
+                    MessageBox.Show("All files removed! " + "Now to fully uninstall the Tool, go to Control Panel/Uninstall " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Directory.Delete(root, true);
+                    Visual_Closed("", e);
+                    base.Dispose(Disposing);
                     }
                     catch (Exception ex)
                     {
@@ -667,18 +697,32 @@ namespace RedmiNote7ToolC
                 }
             }
 
-        public void Visual_Disposed(object sender, EventArgs e)
+        public void Visual_Closed(object sender, EventArgs e)
         {
-            File.Delete(@"C:\adb\.settings\net.txt");
             this.Controls.Clear();
             base.Refresh();
-            foreach (var process in Process.GetProcessesByName("RedmiNote7Tool" + "adb" + "fastboot" + "fastboot_edl" + "AdbWinApi.dll" + "AdbWinUsbApi.dll"))
+            android.Dispose();
+            Process myprocess = new Process();
+            string arg = @"/c taskkill /f";
+            try
             {
-                process.Kill();
+                foreach (Process p in Process.GetProcessesByName("RedmiNote7Tool"))
+                {
+                    arg += " /pid " + p.Id;
+                }
+                ProcessStartInfo process = new ProcessStartInfo("cmd");
+                process.UseShellExecute = false;
+                process.CreateNoWindow = true;
+                process.Verb = "runas";
+                process.Arguments = arg;
+                Process.Start(process);
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Killing process failed: {0} " + er.Message, "Error: Killing Process", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Application.ExitThread();
             base.Dispose(Disposing);
         }
-
     }
 }

@@ -41,6 +41,7 @@ namespace RedmiNote7ToolC
             this.AdbFastbootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiFlashFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiUnlockFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearAllFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskBarDropdownDownload = new System.Windows.Forms.ToolStripDropDownButton();
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,7 +153,8 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownFolders.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AdbFastbootFolderToolStripMenuItem,
             this.MiFlashFolderToolStripMenuItem,
-            this.MiUnlockFolderToolStripMenuItem});
+            this.MiUnlockFolderToolStripMenuItem,
+            this.ClearAllFoldersToolStripMenuItem});
             this.TaskBarDropdownFolders.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.TaskBarDropdownFolders.Image = ((System.Drawing.Image)(resources.GetObject("TaskBarDropdownFolders.Image")));
             this.TaskBarDropdownFolders.ImageTransparentColor = System.Drawing.Color.GreenYellow;
@@ -198,6 +200,20 @@ namespace RedmiNote7ToolC
             this.MiUnlockFolderToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.MiUnlockFolderToolStripMenuItem.Text = "Mi Unlock Folder";
             this.MiUnlockFolderToolStripMenuItem.Click += new System.EventHandler(this.MiUnlockFolderToolStripMenuItem_Click);
+            // 
+            // ClearAllFoldersToolStripMenuItem
+            // 
+            this.ClearAllFoldersToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.ClearAllFoldersToolStripMenuItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ClearAllFoldersToolStripMenuItem.BackgroundImage")));
+            this.ClearAllFoldersToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.ClearAllFoldersToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ClearAllFoldersToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ClearAllFoldersToolStripMenuItem.Image")));
+            this.ClearAllFoldersToolStripMenuItem.Name = "ClearAllFoldersToolStripMenuItem";
+            this.ClearAllFoldersToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.ClearAllFoldersToolStripMenuItem.Text = "Clear all Folders";
+            this.ClearAllFoldersToolStripMenuItem.ToolTipText = "Empty all the folders, except for the important ones. (This will remove, TWRP, Fi" +
+    "rmware, etc)";
+            this.ClearAllFoldersToolStripMenuItem.Click += new System.EventHandler(this.ClearAllFoldersToolStripMenuItem_Click);
             // 
             // TaskBarDropdownDownload
             // 
@@ -741,8 +757,8 @@ namespace RedmiNote7ToolC
             this.Name = "Visual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Redmi Note 7 Tool";
+            this.Closed += new System.EventHandler(this.Visual_Closed);
             this.Load += new System.EventHandler(this.Visual_Load);
-            this.Disposed += new System.EventHandler(this.Visual_Disposed);
             this.TaskBar.ResumeLayout(false);
             this.TaskBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).EndInit();
@@ -794,5 +810,6 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem rebootBootloaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rebootRecoveryToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem ClearAllFoldersToolStripMenuItem;
     }
 }

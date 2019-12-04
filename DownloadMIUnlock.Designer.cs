@@ -93,7 +93,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading MI Unlock...";
             this.Load += new System.EventHandler(this.DownloadMIUnlock_Load);
-	        this.Disposed += new System.EventHandler(this.DownloadMIUnlock_Disposed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
