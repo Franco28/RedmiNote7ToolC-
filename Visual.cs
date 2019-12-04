@@ -273,7 +273,7 @@ namespace RedmiNote7ToolC
                 {
                     TextBox2.Text = "Please connect your device...";
                     System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Boot: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
             }
@@ -628,13 +628,13 @@ namespace RedmiNote7ToolC
 
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string[] paths = System.IO.Directory.GetFiles(@"C:\adb\MI", "XiaoMiFlash.exe");
+            string[] paths = System.IO.Directory.GetFiles(@"C:\adb\MIFlash", "XiaoMiFlash.exe");
             if (paths.Length > 0)
             {
                 try
                 {
                     var proc = new System.Diagnostics.Process();
-                    proc = Process.Start(@"C:\adb\MI\XiaoMiFlash.exe", "");
+                    proc = Process.Start(@"C:\adb\MIFlash\XiaoMiFlash.exe", "");
                 } 
                 catch 
                 {
@@ -668,7 +668,7 @@ namespace RedmiNote7ToolC
 
         private void UninstallTool_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Do you want to Remove all files? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show("Are you sure that you want to Uninstall the Tool? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
              if (result == DialogResult.Yes)
                 {
                     try

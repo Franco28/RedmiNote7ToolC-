@@ -23,6 +23,19 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
+        public bool Ping(string host)
+        {
+            System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping();
+            if (p.Send(host, 500).Status == System.Net.NetworkInformation.IPStatus.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void unzip(object file, string filepath)
         {
             string zipPath = @"C:\adb\"+file;
@@ -97,49 +110,60 @@ namespace RedmiNote7ToolC
 
         private void startDownload()
         {
-            if (!this.IsDisposed)
-            {
-                Thread thread = new Thread(() =>
+                if (Ping("www.google.com") == true)
                 {
-                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
-                });
-                thread.Start();
-            }
-            else
-            {
-                KillAsync();
-                closeform();
-            }
-        }
-
-        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            if (this.IsDisposed)
-            {
+                    if (!this.IsDisposed)
+                    {
+                        Thread thread = new Thread(() =>
+                        {
+                            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                            client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                            client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+                        });
+                        thread.Start();
+                    }
+                    else
+                    {
+                        KillAsync();
+                        closeform();
+                    }
+                }
+                else
+                {
+                MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 client.Dispose();
                 client.CancelAsync();
                 KillAsync();
                 closeform();
-                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                this.BeginInvoke((MethodInvoker)delegate
-                {
-                    if (!this.IsDisposed)
-                    {
-                        double bytesIn = double.Parse(e.BytesReceived.ToString());
-                        double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                        double percentage = bytesIn / totalBytes * 100;
-                        TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
-                        textBox2.Text = percentage + " %";
-                        ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
-                    }
-                });
-            }
+                }
         }
+
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+                if (this.IsDisposed)
+                {
+                    client.Dispose();
+                    client.CancelAsync();
+                    KillAsync();
+                    closeform();
+                    MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        if (!this.IsDisposed)
+                        {
+                            double bytesIn = double.Parse(e.BytesReceived.ToString());
+                            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                            double percentage = bytesIn / totalBytes * 100;
+                            TextBox1.Text = "Downloaded " + e.BytesReceived + " Bytes" + " of " + e.TotalBytesToReceive + " Bytes";
+                            textBox2.Text = percentage + " %";
+                            ProgressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+                        }
+                    });
+                }
+         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
