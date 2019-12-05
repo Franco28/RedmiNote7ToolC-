@@ -35,6 +35,7 @@
             this.howtouseit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             this.contact.ForeColor = System.Drawing.Color.Black;
             this.contact.Image = ((System.Drawing.Image)(resources.GetObject("contact.Image")));
             this.contact.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.contact.Location = new System.Drawing.Point(8, 294);
+            this.contact.Location = new System.Drawing.Point(8, 306);
             this.contact.Name = "contact";
             this.contact.Size = new System.Drawing.Size(174, 34);
             this.contact.TabIndex = 23;
@@ -101,7 +102,7 @@
             this.howtouseit.ForeColor = System.Drawing.Color.Black;
             this.howtouseit.Image = ((System.Drawing.Image)(resources.GetObject("howtouseit.Image")));
             this.howtouseit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.howtouseit.Location = new System.Drawing.Point(301, 294);
+            this.howtouseit.Location = new System.Drawing.Point(301, 306);
             this.howtouseit.Name = "howtouseit";
             this.howtouseit.Size = new System.Drawing.Size(174, 34);
             this.howtouseit.TabIndex = 25;
@@ -130,12 +131,34 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(4, 245);
+            this.label3.Location = new System.Drawing.Point(162, 225);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(481, 35);
+            this.label3.Size = new System.Drawing.Size(164, 35);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Version: 1.0.1.3";
+            this.label3.Text = "Version: 1.0.1.4";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gray;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(188, 263);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 34);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Soruce";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Help
             // 
@@ -144,6 +167,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(487, 383);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.howtouseit);
@@ -172,5 +196,6 @@
         private System.Windows.Forms.Button howtouseit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
