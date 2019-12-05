@@ -54,12 +54,12 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("miflash_unlock-en-3.5.1108.44.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip");
+            infoReader = new System.IO.FileInfo("miflash_unlock-en-3.5.1128.45.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip");
 
             System.Threading.Thread.Sleep(3000);
 
-            if (infoReader.Length > 48000000)
+            if (infoReader.Length > 48100000)
             {
                 System.Threading.Thread.Sleep(1000);
 
@@ -68,7 +68,7 @@ namespace RedmiNote7ToolC
             }
             else
             {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
             }
         }
@@ -77,7 +77,7 @@ namespace RedmiNote7ToolC
         {
             Directory.SetCurrentDirectory(@"C:\adb\MIUnlock\");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\MIUnlock\", "miflash_unlock-en-3.5.1108.44.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\MIUnlock\", "miflash_unlock-en-3.5.1128.45.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -96,7 +96,7 @@ namespace RedmiNote7ToolC
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/miflash_unlock-en-3.5.1108.44.zip"), @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip");
+                    client.DownloadFileAsync(new Uri("http://miuirom.xiaomi.com/rom/u1106245679/3.5.1128.45/miflash_unlock-en-3.5.1128.45.zip"), @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip");
                 });
                 thread.Start();
             }
@@ -151,11 +151,11 @@ namespace RedmiNote7ToolC
                     {
                         TextBox1.Text = "Download completed... Extracting files, this will take a while...";
 
-                        unzip(@"MIUnlock\miflash_unlock-en-3.5.1108.44.zip", @"MIUnlock");
+                        unzip(@"MIUnlock\miflash_unlock-en-3.5.1128.45.zip", @"MIUnlock");
 
                         string FileToDelete;
 
-                        FileToDelete = @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1108.44.zip";
+                        FileToDelete = @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip";
 
                         if (System.IO.File.Exists(FileToDelete) == true)
                             System.IO.File.Delete(FileToDelete);
