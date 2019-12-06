@@ -20,7 +20,6 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
-        private FileInfo infoReader;
         WebClient client = new WebClient();
 
         private void unzip(object file, string filepath)
@@ -50,26 +49,38 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
-        private void checkfiles()
+        public void checkfiles()
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("miflash_unlock-en-3.5.1128.45.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip");
+            System.Threading.Thread.Sleep(2000);
 
-            System.Threading.Thread.Sleep(3000);
+            decimal sizeb = 48100000;
 
-            if (infoReader.Length > 48100000)
+            string fileName = @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip";
+            FileInfo fi = new FileInfo(fileName);
+
+            if (fi.Length < sizeb)
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+            else
             {
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+
+                unzip(@"MIUnlock\miflash_unlock-en-3.5.1128.45.zip", @"MIUnlock");
+
+                string FileToDelete;
+
+                FileToDelete = @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip";
+
+                if (System.IO.File.Exists(FileToDelete) == true)
+                    System.IO.File.Delete(FileToDelete);
+
                 closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
             }
         }
 

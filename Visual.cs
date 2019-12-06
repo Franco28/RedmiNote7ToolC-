@@ -99,7 +99,7 @@ namespace RedmiNote7ToolC
 
         public long GetDirectorySize(string path)
         {
-            string[] files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(path, "*", System.IO.SearchOption.AllDirectories);
             long size = 0;
             foreach (string file in files)
             {
@@ -415,20 +415,7 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                try
-                {
-                    if (Ping("www.google.com") == true)
-                    {
-                        MessageBox.Show("Can´t find Firmware image...", "Firmware Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadfastbootmiui = new DownloadMIUIFastboot();
-                        downloadfastbootmiui.Show();
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    System.Windows.Forms.Application.Restart();
-                }
+                MessageBox.Show("This option was removed due to errores when unzip and move to folder. It will be back soon.", "Firmware: ERROR", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -457,20 +444,21 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           try
-           {
+            try
+            {
+                TextBox2.Text = "Checking internet connection and file...";
                 if (Ping("www.google.com") == true)
                 {
-                    MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "Recovery ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     var downloadmiuirecovery = new DownloadMIUIRecovery();
                     downloadmiuirecovery.Show();
                 }
-           }
-           catch (Exception)
-           {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi Recovery ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    System.Windows.Forms.Application.Restart();
-           }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.Application.Restart();
+            }
+            visual_reLoad();
         }
 
         private void OpenFolderXiaomiGlobalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -497,13 +485,13 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
+        public void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                TextBox2.Text = "Checking internet connection and file...";
                 if (Ping("www.google.com") == true)
                 {
-                    MessageBox.Show("Can´t find Xiaomi.eu ROM...", "Xiaomi.eu ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     var downloadmiuieu = new DownloadMIUIeu();
                     downloadmiuieu.Show();
                 }
@@ -513,6 +501,7 @@ namespace RedmiNote7ToolC
                 MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Windows.Forms.Application.Restart();
             }
+            visual_reLoad();
         }
 
         private void OpenFolderXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -541,37 +530,51 @@ namespace RedmiNote7ToolC
 
         private void DownloadMiFlash2018ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (!File.Exists(@"C:\adb\MIFlash\XiaoMiFlash.exe"))
             {
-                if (Ping("www.google.com") == true)
+                try
                 {
-                    MessageBox.Show("Can´t find Mi Flash...", "Mi FLash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    var downloadmiflash = new DownloadMIFlash();
-                    downloadmiflash.Show();
+                    if (Ping("www.google.com") == true)
+                    {
+                        MessageBox.Show("Can´t find Mi Flash...", "Mi FLash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadmiflash = new DownloadMIFlash();
+                        downloadmiflash.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.Application.Restart();
                 }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Windows.Forms.Application.Restart();
+                MessageBox.Show("Mi FLash it´s already downloaded!", "Mi FLash", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void DownloadMiUnlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (!File.Exists(@"C:\adb\MIUnlock\miflash_unlock.exe"))
             {
-                if (Ping("www.google.com") == true)
+                try
                 {
-                    MessageBox.Show("Can´t find Mi Unlock...", "Mi Unlock Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    var downloadmiunlock = new DownloadMIUnlock();
-                    downloadmiunlock.Show();
+                    if (Ping("www.google.com") == true)
+                    {
+                        MessageBox.Show("Can´t find Mi Unlock...", "Mi Unlock Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadmiunlock = new DownloadMIUnlock();
+                        downloadmiunlock.Show();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR: Can´t connect to the server to download Mi Unlock!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.Application.Restart();
                 }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Mi Unlock!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Windows.Forms.Application.Restart();
+                MessageBox.Show("Mi Unlock it´s already downloaded!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

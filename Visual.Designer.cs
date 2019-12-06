@@ -536,7 +536,7 @@ namespace RedmiNote7ToolC
             this.TextBox2.Multiline = true;
             this.TextBox2.Name = "TextBox2";
             this.TextBox2.ReadOnly = true;
-            this.TextBox2.Size = new System.Drawing.Size(614, 37);
+            this.TextBox2.Size = new System.Drawing.Size(614, 57);
             this.TextBox2.TabIndex = 27;
             this.TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             this.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -756,7 +756,7 @@ namespace RedmiNote7ToolC
             this.MaximizeBox = false;
             this.Name = "Visual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Redmi Note 7 Tool";
+            this.Text = "Redmi Note 7 Basic Tool";
             this.Closed += new System.EventHandler(this.Visual_Closed);
             this.Load += new System.EventHandler(this.Visual_Load);
             this.TaskBar.ResumeLayout(false);

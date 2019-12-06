@@ -9,7 +9,6 @@ using System.IO.Compression;
 using System.Net;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
@@ -20,7 +19,6 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
-        private FileInfo infoReader;
         WebClient client = new WebClient();
 
         private void unzip(object file, string filepath)
@@ -54,22 +52,34 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("MiFlash20181115.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\MIFlash\MiFlash20181115.zip");
+            System.Threading.Thread.Sleep(2000);
 
-            System.Threading.Thread.Sleep(3000);
+            decimal sizeb = 75900000;
 
-            if (infoReader.Length > 75900000)
+            string fileName = @"C:\adb\MIFlash\MiFlash20181115.zip";
+            FileInfo fi = new FileInfo(fileName);
+
+            if (fi.Length < sizeb)
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+            else
             {
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+
+                unzip(@"MIFlash\MiFlash20181115.zip", @"MIFlash");
+
+                string FileToDelete;
+
+                FileToDelete = @"C:\adb\MIFlash\MiFlash20181115.zip";
+
+                if (System.IO.File.Exists(FileToDelete) == true)
+                    System.IO.File.Delete(FileToDelete);
+
                 closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
             }
         }
 

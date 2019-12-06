@@ -9,13 +9,11 @@ using System.IO.Compression;
 using System.Net;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
     public partial class DownloadTWRP : Form
     {
-        private FileInfo infoReader;
         WebClient client = new WebClient();
 
         public DownloadTWRP()
@@ -63,18 +61,24 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
-        private void checkfiles()
+        public void checkfiles()
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_3_b001-Beta-lavender.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip");
+            System.Threading.Thread.Sleep(2000);
 
-            System.Threading.Thread.Sleep(3000);
+            decimal sizeb = 47500000;
 
-            if (infoReader.Length > 47500000)
+            string fileName = @"C:\adb\TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip";
+            FileInfo fi = new FileInfo(fileName);
+
+            if (fi.Length < sizeb)
             {
-
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP OrangeFox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+            else
+            {
                 TextBox1.Text = "Extracting files!";
 
                 System.Threading.Thread.Sleep(1000);
@@ -85,11 +89,6 @@ namespace RedmiNote7ToolC
 
                 KillAsync();
                 closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
             }
         }
 

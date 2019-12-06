@@ -140,6 +140,14 @@
   <metadata name="TaskBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="TaskBarDropdownFolders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB4SURBVDhPY6AYfPv2bfL+/fv/Aun/uPDHjx8f/f//nw2q
+        BRWANHt5ef13cnLCiQ8fPvz/69evGVAtqABkA0jRh/cfseJrV6/9z8zMRHER1MWTUQwgBYNcDDKEbANA
+        GKRv1IBBYwAxKREdo6cDgnkBHaOkxAEGDAwAwkrAajh2YzkAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="AdbFastbootFolderToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QWsRXhpZgAATU0AKgAAAAgACAESAAMAAAABAAEAAAEaAAUAAAAB
@@ -720,12 +728,13 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="TaskBarDropdownFolders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="TaskBarDropdownDownload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB4SURBVDhPY6AYfPv2bfL+/fv/Aun/uPDHjx8f/f//nw2q
-        BRWANHt5ef13cnLCiQ8fPvz/69evGVAtqABkA0jRh/cfseJrV6/9z8zMRHER1MWTUQwgBYNcDDKEbANA
-        GKRv1IBBYwAxKREdo6cDgnkBHaOkxAEGDAwAwkrAajh2YzkAAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC1SURBVDhP5Y+xDcMgFEQps0BGyCLswARZIpPQ07JO2jAB
+        HUJAR3yIj8ABx6lz0pf4/+6ebLZSCCH3U8/nhRLnvMw/AXLOl/pcAvrMoC302ObpnLvW/QMADxlksTfh
+        YIzJWmuECwSlHpBSusFDBll0SjnGeLfWZiFECSulCmQP8N6/4GFHFh1022eR2UHajvDEb7+7hNBbSjnc
+        hzJpBtnPskw6gnwtk2aQ02VSD/m5TCLIcZmxN0oNhM2Di0JhAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="DownloadLatestMIUIFastbootImageToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -861,6 +870,16 @@
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooA//9k=
+</value>
+  </data>
+  <data name="DownloadLatestMIUIFastbootImageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAANJJREFUOE9jQAbfvn37D8NQIdJA9dKT/xmC55BnAFCTANkGADU0gDQhG4AFvwdi
+        AagWBAAKzj9x/en/nFmH4QaA+L5tO/4/enDz/71dTf/vbKv6/+beCZAhDVBtCAAUPA/SDNLIH7sIToMw
+        yKCPHz79f3J6+f/7+7rQXQTC58F+BzFiJuwDa4YZcOzy3f8PD00E244LgwyBuQJkyH+QIcRqBmG4ASAA
+        4jw7t/L/tXuPidIMwhgGgARhgUYMxmoAKXgYGnAeJEAiPs/w//9/CvB/BgCmt2st/jYsHQAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="ToolStripMenuItem1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1155,16 +1174,6 @@
         WBXYx9R1nV75RuyHKrrnzCcGjE1u9ZyD4BugoZigQ9xrngAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="DownloadLatestMIUIFastbootImageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAANJJREFUOE9jQAbfvn37D8NQIdJA9dKT/xmC55BnAFCTANkGADU0gDQhG4AFvwdi
-        AagWBAAKzj9x/en/nFmH4QaA+L5tO/4/enDz/71dTf/vbKv6/+beCZAhDVBtCAAUPA/SDNLIH7sIToMw
-        yKCPHz79f3J6+f/7+7rQXQTC58F+BzFiJuwDa4YZcOzy3f8PD00E244LgwyBuQJkyH+QIcRqBmG4ASAA
-        4jw7t/L/tXuPidIMwhgGgARhgUYMxmoAKXgYGnAeJEAiPs/w//9/CvB/BgCmt2st/jYsHQAAAABJRU5E
-        rkJggg==
-</value>
-  </data>
   <data name="DownloadLatestMIUIToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QWsRXhpZgAATU0AKgAAAAgACAESAAMAAAABAAEAAAEaAAUAAAAB
@@ -1298,6 +1307,15 @@
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooA//9k=
+</value>
+  </data>
+  <data name="DownloadLatestMIUIToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAALdJREFUOE/t
+        kTEOwjAMRXsEjsBYCQkhypDTcIOMzLkAQw7DzJaZo/QIwd/YrZM2qGLG0lMj2/+pTTvn3Kmjome2SI9n
+        X4uWRiwidHtmBmfpjbLWLlmGpBa0eBE7iX8E1/uDh1agvZRSQQhBJftJgBACKtAzZof+OKGSGCNm/Ol8
+        BzZsJcP5siqwEgj4suo3qMO1AFCO/1YhAd77RbimEKBUgiaGayHLQoASye8C1F8wC7bQFGzH5Tch0p/W
+        ZaJPEwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="OpenFolderXiaomiGlobalToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1592,15 +1610,6 @@
         WBXYx9R1nV75RuyHKrrnzCcGjE1u9ZyD4BugoZigQ9xrngAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="DownloadLatestMIUIToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAALdJREFUOE/t
-        kTEOwjAMRXsEjsBYCQkhypDTcIOMzLkAQw7DzJaZo/QIwd/YrZM2qGLG0lMj2/+pTTvn3Kmjome2SI9n
-        X4uWRiwidHtmBmfpjbLWLlmGpBa0eBE7iX8E1/uDh1agvZRSQQhBJftJgBACKtAzZof+OKGSGCNm/Ol8
-        BzZsJcP5siqwEgj4suo3qMO1AFCO/1YhAd77RbimEKBUgiaGayHLQoASye8C1F8wC7bQFGzH5Tch0p/W
-        ZaJPEwAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="DownloadLatestMIUIByXiaomieuToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QWsRXhpZgAATU0AKgAAAAgACAESAAMAAAABAAEAAAEaAAUAAAAB
@@ -1734,6 +1743,15 @@
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii
         gAooooA//9k=
+</value>
+  </data>
+  <data name="DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAALdJREFUOE/t
+        kTEOwjAMRXsEjsBYCQkhypDTcIOMzLkAQw7DzJaZo/QIwd/YrZM2qGLG0lMj2/+pTTvn3Kmjome2SI9n
+        X4uWRiwidHtmBmfpjbLWLlmGpBa0eBE7iX8E1/uDh1agvZRSQQhBJftJgBACKtAzZof+OKGSGCNm/Ol8
+        BzZsJcP5siqwEgj4suo3qMO1AFCO/1YhAd77RbimEKBUgiaGayHLQoASye8C1F8wC7bQFGzH5Tch0p/W
+        ZaJPEwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="OpenFolderXiaomieuToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -2028,15 +2046,6 @@
         WBXYx9R1nV75RuyHKrrnzCcGjE1u9ZyD4BugoZigQ9xrngAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAALdJREFUOE/t
-        kTEOwjAMRXsEjsBYCQkhypDTcIOMzLkAQw7DzJaZo/QIwd/YrZM2qGLG0lMj2/+pTTvn3Kmjome2SI9n
-        X4uWRiwidHtmBmfpjbLWLlmGpBa0eBE7iX8E1/uDh1agvZRSQQhBJftJgBACKtAzZof+OKGSGCNm/Ol8
-        BzZsJcP5siqwEgj4suo3qMO1AFCO/1YhAd77RbimEKBUgiaGayHLQoASye8C1F8wC7bQFGzH5Tch0p/W
-        ZaJPEwAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="DownloadMiFlash2018ToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QWsRXhpZgAATU0AKgAAAAgACAESAAMAAAABAAEAAAEaAAUAAAAB
@@ -2327,13 +2336,13 @@
         rkJggg==
 </value>
   </data>
-  <data name="TaskBarDropdownDownload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="TaskBarDropdownHardRecovery.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC1SURBVDhP5Y+xDcMgFEQps0BGyCLswARZIpPQ07JO2jAB
-        HUJAR3yIj8ABx6lz0pf4/+6ebLZSCCH3U8/nhRLnvMw/AXLOl/pcAvrMoC302ObpnLvW/QMADxlksTfh
-        YIzJWmuECwSlHpBSusFDBll0SjnGeLfWZiFECSulCmQP8N6/4GFHFh1022eR2UHajvDEb7+7hNBbSjnc
-        hzJpBtnPskw6gnwtk2aQ02VSD/m5TCLIcZmxN0oNhM2Di0JhAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACLSURBVDhPzZHLDYAgEEQpxVooiy6owBI8UBgaBI7KRExY
+        8IPBGCd5B2Z3JwuwVM65pYbYXgpFzvkl3wWMeiI8Djjjpxt47ztrbY/ijhCiLgDDwdRSStKIs1KKeKAI
+        CMaQDqf3hZ9vchRAGnLy+m1AugF4JcCYmZzj6KZgtL1B8y9AMWRAsYY4FsTYCrVw5ZDY2JuVAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <data name="EnterEDLModeToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -2641,13 +2650,14 @@
         rkJggg==
 </value>
   </data>
-  <data name="TaskBarDropdownHardRecovery.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ToolStripDropFastboot.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACLSURBVDhPzZHLDYAgEEQpxVooiy6owBI8UBgaBI7KRExY
-        8IPBGCd5B2Z3JwuwVM65pYbYXgpFzvkl3wWMeiI8Djjjpxt47ztrbY/ijhCiLgDDwdRSStKIs1KKeKAI
-        CMaQDqf3hZ9vchRAGnLy+m1AugF4JcCYmZzj6KZgtL1B8y9AMWRAsYY4FsTYCrVw5ZDY2JuVAAAAAElF
-        TkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADPSURBVDhPY8AG/v//z/bx48dH3759+48LQ5ViB1+/fs14
+        fmXH/0O1Uhj4+rqS/1++fLkDVYoJYLafne6JUzPQAhmockyAy3aiNOOynSjNIIDNdpDmb98+PPn8+bPO
+        +/fvBWAYqgUBsNkO0fwVJfRxxgIuv6NjmHeg2iAAaDsLrpBHxjjDAuQnkLM+v3sBx49PLiFOMzr49+8f
+        J9Dfz89McSZdMwgAFeU+u7CRPM2wmIDZTpJmEAAqzIDZTrJmWEyAbCdZMwjAYgKEidfMwAAAWRi2rd6p
+        +j4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="FlashFirmwareBetaToolStripMenuItem.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -2937,16 +2947,6 @@
         VVVdOfbCvZntUkKQrqmIuCurn6IoiuuAPM/hSrNeSojjPN0HAHhMDAN2/6NZ1fxCiqcvB8D3fR+apglt
         2yqH3uw64HN59yX8XbjW9s+YX3mYp4P5CQB9M+1m2DDg9Fe6w5J/fPuy6zr9Oe6ZHPTRoTfrrSAFfsRH
         WJij6BvwkQpLUjcl2AAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="ToolStripDropFastboot.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADPSURBVDhPY8AG/v//z/bx48dH3759+48LQ5ViB1+/fs14
-        fmXH/0O1Uhj4+rqS/1++fLkDVYoJYLafne6JUzPQAhmockyAy3aiNOOynSjNIIDNdpDmb98+PPn8+bPO
-        +/fvBWAYqgUBsNkO0fwVJfRxxgIuv6NjmHeg2iAAaDsLrpBHxjjDAuQnkLM+v3sBx49PLiFOMzr49+8f
-        J9Dfz89McSZdMwgAFeU+u7CRPM2wmIDZTpJmEAAqzIDZTrJmWEyAbCdZMwjAYgKEidfMwAAAWRi2rd6p
-        +j4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="Help.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

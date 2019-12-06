@@ -8,7 +8,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualBasic;
+using System.Diagnostics;
 
 namespace RedmiNote7ToolC
 {
@@ -20,8 +21,14 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
-        private FileInfo infoReader;
         WebClient client = new WebClient();
+
+        public void OpenFolder(object folderpath)
+        {
+            string Proc = "Explorer.exe";
+            string Args = ControlChars.Quote + System.IO.Path.Combine(@"C:\" + folderpath) + ControlChars.Quote;
+            Process.Start(Proc, Args);
+        }
 
         public void KillAsync()
         {
@@ -44,24 +51,36 @@ namespace RedmiNote7ToolC
 
         private void checkfiles()
         {
+
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
+            System.Threading.Thread.Sleep(2000);
 
-            System.Threading.Thread.Sleep(3000);
+            decimal sizeb = 1964300229;
 
-            if (infoReader.Length > 1800000000)
+            string fileName = @"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip";
+            FileInfo fi = new FileInfo(fileName);
+
+            if (fi.Length < sizeb)
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Xiaomi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+            else
             {
                 System.Threading.Thread.Sleep(1000);
 
                 KillAsync();
+                MessageBox.Show("Xiaomi Recovery ROM it´s already downloaded!", "Xiaomi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    OpenFolder(@"adb\xiaomiglobalrecovery");
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Xiaomi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
             }
         }
 
@@ -76,6 +95,7 @@ namespace RedmiNote7ToolC
             }
             else
             {
+                MessageBox.Show("Can´t find Xiaomi Recovery ROM...", "Xiaomi Recovery ROM Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
             }
         }

@@ -1,4 +1,8 @@
-﻿namespace RedmiNote7ToolC
+﻿
+/* (C) 2019 Franco28 */
+/* Basic Tool C# for Redmi Note 7 */
+
+namespace RedmiNote7ToolC
 {
     partial class DownloadAdbFastboot
     {

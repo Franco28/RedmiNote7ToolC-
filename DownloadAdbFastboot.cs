@@ -9,7 +9,6 @@ using System.IO.Compression;
 using System.Net;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic.FileIO;
 
 namespace RedmiNote7ToolC
 {
@@ -21,8 +20,6 @@ namespace RedmiNote7ToolC
             InitializeComponent();
         }
 
-
-        private FileInfo infoReader;
         WebClient client = new WebClient();
 
         private void unzip(object file, string filepath)
@@ -52,16 +49,24 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
-        private void checkfiles()
+        public void checkfiles()
         {
+
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("adb.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\adb.zip");
+            System.Threading.Thread.Sleep(2000);
 
-            System.Threading.Thread.Sleep(3000);
+            decimal sizeb = 0001162;
 
-            if (infoReader.Length > 0.001162)
+            string fileName = @"C:\adb\adb.zip";
+            FileInfo fi = new FileInfo(fileName);
+
+            if (fi.Length < sizeb)
+            {
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "ADB & FASTBOOT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                startDownload();
+            }
+            else
             {
 
                 TextBox1.Text = "Extracting files!";
@@ -74,11 +79,6 @@ namespace RedmiNote7ToolC
 
                 KillAsync();
                 closeform();
-            }
-            else
-            {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
             }
         }
 
