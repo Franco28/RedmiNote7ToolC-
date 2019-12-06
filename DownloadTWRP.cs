@@ -67,19 +67,19 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_2-Stable-lavender.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+            infoReader = new System.IO.FileInfo("OrangeFox-R10.0_3_b001-Beta-lavender.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip");
 
             System.Threading.Thread.Sleep(3000);
 
-            if (infoReader.Length > 40900000)
+            if (infoReader.Length > 47500000)
             {
 
                 TextBox1.Text = "Extracting files!";
 
                 System.Threading.Thread.Sleep(1000);
 
-                unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
+                unzip(@"TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip", @"TWRP");
 
                 System.Threading.Thread.Sleep(1000);
 
@@ -97,7 +97,7 @@ namespace RedmiNote7ToolC
         {
             Directory.SetCurrentDirectory(@"C:\adb\TWRP");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\TWRP\", "OrangeFox-R10.0_2-Stable-lavender.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\TWRP\", "OrangeFox-R10.0_3_b001-Beta-lavender.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -118,7 +118,7 @@ namespace RedmiNote7ToolC
                         {
                             client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                             client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                            client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.0_2-Stable-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_2-Stable-lavender.zip");
+                            client.DownloadFileAsync(new Uri("https://files.orangefox.tech/OrangeFox-Beta/lavender/OrangeFox-R10.0_3_b001-Beta-lavender.zip"), @"C:\adb\TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip");
                         });
                         thread.Start();
                     }
@@ -182,7 +182,7 @@ namespace RedmiNote7ToolC
                     {
                         TextBox1.Text = "Download completed... Extracting files!";
 
-                        unzip(@"TWRP\OrangeFox-R10.0_2-Stable-lavender.zip", @"TWRP");
+                        unzip(@"TWRP\OrangeFox-R10.0_3_b001-Beta-lavender.zip", @"TWRP");
 
                         KillAsync();
                         closeform();

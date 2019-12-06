@@ -90,7 +90,7 @@
             this.MaximizeBox = false;
             this.Name = "DownloadTWRP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading OrangeFox-R10.0_2-Stable-lavender...";
+            this.Text = "Downloading OrangeFox-R10.0_3_b001-Beta-lavender...";
             this.Load += new System.EventHandler(this.DownloadTWRP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

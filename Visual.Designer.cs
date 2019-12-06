@@ -330,7 +330,7 @@ namespace RedmiNote7ToolC
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image")));
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Name = "DownloadLatestMIUIByXiaomieuToolStripMenuItem";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 9.11.28 v11.1";
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 9.12.5 v11.1";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 by Xiaomi.eu";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click);
             // 

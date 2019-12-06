@@ -45,8 +45,8 @@ namespace RedmiNote7ToolC
         {
             TextBox1.Text = "Checking file...";
 
-            infoReader = new System.IO.FileInfo("xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
-            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
+            infoReader = new System.IO.FileInfo("xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
+            infoReader = FileSystem.GetFileInfo(@"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
 
             System.Threading.Thread.Sleep(3000);
 
@@ -68,7 +68,7 @@ namespace RedmiNote7ToolC
         {
             Directory.SetCurrentDirectory(@"C:\adb\xiaomieu\");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\xiaomieu\", "xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\xiaomieu\", "xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -87,7 +87,7 @@ namespace RedmiNote7ToolC
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("https://or1.androidfilehost.com/dl/1JG1cjBy8l5sxnXM9EqDzg/1575646034/4349826312261648885/xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip"), @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.11.28_v11-9.zip");
+                    client.DownloadFileAsync(new Uri("https://va1.androidfilehost.com/dl/lBSUXTTD7W2ZiosZTDqeTQ/1575820673/4349826312261653424/xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip?"), @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
                 });
                 thread.Start();
             }

@@ -90,7 +90,7 @@
             this.MaximizeBox = false;
             this.Name = "DownloadMIUIeu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading xiaomi.eu_multi_HMNote7_9.11.28_v11-9...";
+            this.Text = "Downloading xiaomi.eu_multi_HMNote7_9.12.5_v11-9...";
             this.Load += new System.EventHandler(this.DownloadMIUIeu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

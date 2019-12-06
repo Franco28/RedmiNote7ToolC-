@@ -36,10 +36,17 @@ Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/Redmi
 
 ### How it works
 
-* When you finished the installation, the Tool will execute alone *
+** When you finished the installation, the Tool will execute alone **
 - The installation will create a "RedmiNote7Tool" shortcut on desktop
 - Then you can use any option, remember if you want to download any file, this will check internet connection
 - If you want to flash any TWRP, this will be downloaded and flashed, but remember to put your device on Bootloader mode and ready to flash
+
+### Using Mi Flash with Tool
+
+- When Mi Flash start, go to the follow path:
+
+![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/miflash.png "Mi Flash Path}")
+
 
 ###### If you want to help me with ROM links and warning me if there's a new ROM available and I didn't update the Tool, you can contact me and send me a message!
 
