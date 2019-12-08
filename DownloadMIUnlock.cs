@@ -151,6 +151,7 @@ namespace RedmiNote7ToolC
             {
                 client.Dispose();
                 client.CancelAsync();
+                MessageBox.Show("Download Canceled!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }

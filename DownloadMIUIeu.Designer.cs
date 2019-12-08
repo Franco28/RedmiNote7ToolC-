@@ -41,12 +41,12 @@
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.Navy;
+            this.textBox2.ForeColor = System.Drawing.Color.Black;
             this.textBox2.Location = new System.Drawing.Point(12, 56);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(776, 33);
+            this.textBox2.Size = new System.Drawing.Size(749, 33);
             this.textBox2.TabIndex = 15;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -57,11 +57,12 @@
             this.TextBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.TextBox1.Enabled = false;
             this.TextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox1.ForeColor = System.Drawing.Color.Black;
             this.TextBox1.Location = new System.Drawing.Point(12, 17);
             this.TextBox1.Multiline = true;
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ReadOnly = true;
-            this.TextBox1.Size = new System.Drawing.Size(776, 33);
+            this.TextBox1.Size = new System.Drawing.Size(749, 33);
             this.TextBox1.TabIndex = 14;
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -70,27 +71,32 @@
             this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ProgressBar1.BackColor = System.Drawing.Color.Maroon;
             this.ProgressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ProgressBar1.Location = new System.Drawing.Point(12, 98);
             this.ProgressBar1.Name = "ProgressBar1";
-            this.ProgressBar1.Size = new System.Drawing.Size(776, 37);
+            this.ProgressBar1.Size = new System.Drawing.Size(749, 37);
             this.ProgressBar1.TabIndex = 13;
             // 
             // DownloadMIUIeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(800, 152);
+            this.ClientSize = new System.Drawing.Size(773, 152);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.TextBox1);
             this.Controls.Add(this.ProgressBar1);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DownloadMIUIeu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading xiaomi.eu_multi_HMNote7_9.12.5_v11-9...";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.DownloadMIUIeu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

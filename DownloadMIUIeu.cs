@@ -149,6 +149,7 @@ namespace RedmiNote7ToolC
             {
                 client.Dispose();
                 client.CancelAsync();
+                MessageBox.Show("Download Canceled!", "Xiaomi.eu ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }

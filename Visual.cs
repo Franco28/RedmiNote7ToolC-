@@ -60,39 +60,23 @@ namespace RedmiNote7ToolC
 
         private void create_main_folders()
         {
-                var paths = new[] { "C:\\adb\\", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+            var paths = new[] { "C:\\adb\\", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
 
-                foreach (var path in paths)
-                {
-                    try
-                    {
-                        if (Directory.Exists(path))
-                        {
-                        Directory.SetCurrentDirectory(@"C:\adb");
-                        continue;
-                        }
-
-                        var di = Directory.CreateDirectory(path);
-                    }
-                    catch (Exception er)
-                    {
-                        MessageBox.Show("Error: " + er, "Creating Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            if (!File.Exists(@"C:\adb\adb.exe"))
+            foreach (var path in paths)
             {
                 try
                 {
-                    if (Ping("www.google.com") == true)
+                    if (Directory.Exists(path))
                     {
-                        var downloadadb = new DownloadAdbFastboot();
-                        downloadadb.Show();
+                        Directory.SetCurrentDirectory(@"C:\adb");
+                        continue;
                     }
+
+                    var di = Directory.CreateDirectory(path);
                 }
-                catch (Exception)
+                catch (Exception er)
                 {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download files!, Please connect to the Network and open again the Tool", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    base.Dispose(Disposing);
+                    MessageBox.Show("Error: " + er, "Creating Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -112,8 +96,8 @@ namespace RedmiNote7ToolC
 
         public bool Ping(string host)
         {
-            System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping();
-            if (p.Send(host, 500).Status == System.Net.NetworkInformation.IPStatus.Success)
+            System.Net.NetworkInformation.Ping pp = new System.Net.NetworkInformation.Ping();
+            if (pp.Send(host, 500).Status == System.Net.NetworkInformation.IPStatus.Success)
             {
                 return true;
             }
@@ -123,13 +107,21 @@ namespace RedmiNote7ToolC
             }
         }
 
+        private void Visual_Load(object sender, EventArgs e)
+        {
+            create_main_folders();
+            InitializeRAMCounter();
+            updateTimer_Tick();
+            Label3.Text = "User: " + Environment.UserName;
+        }
+
         public void FastbootExe(string fpath, string command)
         {
             try
             {
                 Directory.SetCurrentDirectory(@"C:\adb\");
                 System.Diagnostics.ProcessStartInfo procStartInfo =
-                    new System.Diagnostics.ProcessStartInfo(@"C:\adb\" +fpath, command);
+                    new System.Diagnostics.ProcessStartInfo(@"C:\adb\" + fpath, command);
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.RedirectStandardError = true;
@@ -170,14 +162,6 @@ namespace RedmiNote7ToolC
             var visual = new Visual();
             visual.Refresh();
             InitializeComponent();
-        }
-
-        private void Visual_Load(object sender, EventArgs e)
-        {
-            create_main_folders();
-            InitializeRAMCounter();
-            updateTimer_Tick();
-            Label3.Text = "User: " + Environment.UserName;
         }
 
         public void visual_reLoad()
@@ -487,9 +471,9 @@ namespace RedmiNote7ToolC
 
         public void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(3000);
             try
             {
-                TextBox2.Text = "Checking internet connection and file...";
                 if (Ping("www.google.com") == true)
                 {
                     var downloadmiuieu = new DownloadMIUIeu();
@@ -498,8 +482,8 @@ namespace RedmiNote7ToolC
             }
             catch (Exception)
             {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Windows.Forms.Application.Restart();
+                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM! ", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                visual_reLoad();
             }
             visual_reLoad();
         }

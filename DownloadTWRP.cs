@@ -170,6 +170,7 @@ namespace RedmiNote7ToolC
             {
                 client.Dispose();
                 client.CancelAsync();
+                MessageBox.Show("Download Canceled!", "TWRP OrangeFox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }

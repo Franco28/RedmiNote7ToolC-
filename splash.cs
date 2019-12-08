@@ -6,38 +6,25 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using RegawMOD.Android;
 
 namespace RedmiNote7ToolC
 {
     public partial class splash : Form
     {
 
+        private AndroidController android;
         private BackgroundWorker bw = new BackgroundWorker();
 
         public splash()
         {
-            InitializeComponent();
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             bw.DoWork += new DoWorkEventHandler(bw_DoWork);
             bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-        }
-
-        public object Dispatcher { get; private set; }
-        public object data { get; private set; }
-
-        public bool Ping(string host)
-        {
-            System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping();
-            if (p.Send(host, 500).Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            android = AndroidController.Instance;
+            InitializeComponent();
         }
 
         private void closeform()
@@ -47,6 +34,15 @@ namespace RedmiNote7ToolC
             this.Controls.Clear();
             this.Refresh();
             this.Dispose(Disposing);
+        }
+
+        private void splash_Load(object sender, EventArgs e)
+        {
+            if (bw.IsBusy != true)
+            {
+                bw.RunWorkerAsync();
+            }
+
         }
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
@@ -66,7 +62,41 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(300);
                     worker.ReportProgress((i * 10));
                 }
+
+                if (!Directory.Exists(@"C:\adb"))
+                {
+                    var paths = new[] { @"C:\\adb\\", @"C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+
+                    foreach (var path in paths)
+                    {
+                        try
+                        {
+                            if (Directory.Exists(path))
+                            {
+                                Directory.SetCurrentDirectory(@"C:\adb");
+                                continue;
+                            }
+                            this.label1.Text = @"Creating folders...  C:\adb\";
+
+                            System.Threading.Thread.Sleep(3000);
+
+                            var di = Directory.CreateDirectory(path);
+                        }
+                        catch (Exception er)
+                        {
+                            MessageBox.Show("Error: " + er, "Creating Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
             }
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Maximum = 100;
+            progressBar1.Minimum = 1;
+            this.label1.Text = @"Checking files...  C:\adb\ " + (e.ProgressPercentage.ToString() + "%");
+            progressBar1.Value = int.Parse(e.ProgressPercentage.ToString());
         }
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -83,83 +113,10 @@ namespace RedmiNote7ToolC
 
             else
             {
-                this.label1.Text = "Done!";
                 System.Threading.Thread.Sleep(500);
                 this.label1.Text = "Starting...";
                 closeform();
             }
-        }
-
-        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"C:\adb");
-
-            this.label1.Text = @"Checking files... C:\adb\ " + (e.ProgressPercentage.ToString() + "%");
-            progressBar1.Value = int.Parse(e.ProgressPercentage.ToString());
-
-            if (dir.Exists)
-            {
-                Directory.SetCurrentDirectory(@"C:\adb");
-            }
-            else if ((!System.IO.Directory.Exists(@"C:\adb")))
-            {
-                System.IO.Directory.CreateDirectory(@"C:\adb");
-                this.label1.Text = @" adb folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\.settings"))
-            {
-                Directory.CreateDirectory(@"C:\adb\.settings");
-                this.label1.Text = @" adb\.settings folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\TWRP"))
-            {
-                Directory.CreateDirectory(@"C:\adb\TWRP");
-                this.label1.Text = @" adb\TWRP folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\MI"))
-            {
-                Directory.CreateDirectory(@"C:\adb\MI");
-                this.label1.Text = @" adb\MI folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\MIUnlock"))
-            {
-                Directory.CreateDirectory(@"C:\adb\MIUnlock");
-                this.label1.Text = @" adb\MIUnlock folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomiglobalfastboot"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomiglobalfastboot");
-                this.label1.Text = @" adb\xiaomiglobalfastboot folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomieu"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomieu");
-                this.label1.Text = @" adb\xiaomieu folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-            if (!Directory.Exists(@"C:\adb\xiaomiglobalrecovery"))
-            {
-                Directory.CreateDirectory(@"C:\adb\xiaomiglobalrecovery");
-                this.label1.Text = @" adb\xiaomiglobalrecovery folder created" + (e.ProgressPercentage.ToString() + "%");
-            }
-
-
-        }
-
-        private void splash_Load(object sender, EventArgs e)
-        {
-            if (bw.IsBusy != true)
-            {
-                bw.RunWorkerAsync();
-            }
-
         }
 
         private void splash_Closed(object sender, EventArgs e)

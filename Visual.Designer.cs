@@ -752,6 +752,7 @@ namespace RedmiNote7ToolC
             this.Controls.Add(this.LockBootloader);
             this.Controls.Add(this.MiBanner);
             this.Controls.Add(this.unlockbootloader);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Visual";

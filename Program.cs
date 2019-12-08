@@ -17,7 +17,7 @@ namespace RedmiNote7ToolC
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Visual());
+            Application.Run(new splash());
         }
     }
 }

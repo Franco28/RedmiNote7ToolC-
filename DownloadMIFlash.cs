@@ -125,7 +125,6 @@ namespace RedmiNote7ToolC
                 client.CancelAsync();
                 KillAsync();
                 closeform();
-                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -150,6 +149,7 @@ namespace RedmiNote7ToolC
             {
                 client.Dispose();
                 client.CancelAsync();
+                MessageBox.Show("Download Canceled!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }

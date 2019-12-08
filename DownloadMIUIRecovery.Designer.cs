@@ -45,7 +45,7 @@
             this.TextBox1.Multiline = true;
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ReadOnly = true;
-            this.TextBox1.Size = new System.Drawing.Size(776, 33);
+            this.TextBox1.Size = new System.Drawing.Size(749, 33);
             this.TextBox1.TabIndex = 11;
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -54,11 +54,11 @@
             this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ProgressBar1.BackColor = System.Drawing.Color.Maroon;
             this.ProgressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ProgressBar1.Location = new System.Drawing.Point(12, 103);
             this.ProgressBar1.Name = "ProgressBar1";
-            this.ProgressBar1.Size = new System.Drawing.Size(776, 37);
+            this.ProgressBar1.Size = new System.Drawing.Size(749, 37);
             this.ProgressBar1.TabIndex = 10;
             // 
             // textBox2
@@ -73,7 +73,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(776, 33);
+            this.textBox2.Size = new System.Drawing.Size(749, 33);
             this.textBox2.TabIndex = 12;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -83,7 +83,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(800, 152);
+            this.ClientSize = new System.Drawing.Size(773, 152);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.TextBox1);
             this.Controls.Add(this.ProgressBar1);

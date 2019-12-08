@@ -151,6 +151,7 @@ namespace RedmiNote7ToolC
             {
                 client.Dispose();
                 client.CancelAsync();
+                MessageBox.Show("Download Canceled!", "MIUI Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }

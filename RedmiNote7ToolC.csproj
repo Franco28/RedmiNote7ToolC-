@@ -27,8 +27,8 @@
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.0.1.5</ApplicationVersion>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.1.6</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -146,12 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserCheck.cs" />
-    <Compile Include="DownloadAdbFastboot.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadAdbFastboot.Designer.cs">
-      <DependentUpon>DownloadAdbFastboot.cs</DependentUpon>
-    </Compile>
     <Compile Include="DownloadMIFlash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,9 +202,6 @@
     <Compile Include="Visual.Designer.cs">
       <DependentUpon>Visual.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DownloadAdbFastboot.resx">
-      <DependentUpon>DownloadAdbFastboot.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIFlash.resx">
       <DependentUpon>DownloadMIFlash.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,7 +261,6 @@
   <ItemGroup>
     <Content Include="2.ico" />
     <None Include="Resources\loading.gif" />
-    <None Include="Resources\load.gif" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
