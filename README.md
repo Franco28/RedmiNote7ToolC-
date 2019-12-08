@@ -4,7 +4,7 @@ Tool based on C#
 
 ## Getting Started
 
-Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/1.0.1.5) 
+Download the Tool from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/1.0.1.6) 
 
 ### Prerequisites
 
