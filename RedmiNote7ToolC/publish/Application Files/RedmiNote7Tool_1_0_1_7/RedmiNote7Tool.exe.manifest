@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.1.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.1.7" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
   <description asmv2:iconFile="2.ico" asmv2:publisher="Franco28" co.v1:suiteName="RedmiNote7Tool" asmv2:product="RedmiNote7Tool" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="RedmiNote7Tool" version="1.0.1.3" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="RedmiNote7Tool" version="1.0.1.3" language="neutral" processorArchitecture="amd64" />
     <commandLine file="RedmiNote7Tool.exe" parameters="" />
   </entryPoint>
   <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
@@ -44,38 +44,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="15872">
-      <assemblyIdentity name="AndroidLib" version="1.5.4.0" language="neutral" processorArchitecture="amd64" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2880000">
+      <assemblyIdentity name="AndroidLib" version="1.5.5.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6BTigimnlX7j+zGXdRbH2crh8f1SD6l4F0H+8evOtzs=</dsig:DigestValue>
+        <dsig:DigestValue>UOAhgKBJYPkKtnwCtWZPWPoNIgAfR/McbyGTYBBz+zg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ClickOnceUninstaller.exe" size="23552">
-      <assemblyIdentity name="ClickOnceUninstaller" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="659968">
+      <assemblyIdentity name="RedmiNote7Tool" version="1.0.1.3" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8a36fBdGzbfEkDqzNUS2f9HwfyblWne2eJjao0q7uwo=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="410112">
-      <assemblyIdentity name="RedmiNote7Tool" version="1.0.1.3" language="neutral" processorArchitecture="x86" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZSuDfETfGybY2MOkkIEkPHb9wTA1lptwrz2Pcdn2cWA=</dsig:DigestValue>
+        <dsig:DigestValue>UPzCTODUYr4r18LhiPGQgJ0DkaRQyftYkrpADuKy4l0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

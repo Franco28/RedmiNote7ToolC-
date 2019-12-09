@@ -89,6 +89,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DownloadTWRP";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading OrangeFox-R10.0_3_b001-Beta-lavender...";
             this.Load += new System.EventHandler(this.DownloadTWRP_Load);

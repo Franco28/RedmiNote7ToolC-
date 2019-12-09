@@ -60,7 +60,7 @@ namespace RedmiNote7ToolC
 
         private void create_main_folders()
         {
-            var paths = new[] { "C:\\adb\\", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+            var paths = new[] { "C:\\adb\\", "C:\\adb\\StockRom",  "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
 
             foreach (var path in paths)
             {
@@ -509,6 +509,24 @@ namespace RedmiNote7ToolC
             else
             {
                 BrowserCheck.StartBrowser("Chrome.exe", "https://xiaomi.eu/community/");
+            }
+        }
+
+        private void DownloadLatestMIUIByFranco28ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sr = new StockRom();
+            sr.Show();
+        }
+
+        private void OpenFolderFranco28ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFolder(@"adb\StockRom");
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -91,6 +91,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DownloadMIUIRecovery";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Downloading V11.0.4.0.PFGMIXM Recovery ROM...";
             this.Load += new System.EventHandler(this.DownloadMIUIRecovery_Load);

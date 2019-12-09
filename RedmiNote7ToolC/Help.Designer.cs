@@ -135,7 +135,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 35);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Version: 1.0.1.6";
+            this.label3.Text = "Version: 1.0.1.7";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
@@ -179,6 +179,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Help";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Help";
             this.Load += new System.EventHandler(this.Help_Load);

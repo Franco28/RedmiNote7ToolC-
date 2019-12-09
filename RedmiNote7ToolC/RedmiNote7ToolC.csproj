@@ -27,8 +27,8 @@
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>1.0.1.6</ApplicationVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>1.0.1.7</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -196,6 +196,12 @@
     <Compile Include="splash.Designer.cs">
       <DependentUpon>splash.cs</DependentUpon>
     </Compile>
+    <Compile Include="StockRom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockRom.Designer.cs">
+      <DependentUpon>StockRom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </Compile>
     <EmbeddedResource Include="splash.resx">
       <DependentUpon>splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockRom.resx">
+      <DependentUpon>StockRom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visual.resx">
       <DependentUpon>Visual.cs</DependentUpon>

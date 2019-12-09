@@ -88,7 +88,7 @@ namespace RedmiNote7ToolC
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(346, 23);
             this.label2.TabIndex = 22;
-            this.label2.Text = "Version: 1.0.1.6";
+            this.label2.Text = "Version: 1.0.1.7";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splash

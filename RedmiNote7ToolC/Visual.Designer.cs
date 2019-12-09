@@ -52,6 +52,8 @@ namespace RedmiNote7ToolC
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFolderXiaomieuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.XiaomieuPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenFolderFranco28ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadMiFlash2018ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadMiUnlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskBarDropdownHardRecovery = new System.Windows.Forms.ToolStripDropDownButton();
@@ -224,6 +226,7 @@ namespace RedmiNote7ToolC
             this.DownloadLatestMIUIFastbootImageToolStripMenuItem,
             this.DownloadLatestMIUIToolStripMenuItem,
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem,
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem,
             this.DownloadMiFlash2018ToolStripMenuItem,
             this.DownloadMiUnlockToolStripMenuItem});
             this.TaskBarDropdownDownload.ForeColor = System.Drawing.Color.DimGray;
@@ -360,6 +363,34 @@ namespace RedmiNote7ToolC
             this.XiaomieuPageToolStripMenuItem.Text = "Xiaomi.eu Page";
             this.XiaomieuPageToolStripMenuItem.ToolTipText = "Open Xiaomi eu WebSite";
             this.XiaomieuPageToolStripMenuItem.Click += new System.EventHandler(this.XiaomieuPageToolStripMenuItem_Click);
+            // 
+            // DownloadLatestMIUIByFranco28ToolStripMenuItem
+            // 
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByFranco28ToolStripMenuItem.BackgroundImage")));
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenFolderFranco28ToolStripMenuItem});
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByFranco28ToolStripMenuItem.Image")));
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Name = "DownloadLatestMIUIByFranco28ToolStripMenuItem";
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Text = "Download MIUI by Franco28 v11";
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 by Franco28";
+            this.DownloadLatestMIUIByFranco28ToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIByFranco28ToolStripMenuItem_Click);
+            // 
+            // OpenFolderFranco28ToolStripMenuItem
+            // 
+            this.OpenFolderFranco28ToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.OpenFolderFranco28ToolStripMenuItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("OpenFolderFranco28ToolStripMenuItem.BackgroundImage")));
+            this.OpenFolderFranco28ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.OpenFolderFranco28ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.OpenFolderFranco28ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenFolderFranco28ToolStripMenuItem.Image")));
+            this.OpenFolderFranco28ToolStripMenuItem.Name = "OpenFolderFranco28ToolStripMenuItem";
+            this.OpenFolderFranco28ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OpenFolderFranco28ToolStripMenuItem.Text = "Open Folder";
+            this.OpenFolderFranco28ToolStripMenuItem.ToolTipText = "Open Folder";
+            this.OpenFolderFranco28ToolStripMenuItem.Click += new System.EventHandler(this.OpenFolderFranco28ToolStripMenuItem_Click);
             // 
             // DownloadMiFlash2018ToolStripMenuItem
             // 
@@ -758,7 +789,7 @@ namespace RedmiNote7ToolC
             this.MaximizeBox = false;
             this.Name = "Visual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Redmi Note 7 Basic Tool - v1.0.1.6";
+            this.Text = "Redmi Note 7 Basic Tool - v1.0.1.7";
             this.Closed += new System.EventHandler(this.Visual_Closed);
             this.Load += new System.EventHandler(this.Visual_Load);
             this.TaskBar.ResumeLayout(false);
@@ -813,5 +844,7 @@ namespace RedmiNote7ToolC
         private System.Windows.Forms.ToolStripMenuItem rebootBootloaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rebootRecoveryToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem ClearAllFoldersToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem DownloadLatestMIUIByFranco28ToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem OpenFolderFranco28ToolStripMenuItem;
     }
 }
