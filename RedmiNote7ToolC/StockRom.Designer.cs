@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -205,6 +206,21 @@
             this.TextBox1.TabIndex = 31;
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(272, 331);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(567, 42);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "* To flash this ROM, flash TWRP then full wipes (include format data)";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StockRom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -212,6 +228,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(841, 509);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.TextBox1);
             this.Controls.Add(this.label1);
@@ -253,5 +270,6 @@
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.TextBox textBox2;
         internal System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

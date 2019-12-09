@@ -38,23 +38,15 @@ namespace RedmiNote7ToolC
 
             try
             {
-                if (!File.Exists("AndroidLib.dll"))
-                {
-                    MessageBox.Show("Error: Can´t find DLL lib", "Tool: DLL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new splash());
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " +ex, "Tool: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-
         }
     }
 }
