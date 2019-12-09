@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AndroidLib</name>
+    </assembly>
+    <members>
+        <member name="T:RegawMOD.Android.AdbCommand">
+            <summary>
+            Holds formatted commands to execute through <see cref="T:RegawMOD.Android.Adb"/>
+            </summary>
+            <remarks><para>Can only be created with <c>Adb.FormAdbCommand()</c> or <c>Adb.FormAdbShellCommand()</c></para>
+            <para>Can only be executed with <c>Adb.ExecuteAdbCommand()</c> or <c>Adb.ExecuteAdbCommandNoReturn()</c></para></remarks>
+        </member>
+        <member name="M:RegawMOD.Android.AdbCommand.WithTimeout(System.Int32)">
+            <summary>
+            Sets the timeout for the AdbCommand
+            </summary>
+            <param name="timeout">The timeout for the command in milliseconds</param>
+        </member>
+        <member name="T:RegawMOD.Android.Adb">
+            <summary>
+            Controls all commands sent to the currently running Android Debug Bridge Server
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Adb.FormAdbCommand(System.String,System.Object[])">
+            <summary>
+            Forms an <see cref="T:RegawMOD.Android.AdbCommand"/> that is passed to <c>Adb.ExecuteAdbCommand()</c>
+            </summary>
+            <remarks><para>This should only be used for non device-specific Adb commands, such as <c>adb devices</c> or <c>adb version</c>.</para>
+            <para>Never try to start/kill the running Adb Server, as the <see cref="T:RegawMOD.Android.AndroidController"/> type handles it internally.</para></remarks>
+            <param name="command">The command to run on the Adb Server</param>
+            <param name="args">Any arguments that need to be sent to <paramref name="command"/></param>
+            <returns><see cref="T:RegawMOD.Android.AdbCommand"/> that contains formatted command information</returns>
+            <example>This example demonstrates how to create an <see cref="T:RegawMOD.Android.AdbCommand"/>
+            <code>
+            //This example shows how to create an AdbCommand object to execute on the running server.
+            //The command we will create is "adb devices".  
+            //Notice how in the formation, you don't supply the prefix "adb", because the method takes care of it for you.
+            
+            AdbCommand adbCmd = Adb.FormAdbCommand("devices");
+            
+            </code>
+            </example>
+        </member>
+        <member name="M:RegawMOD.Android.Adb.FormAdbCommand(RegawMOD.Android.Device,System.String,System.Object[])">
+            <summary>
+            Forms an <see cref="T:RegawMOD.Android.AdbCommand"/> that is passed to <c>Adb.ExecuteAdbCommand()</c>
+            </summary>
+            <remarks>This should only be used for device-specific Adb commands, such as <c>adb push</c> or <c>adb pull</c>.</remarks>
+            <param name="device">Specific <see cref="T:RegawMOD.Android.Device"/> to run the command on</param>
+            <param name="command">The command to run on the Adb Server</param>
+            <param name="args">Any arguments that need to be sent to <paramref name="command"/></param>
+            <returns><see cref="T:RegawMOD.Android.AdbCommand"/> that contains formatted command information</returns>
+            <example>This example demonstrates how to create an <see cref="T:RegawMOD.Android.AdbCommand"/>
+            <code>//This example shows how to create an AdbCommand object to execute on the running server.
+            //The command we will create is "adb pull /system/app C:\".  
+            //Notice how in the formation, you don't supply the prefix "adb", because the method takes care of it for you.
+            //This example also assumes you have a Device instance named device.
+            
+            AdbCommand adbCmd = Adb.FormAdbCommand(device, "pull", "/system/app", @"C:\");
+            
+            </code>
+            </example>
+        </member>
+        <member name="M:RegawMOD.Android.Adb.ExecuteAdbCommand(RegawMOD.Android.AdbCommand,System.Boolean)">
+            <summary>
+            Executes an <see cref="T:RegawMOD.Android.AdbCommand"/> on the running Adb Server
+            </summary>
+            <remarks>This should be used if you want the output of the command returned</remarks>
+            <param name="command">Instance of <see cref="T:RegawMOD.Android.AdbCommand"/></param>
+            <param name="forceRegular">Forces Output of stdout, not stderror if any</param>
+            <returns>Output of <paramref name="command"/> run on server</returns>
+        </member>
+        <member name="M:RegawMOD.Android.Adb.ExecuteAdbCommandNoReturn(RegawMOD.Android.AdbCommand)">
+            <summary>
+            Executes an <see cref="T:RegawMOD.Android.AdbCommand"/> on the running Adb Server
+            </summary>
+            <remarks>This should be used if you do not want the output of the command returned.  Good for quick abd shell commands</remarks>
+            <param name="command">Instance of <see cref="T:RegawMOD.Android.AdbCommand"/></param>
+            <returns>Output of <paramref name="command"/> run on server</returns>
+        </member>
+        <member name="P:RegawMOD.Android.Adb.ServerRunning">
+            <summary>
+            Gets a value indicating if an Android Debug Bridge Server is currently running.
+            </summary>
+        </member>
+        <member name="T:RegawMOD.Android.AndroidController">
+             <summary>
+             Controls communication to and from connected Android devices.  Use only one instance for the entire project.
+             </summary>
+             <remarks>
+             <para><see cref="T:RegawMOD.Android.AndroidController"/> is the core class in AndroidLib. You must always call the <c>Dispose()</c> method when finished before program exits.</para>
+             <para><see cref="T:RegawMOD.Android.AndroidController"/> specifically controls the Android Debug Bridge Server, and a developer should NEVER try to start/kill the server using an <see cref="T:RegawMOD.Android.AdbCommand"/></para>
+             </remarks>
+             <example>The following example shows how you can use the <c>AndroidController</c> class
+             <code>
+             // This example demonstrates using AndroidController, and writing the first connected Android device's serial number to the console
+             using System;
+             using RegawMOD.Android;
+            
+             class Program
+             {
+                 static void Main(string[] args)
+                 {
+                     AndroidController android = AndroidController.Instance;
+                     Device device;
+                     string serialNumber;
+                     
+                     Console.WriteLine("Waiting For Device...");
+            
+                     // This will wait until a device is connected to the computer
+                     // Should ONLY be used in Console applications though, as it freezes WinForm apps
+                     android.WaitForDevice();
+            
+                     // Gets first serial number of Device in collection
+                     serialNumber = android.ConnectedDevices[0];
+            
+                     // New way to set 'device' to the first Device in the collection
+                     device = android.GetConnectedDevice(serialNumber);
+            
+                     Console.WriteLine("Connected Device - {0}", device.SerialNumber);
+                     
+                     android.Dispose();
+                 }
+             }
+             
+            	// The example displays the following output:
+            	//		Waiting For Device...
+            	//		Connected Device - {serial # here}
+             </code>
+             </example>
+        </member>
+        <member name="P:RegawMOD.Android.AndroidController.Instance">
+            <summary>
+            Gets the current AndroidController Instance.
+            </summary>
+        </member>
+        <member name="P:RegawMOD.Android.AndroidController.ConnectedDevices">
+            <summary>
+            Gets a <c>List&lt;string&gt;</c> object containing the serial numbers of all connected Android devices
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.Dispose">
+            <summary>
+            Releases all resources used by <see cref="T:RegawMOD.Android.AndroidController"/>        
+            </summary>
+            <remarks>Needs to be called when application has finished using <see cref="T:RegawMOD.Android.AndroidController"/></remarks>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.GetConnectedDevice">
+            <summary>
+            Gets the first <see cref="T:RegawMOD.Android.Device"/> in the internal collection of devices controlled by <see cref="T:RegawMOD.Android.AndroidController"/>
+            </summary>
+            <returns><see cref="T:RegawMOD.Android.Device"/> containing info about the device with the first serial number in the internal collection</returns>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.GetConnectedDevice(System.String)">
+            <summary>
+            Gets a <see cref="T:RegawMOD.Android.Device"/> containing data about a specified Android device.
+            </summary>
+            <remarks><paramref name="deviceSerial"/> must be a serial number of a connected device, or the method returns null</remarks>
+            <param name="deviceSerial">Serial number of connected device</param>
+            <returns><see cref="T:RegawMOD.Android.Device"/> containing info about the device with the serial number <paramref name="deviceSerial"/></returns>
+        </member>
+        <member name="P:RegawMOD.Android.AndroidController.HasConnectedDevices">
+            <summary>
+            Gets a value indicating if there are any Android devices currently connected
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.IsDeviceConnected(System.String)">
+            <summary>
+            Determines if the Android device with the serial number provided is currently connected
+            </summary>
+            <example>The following example shows how to use <c>IsDeviceConnected(string deviceSerial)</c> in one of your programs
+            <code>
+            //This example demonstrates how to use IsDeviceConnected(string deviceSerial) in your project
+            //This example assumes there is an instance of AndroidController running named android.
+            
+            string serialNumber = "HTC123456789";
+            
+            bool currentlyConnected = android.IsDeviceConnected(serialNumber);
+            </code>
+            </example>
+            <param name="deviceSerial">Serial number of Android device</param>
+            <returns>A value indicating if the Android device with the serial number <paramref name="deviceSerial"/> is connected</returns>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.IsDeviceConnected(RegawMOD.Android.Device)">
+            <summary>
+            Determines if the Android device tied to <paramref name="device"/> is currently connected
+            </summary>
+            <param name="device">Instance of <see cref="T:RegawMOD.Android.Device"/></param>
+            <returns>A value indicating if the Android device indicated in <paramref name="device"/> is connected</returns>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.UpdateDeviceList">
+            <summary>
+            Updates Internal Device List
+            </summary>
+            <remarks>Call this before checking for Devices, or setting a new Device, for most updated results</remarks>
+        </member>
+        <member name="P:RegawMOD.Android.AndroidController.CancelWait">
+            <summary>
+            Set to true to cancel a WaitForDevice() method call
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.AndroidController.WaitForDevice">
+            <summary>
+            Pauses thread until 1 or more Android devices are connected
+            </summary>
+            <remarks>Do Not Use in Windows Forms applications, as this method pauses the current thread.  Works fine in Console Applications</remarks>
+        </member>
+        <member name="T:RegawMOD.Android.FastbootCommand">
+            <summary>
+            Holds formatted commands to execute through <see cref="T:RegawMOD.Android.Fastboot"/>
+            </summary>
+            <remarks><para>Can only be created with <c>Fastboot.FormFastbootCommand()</c></para>
+            <para>Can only be executed with <c>Fastboot.ExecuteFastbootCommand()</c> or <c>Fastboot.ExecuteFastbootCommandNoReturn()</c></para></remarks>
+        </member>
+        <member name="M:RegawMOD.Android.FastbootCommand.WithTimeout(System.Int32)">
+            <summary>
+            Sets the timeout for the FastbootCommand
+            </summary>
+            <param name="timeout">The timeout for the command in milliseconds</param>
+        </member>
+        <member name="T:RegawMOD.Android.Fastboot">
+            <summary>
+            Controls all commands sent to Fastboot
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Fastboot.FormFastbootCommand(System.String,System.String[])">
+            <summary>
+            Forms a <see cref="T:RegawMOD.Android.FastbootCommand"/> that is passed to <c>Fastboot.ExecuteFastbootCommand()</c>
+            </summary>
+            <param name="command">The fastboot command to run</param>
+            <param name="args">Any arguments that need to be sent to <paramref name="command"/></param>
+            <returns><see cref="T:RegawMOD.Android.FastbootCommand"/> that contains formatted command information</returns>
+            <remarks>Should be used only for non device-specific fastboot commands such as <c>fastboot devices</c> or <c>fastboot version</c></remarks>
+            <example>This example demonstrates how to create a non device-specific <see cref="T:RegawMOD.Android.FastbootCommand"/>
+            <code>//This example shows how to create a non device-specific FastbootCommand
+            //This demonstarates the fastboot command "fastboot devices"
+            //Notice how you do not include the "fastboot" executable in the method, as the method takes care of it internally
+            
+            FastbootCommand fbCmd = Fastboot.FormFastbootCommand("devices");
+            
+            </code>
+            </example>
+        </member>
+        <member name="M:RegawMOD.Android.Fastboot.FormFastbootCommand(RegawMOD.Android.Device,System.String,System.String[])">
+            <summary>
+            Forms a <see cref="T:RegawMOD.Android.FastbootCommand"/> that is passed to <c>Fastboot.ExecuteFastbootCommand()</c>
+            </summary>
+            <remarks>Should be used only for device-specific fastboot commands such as <c>fastboot reboot</c> or <c>fastboot getvar all</c></remarks>
+            <param name="device">Specific <see cref="T:RegawMOD.Android.Device"/> to run the comand on</param>
+            <param name="command">The command to run on fastboot</param>
+            <param name="args">Any arguments that need to be sent to <paramref name="command"/></param>
+            <returns><see cref="T:RegawMOD.Android.FastbootCommand"/> that contains formatted command information</returns>
+            <example>This example demonstrates how to create a non device-specific <see cref="T:RegawMOD.Android.FastbootCommand"/>
+            <code>//This example shows how to create a device-specific FastbootCommand
+            //This demonstarates the fastboot command "fastboot flash zip C:\rom.zip"
+            //Notice how you do not include the "fastboot" executable in the method, as the method takes care of it internally
+            //This example also assumes there is an instance of Device named device
+            
+            FastbootComand fbCmd = Fastboot.FormFastbootCommand(device, "flash", @"zip C:\rom.zip");
+            
+            </code>
+            </example>
+        </member>
+        <member name="M:RegawMOD.Android.Fastboot.ExecuteFastbootCommand(RegawMOD.Android.FastbootCommand)">
+            <summary>
+            Executes a <see cref="T:RegawMOD.Android.FastbootCommand"/>
+            </summary>
+            <param name="command">Instance of <see cref="T:RegawMOD.Android.FastbootCommand"/></param>
+            <returns>Output of <paramref name="command"/> run in fastboot</returns>
+        </member>
+        <member name="M:RegawMOD.Android.Fastboot.ExecuteFastbootCommandNoReturn(RegawMOD.Android.FastbootCommand)">
+            <summary>
+            Executes a <see cref="T:RegawMOD.Android.FastbootCommand"/>
+            </summary>
+            <remarks>Should be used if you do not want the output of the command; good for quick fastboot commands</remarks>
+            <param name="command">Instance of <see cref="T:RegawMOD.Android.FastbootCommand"/></param>
+        </member>
+        <member name="T:RegawMOD.Android.DeviceState">
+            <summary>
+            Specifies current state of <see cref="T:RegawMOD.Android.Device"/>
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.ONLINE">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is online
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.OFFLINE">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is offline
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.RECOVERY">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is in recovery
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.FASTBOOT">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is in fastboot
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.SIDELOAD">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is in sideload mode
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.UNAUTHORIZED">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is not authorized
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Android.DeviceState.UNKNOWN">
+            <summary>
+            <see cref="T:RegawMOD.Android.Device"/> is in an unknown state
+            </summary>
+        </member>
+        <member name="T:RegawMOD.Android.Device">
+            <summary>
+            Manages connected Android device's info and commands
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Device.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Device class
+            </summary>
+            <param name="deviceSerial">Serial number of Android device</param>
+        </member>
+        <member name="P:RegawMOD.Android.Device.SerialNumber">
+            <summary>
+            Gets the device's serial number
+            </summary>
+        </member>
+        <member name="P:RegawMOD.Android.Device.State">
+            <summary>
+            Gets a value indicating the device's current state
+            </summary>
+            <remarks>See <see cref="T:RegawMOD.Android.DeviceState"/> for more details</remarks>
+        </member>
+        <member name="M:RegawMOD.Android.Device.FastbootReboot">
+            <summary>
+            Reboots the device regularly from fastboot
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Device.Reboot">
+            <summary>
+            Reboots the device regularly
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Device.RebootRecovery">
+            <summary>
+            Reboots the device into recovery
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Device.RebootBootloader">
+            <summary>
+            Reboots the device into the bootloader
+            </summary>
+        </member>
+        <member name="M:RegawMOD.Android.Device.Update">
+            <summary>
+            Updates all values in current instance of <see cref="T:RegawMOD.Android.Device"/>
+            </summary>
+        </member>
+        <member name="F:RegawMOD.Command.DEFAULT_TIMEOUT">
+            <summary>
+            The default timeout for commands. -1 implies infinite time
+            </summary>
+        </member>
+    </members>
+</doc>

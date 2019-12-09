@@ -1,0 +1,9 @@
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.csprojAssemblyReference.cache
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.Properties.Resources.resources
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.Visual.resources
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.csproj.GenerateResource.cache
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\bin\Debug\RedmiNote7ToolC.exe.config
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\bin\Debug\RedmiNote7ToolC.exe
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\bin\Debug\RedmiNote7ToolC.pdb
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.exe
+C:\Users\gabri\source\repos\RedmiNote7ToolC\RedmiNote7ToolC\obj\Debug\RedmiNote7ToolC.pdb
