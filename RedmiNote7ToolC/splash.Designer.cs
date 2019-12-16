@@ -36,7 +36,6 @@ namespace RedmiNote7ToolC
             this.MiBanner = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,27 +68,12 @@ namespace RedmiNote7ToolC
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label1.Location = new System.Drawing.Point(12, 165);
+            this.label1.Location = new System.Drawing.Point(12, 178);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(346, 23);
             this.label1.TabIndex = 21;
-            this.label1.Text = "Welcome to Redmi Note 7 Tool";
+            this.label1.Text = "Welcome To Redmi Note 7 Tool";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label2.Location = new System.Drawing.Point(8, 201);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(346, 23);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Version: 1.0.1.7";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splash
             // 
@@ -98,7 +82,6 @@ namespace RedmiNote7ToolC
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(374, 276);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MiBanner);
             this.Controls.Add(this.progressBar1);
@@ -110,6 +93,7 @@ namespace RedmiNote7ToolC
             this.Name = "splash";
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Welcome To Redmi Note 7 Tool";
             this.Load += new System.EventHandler(this.splash_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).EndInit();
             this.ResumeLayout(false);
@@ -122,6 +106,5 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.PictureBox MiBanner;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Label label2;
     }
 }

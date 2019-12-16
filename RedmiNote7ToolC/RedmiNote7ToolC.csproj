@@ -27,8 +27,8 @@
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.1.7</ApplicationVersion>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>1.0.1.8</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -202,6 +202,12 @@
     <Compile Include="StockRom.Designer.cs">
       <DependentUpon>StockRom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uninstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uninstall.Designer.cs">
+      <DependentUpon>Uninstall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockRom.resx">
       <DependentUpon>StockRom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uninstall.resx">
+      <DependentUpon>Uninstall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visual.resx">
       <DependentUpon>Visual.cs</DependentUpon>

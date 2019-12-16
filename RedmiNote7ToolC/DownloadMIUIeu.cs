@@ -54,12 +54,13 @@ namespace RedmiNote7ToolC
 
             System.Threading.Thread.Sleep(2000);
 
-            decimal sizeb = 1721354054;
+            decimal sizeb = 1726270105;
 
-            string fileName = @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip";
+            string fileName = @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.12_v11-9.zip";
             FileInfo fi = new FileInfo(fileName);
 
             if (fi.Length < sizeb)
+
             {
                 MessageBox.Show(@"File is corrupted \: , downloading again!", "Xiaomi.eu ROM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
@@ -86,7 +87,7 @@ namespace RedmiNote7ToolC
         {
             Directory.SetCurrentDirectory(@"C:\adb\xiaomieu\");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\xiaomieu\", "xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
+            string[] paths = Directory.GetFiles(@"C:\adb\xiaomieu\", "xiaomi.eu_multi_HMNote7_9.12.12_v11-9.zip");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -106,7 +107,7 @@ namespace RedmiNote7ToolC
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("https://va1.androidfilehost.com/dl/G1miAJwUybY-mb_C36buBg/1576118704/4349826312261653424/xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip"), @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.5_v11-9.zip");
+                    client.DownloadFileAsync(new Uri("https://va2.androidfilehost.com/dl/BDaILW1VHWlZ8MTdk6CWVw/1576499584/4349826312261670807/xiaomi.eu_multi_HMNote7_9.12.12_v11-9.zip"), @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_9.12.12_v11-9.zip");
                 });
                 thread.Start();
             }

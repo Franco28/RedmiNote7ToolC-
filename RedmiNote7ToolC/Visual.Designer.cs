@@ -789,7 +789,7 @@ namespace RedmiNote7ToolC
             this.MaximizeBox = false;
             this.Name = "Visual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Redmi Note 7 Basic Tool - v1.0.1.7";
+            this.Text = "Redmi Note 7 Basic Tool - v1.0.1.8";
             this.Closed += new System.EventHandler(this.Visual_Closed);
             this.Load += new System.EventHandler(this.Visual_Load);
             this.TaskBar.ResumeLayout(false);

@@ -96,7 +96,7 @@
             this.Name = "DownloadMIUIeu";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading xiaomi.eu_multi_HMNote7_9.12.5_v11-9...";
+            this.Text = "Downloading xiaomi.eu_multi_HMNote7_9.12.12_v11-9...";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.DownloadMIUIeu_Load);
             this.ResumeLayout(false);

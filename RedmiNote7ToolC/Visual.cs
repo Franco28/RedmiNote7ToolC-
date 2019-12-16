@@ -107,6 +107,26 @@ namespace RedmiNote7ToolC
             }
         }
 
+        protected virtual bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            }
+            catch (IOException)
+            {
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+            return false;
+        }
+
         private void Visual_Load(object sender, EventArgs e)
         {
             create_main_folders();
@@ -692,39 +712,26 @@ namespace RedmiNote7ToolC
             h.Show();
         }
 
-        private void UninstallTool_Click(object sender, EventArgs e)
+        public void UninstallTool_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure that you want to Uninstall the Tool? " + GetDirectorySize(@"C:\adb") + " MB", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-             if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                    android.Dispose();
-                    Directory.SetCurrentDirectory(@"C:\");
-                        var root = @"C:\adb";
+            var result = MessageBox.Show("Are you sure that you want to Uninstall the Tool? ", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                android.Dispose();
 
-                    if (Directory.Exists(root))
-                        this.Controls.Clear();
-                    var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
-                    System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
-                    RefreshTool();
-                    MessageBox.Show("All files removed! " + "Now to fully uninstall the Tool, go to Control Panel/Uninstall " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Directory.Delete(root, true);
-                    Visual_Closed("", e);
-                    base.Dispose(Disposing);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Uninstall failed: {0} " + ex.Message, "Error: Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        RefreshTool();
-                    }
-                }
+                base.Controls.Clear();
+                base.Invalidate();
+                base.Enabled = false;
+                this.Dispose(Disposing);
+                var u = new Uninstall();
+                u.Show();
             }
+        }
 
         public void Visual_Closed(object sender, EventArgs e)
         {
-            RefreshTool();
             android.Dispose();
+            RefreshTool();
             Process myprocess = new Process();
             string arg = @"/c taskkill /f";
             try
