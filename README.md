@@ -33,6 +33,7 @@ Download the Tool v1.0.1.8 from here * [RedmiNote7Tool](https://github.com/Franc
 
 ![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/uninstall.png "Uninstall}")
 
+##### Be careful with this options, this will remove all files under "USERPROFILE\AppData\Local\Apps"!
 
 ### How it works
 
