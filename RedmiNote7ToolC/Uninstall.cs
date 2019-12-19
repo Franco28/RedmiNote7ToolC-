@@ -6,57 +6,22 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using RegawMOD.Android;
 
 namespace RedmiNote7ToolC
 {
     public partial class Uninstall : Form
     {
+        private AndroidController android;
+
         public Uninstall()
         {
             InitializeComponent();
-        }
-
-        private void Uninstall_Load(object sender, EventArgs e)
-        {
-
-            var root = @"C:\adb";
-            var pathWithEnv = @"%USERPROFILE%\AppData\Local\Apps";
-            var toolinstallationfolder = Environment.ExpandEnvironmentVariables(pathWithEnv);
-            var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
-
-            try
-            {
-                var dir = new DirectoryInfo(root);
-                foreach (var file in dir.GetFiles())
-                {
-                    file.Delete();
-                    Directory.Delete(root, true);
-                }
-
-                if (Directory.Exists(root))
-                    Directory.Delete(root, true);
-
-                if (Directory.Exists(toolinstallationfolder))
-                    Directory.Delete(toolinstallationfolder, true);
-
-                MessageBox.Show("All files removed! " + "Now to fully uninstall the Tool, go to Control Panel/Uninstall " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
-
-                exit();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Uninstall failed: {0} " + ex.Message + " Directory throw an error, please remove it manually!", "Error: Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            android = AndroidController.Instance;
         }
 
         public void exit()
         {
-            var root = @"C:\adb";
-            if (Directory.Exists(root))
-                Directory.Delete(root, true);
-
             Process myprocess = new Process();
             string arg = @"/c taskkill /f";
             try
@@ -79,6 +44,55 @@ namespace RedmiNote7ToolC
             Application.ExitThread();
             base.Dispose(Disposing);
         }
+
+        private void Uninstall_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var root = @"C:\adb\";
+                var pathWithEnv = @"%USERPROFILE%\AppData\Local\Apps";
+                var toolinstallationfolder = Environment.ExpandEnvironmentVariables(pathWithEnv);
+                var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
+                var dir = new DirectoryInfo(root);
+
+                if (Directory.Exists(toolinstallationfolder))
+                    Directory.Delete(toolinstallationfolder, true);
+
+                MessageBox.Show("All files removed! " + "Now to fully uninstall the Tool, go to Control Panel/Uninstall " + " See you " + Environment.UserName, "Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.label1.Text = "Hey if this screen does not disappear, close this and uninstall the tool from control panel";
+
+                System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
+
+                    android.Dispose();
+
+                foreach (var file in dir.GetFiles())
+                {
+                    file.Delete();
+                }
+
+                var paths = new[] { "C:\\adb\\StockRom", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomiglobalfastboot",  "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
+
+                foreach (var path in paths)
+                {
+                    try
+                    {
+                        Directory.Delete(path, true);
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show("Error: " + er, "Remove Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Uninstall failed: {0} " + ex.Message + " Directory throw an error, please remove it manually!", "Error: Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         public void Uninstall_Closed(object sender, EventArgs e)
         {
