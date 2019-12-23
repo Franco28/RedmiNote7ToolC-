@@ -20,10 +20,10 @@ ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppContact=Support
 TouchDate=2019-12-23
-AppComments=Hey! Thanks for using this Basic Tool!
 OutputBaseFilename=RedmiNote7Tool_v1.0.1.8_Setup
-AppCopyright=Copyright (C) 2019 Franco28.
 
+AppCopyright=Copyright (C) 2019 Franco28.
+AppComments=A Basic Tool for Xiaomi Redmi Note 7 Lavender
 AppPublisher=Franco28
 AppPublisherURL=https://github.com/Franco28/RedmiNote7ToolC-#redmi-note-7-tool
 
