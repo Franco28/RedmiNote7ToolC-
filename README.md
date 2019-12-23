@@ -4,9 +4,9 @@ Tool based on C#
 
 ## Getting Started
 
-* Please if you have a previous version Tool (Application Reference (.appref-ms)), remove it to install the new one. You must to remove this folders: 
-*- USERPROFILE\AppData\Local\Apps
-*- C:\adb
+##### Please if you have a previous version Tool (Application Reference (.appref-ms)), remove it to install the new one. You must to remove this folders: 
+###### - USERPROFILE\AppData\Local\Apps
+###### - C:\adb
 
 Download the Tool v1.0.1.8 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.1.8-ReUpload) 
 
