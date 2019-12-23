@@ -718,13 +718,23 @@ namespace RedmiNote7ToolC
             if (result == DialogResult.Yes)
             {
                 android.Dispose();
+                try
+                {
+                    var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
 
-                base.Controls.Clear();
-                base.Invalidate();
-                base.Enabled = false;
-                this.Dispose(Disposing);
-                var u = new Uninstall();
-                u.Show();
+                    System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
+
+                    android.Dispose();
+
+                    base.Controls.Clear();
+                    base.Invalidate();
+                    base.Enabled = false;
+                    this.Dispose(Disposing);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Uninstall failed: {0} " + ex.Message, "Error: Uninstall", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
