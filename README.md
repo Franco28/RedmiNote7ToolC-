@@ -13,27 +13,13 @@ Download the Tool v1.0.1.8 from here * [RedmiNote7Tool](https://github.com/Franc
 
 ### Install
 
-- Start the "Setup.exe"
+- Start the "RedmiNote7Tool_v1.0.1.8_Setup.exe"
 
-![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/exec.png "Install")
-
-- Now, this is for security, avoid this msg box and click "Install"
-
-![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/exec2.png "Install")
-
-- The app will be installed as a "Application Reference (.appref-ms)", it will create a desktop shortcut
+- The installer will create a desktop shortcut
 
 ### Uninstall
 
-- Click the trash icon on the Tool, this will remove all the folders used on C:\adb
-
-![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/trash.png "Trash")
-
-- Then the tool will open Control Panel, to uninstall the Tool look for this:
-
-![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/uninstall.png "Uninstall}")
-
-##### Be careful with this options, this will remove all files under "USERPROFILE\AppData\Local\Apps"!
+- Go to Control Panel and look for the RedmiNote7Tool, selec it and uninstall it
 
 ### How it works
 
