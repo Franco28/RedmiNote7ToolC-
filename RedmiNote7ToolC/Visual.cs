@@ -396,24 +396,15 @@ namespace RedmiNote7ToolC
 
                 foreach (var path in paths)
                 {
-                    try
-                    {
+
                         if (Directory.Exists(path))
                         {
                             Directory.SetCurrentDirectory(@"C:\adb");
                             Directory.Delete(path, true);
-                            MessageBox.Show("All Folders cleared! The app will restart!", "Clear Folders", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            System.Windows.Forms.Application.Restart();
-                            continue;
-                        }
-
-                    }
-                    catch (Exception er)
-                    {
-                        MessageBox.Show("Clearing Folders failed: {0} " + er.Message, "Error: Clear Folders", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        RefreshTool();
                     }
                 }
+                MessageBox.Show("All Folders cleared! The app will restart!", "Clear Folders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshTool();
             }
         }
 
