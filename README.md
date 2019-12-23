@@ -4,7 +4,7 @@ Tool based on C#
 
 ## Getting Started
 
-!#c5f015 ##### Please if you have a previous version Tool (Application Reference (.appref-ms)), remove it to install the new one. You must to remove this folders:
+##### Please if you have a previous version Tool (Application Reference (.appref-ms)), remove it to install the new one. You must to remove this folders:
 ###### - USERPROFILE\AppData\Local\Apps
 ###### - C:\adb
 
