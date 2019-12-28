@@ -1,0 +1,31 @@
+---------
+CHANGELOG 
+---------
+
+--------
+v1.0.1.9
+-------- 
+* Fixed Clear all folder option
+* adb doesnt stop before app closed (Fixed)
+* Trying to fix fastboot firmware extraction...
+* Removed uninstall option from Tool
+
+--------
+v1.0.1.8
+-------- 
+* Updated miui eu links
+* Fixed uninstall tool
+* Fixed strings on help form
+
+--------
+v1.0.1.7
+-------- 
+* Now download forms won't be shown on taskbar
+* Now when program start, if there's something wrong will show msgbox with errors
+* Added StockRom Download. This ROM will be available soon
+* Fixed dll error when load
+* Added missing strings on SR Form
+
+For more info check old releases
+
+https://github.com/Franco28/RedmiNote7ToolC-/releases

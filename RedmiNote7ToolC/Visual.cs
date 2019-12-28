@@ -732,7 +732,7 @@ namespace RedmiNote7ToolC
         public void Visual_Closed(object sender, EventArgs e)
         {
             android.Dispose();
-            RefreshTool();
+            FastbootExe("adb ", "kill-server");
             Process myprocess = new Process();
             string arg = @"/c taskkill /f";
             try

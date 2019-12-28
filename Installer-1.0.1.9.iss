@@ -19,7 +19,7 @@ UserInfoPage=no
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppContact=Support
-TouchDate=2019-12-23
+TouchDate=2019-12-28
 OutputBaseFilename=RedmiNote7Tool_v1.0.1.9_Setup
 InfoBeforeFile=changelog.txt
 
@@ -43,24 +43,6 @@ Name: {group}\RedmiNote7Tool; Filename: {app}\RedmiNote7Tool.exe; WorkingDir: {a
 Name: {commondesktop}\RedmiNote7Tool; Filename: {app}\RedmiNote7Tool.exe; WorkingDir: {app}; IconFilename: {app}\2.ico; Comment: "RedmiNote7Tool";
 
 [UninstallDelete]
+Type: files; Name: "C:\adb\*"; 
 Type: filesandordirs; Name: "C:\adb"
-
-[Code]
-function NextButtonClick(CurPageID: Integer): Boolean;
-var
-  ResultCode: Integer;
-begin
-  if CurPageID = wpFinished then
-  begin
-    if Exec(
-         ExpandConstant('{app}\RedmiNote7Tool.exe'), '', '', SW_SHOW, ewNoWait, ResultCode) then
-    begin
-      Log('Executed RedmiNote7Tool');
-    end
-      else
-    begin
-      MsgBox('Error executing RedmiNote7Tool - ' + SysErrorMessage(ResultCode), mbError, MB_OK);
-    end;
-  end;
-  Result := True;
-end;
+Type: filesandordirs; Name: "C:\Program Files\RedmiNote7Tool"
