@@ -8,7 +8,7 @@ Tool based on C#
 ###### - USERPROFILE\AppData\Local\Apps
 ###### - C:\adb
 
-Download the Tool v1.0.1.8 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.1.8-ReUpload) 
+Download the Tool v1.0.1.9 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.1.9) 
 
 ### Prerequisites
 
