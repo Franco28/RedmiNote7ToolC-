@@ -27,7 +27,6 @@ Download the Tool v1.0.1.9 from here * [RedmiNote7Tool](https://github.com/Franc
 
 ### How it works
 
-** When you finished the installation, the Tool will execute alone **
 - The installation will create a "RedmiNote7Tool" shortcut on desktop
 - Then you can use any option, remember if you want to download any file, this will check internet connection
 - If you want to flash any TWRP, this will be downloaded and flashed, but remember to put your device on Bootloader mode and ready to flash
