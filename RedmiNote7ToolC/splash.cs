@@ -10,13 +10,13 @@ using RegawMOD.Android;
 
 namespace RedmiNote7ToolC
 {
-    public partial class splash : Form
+    public partial class Splash : Form
     {
 
         private AndroidController android;
         private BackgroundWorker bw = new BackgroundWorker();
 
-        public splash()
+        public Splash()
         {
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;

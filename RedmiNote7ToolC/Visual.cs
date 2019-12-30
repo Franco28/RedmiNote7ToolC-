@@ -8,6 +8,8 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using RegawMOD.Android;
+using MiUSB;
+using System.Collections;
 
 namespace RedmiNote7ToolC
 {
@@ -18,16 +20,16 @@ namespace RedmiNote7ToolC
 
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
-        private AndroidController android;
+        Device device; AndroidController android = null; string serial;
 
         public Visual()
         {
             InitializeComponent();
             create_main_folders();
+            android = AndroidController.Instance;
             InitializeRAMCounter();
             InitialiseCPUCounter();
             updateTimer_Tick();
-            android = AndroidController.Instance; 
         }
 
         private void updateTimer_Tick()
@@ -39,6 +41,70 @@ namespace RedmiNote7ToolC
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + GetDirectorySize(@"C:\adb") + " MB";
+            IsConnected();
+        }
+
+        bool IsConnected() 
+        {
+            AndroidController android = null;
+            android = AndroidController.Instance;
+
+            if (android.HasConnectedDevices) 
+            {
+                ArrayList devicelist = new ArrayList();
+                serial = android.ConnectedDevices[0];
+                device = android.GetConnectedDevice(serial);
+
+                devicelist.Add(" Device: Xiaomi Redmi Note 7");
+                devicelist.Add(" Codename: Lavender");
+                devicelist.Add(" SoC: SDM660 Snapdragon 660");
+                devicelist.Add(" CPU: 8x Qualcomm® Kryo™ 260 up to 2.2GHz");
+                devicelist.Add(" GPU: Adreno 512");
+                devicelist.Add(" Memory: 3GB / 4GB / 6GB RAM (LPDDR4X)");
+                devicelist.Add(" Storage: 32GB / 64GB eMMC 5.1 flash storage");
+                devicelist.Add(" Battery: Non-removable Li-Po 4000 mAh");
+                devicelist.Add(" Dimensions: 159.21 x 75.21 x 8.1 mm");
+                devicelist.Add(" Display: 2340 x 1080 (19.5:9), 6.3 inch");
+                devicelist.Add(" Rear camera 1: 48MP, 1.6-micron pixels, f/1.8 Dual LED flash");
+                devicelist.Add(" Rear camera 2: 5MP, 1.6-micron pixels, f/1.8");
+                devicelist.Add(" Front camera: 13MP");
+                listBox1.DataSource = devicelist;
+
+                ArrayList devicecheck = new ArrayList();
+                devicecheck.Add(" Device: online! ");
+                devicecheck.Add(" Mode: USB debugging ");
+                devicecheck.Add(" Serial Number: " + serial);
+                devicecheck.Add(" Bootloader: ---");
+                listBox2.DataSource = devicecheck;
+                return true;
+            } 
+            else
+            {
+                ArrayList devicelist = new ArrayList();
+                devicelist.Add(" Device: ---");
+                devicelist.Add(" Codename: ---");
+                devicelist.Add(" SoC: ---");
+                devicelist.Add(" CPU: ---");
+                devicelist.Add(" GPU: ---");
+                devicelist.Add(" Memory: ---");
+                devicelist.Add(" Storage: ---");
+                devicelist.Add(" Battery: ---");
+                devicelist.Add(" Dimensions: ---");
+                devicelist.Add(" Display: ---");
+                devicelist.Add(" Rear camera 1: ---");
+                devicelist.Add(" Rear camera 2: ---");
+                devicelist.Add(" Front camera: ---");
+                listBox1.DataSource = devicelist;
+
+                ArrayList devicecheck = new ArrayList();
+                devicecheck.Add(" Device: offline! ");
+                devicecheck.Add(" Mode: --- ");
+                devicecheck.Add(" Serial Number: ---" );
+                devicecheck.Add(" Bootloader: ---");
+                listBox2.DataSource = devicecheck;
+                return false;
+            }
+
         }
 
         private void InitialiseCPUCounter()
@@ -132,7 +198,7 @@ namespace RedmiNote7ToolC
             create_main_folders();
             InitializeRAMCounter();
             updateTimer_Tick();
-            Label3.Text = "User: " + Environment.UserName;
+            Label3.Text = "User: " + System.Environment.UserName;
         }
 
         public void FastbootExe(string fpath, string command)
@@ -192,7 +258,7 @@ namespace RedmiNote7ToolC
             create_main_folders();
             InitializeRAMCounter();
             updateTimer_Tick();
-            Label3.Text = "User: " + Environment.UserName;
+            Label3.Text = "User: " + System.Environment.UserName;
         }
 
         private void unlockbootloader_Click(object sender, EventArgs e)
@@ -232,7 +298,7 @@ namespace RedmiNote7ToolC
             {
                 TextBox2.Text = "Checking device connection...";
 
-                if (android.HasConnectedDevices)
+                if (IsConnected())
                 {
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Locking bootloader...";
@@ -282,11 +348,12 @@ namespace RedmiNote7ToolC
             else
             {
                 TextBox2.Text = "Checking device connection...";
-                if (android.HasConnectedDevices)
+                if (IsConnected())
                 {
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Booting into OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
+                    TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
                     FastbootExe(@"fastboot ", @"boot C:\adb\TWRP\recovery.img");
                     System.Threading.Thread.Sleep(3000);
                 }
@@ -328,7 +395,7 @@ namespace RedmiNote7ToolC
             else
             {
                 TextBox2.Text = "Checking device connection...";
-                if (android.HasConnectedDevices)
+                if (IsConnected())
                 {
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Flashing TWRP OrangeFox...";
@@ -410,7 +477,21 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                MessageBox.Show("This option was removed due to errores when unzip and move to folder. It will be back soon.", "Firmware: ERROR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                TextBox2.Text = "Checking internet connection and file...";
+                if (Ping("www.google.com") == true)
+                {
+                    var downloadfastbootfirmware = new DownloadMIUIFastboot();
+                    downloadfastbootfirmware.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Fastboot Firmware!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.Application.Restart();
+            }
+            visual_reLoad();
         }
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -525,8 +606,7 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIByFranco28ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var sr = new StockRom();
-            sr.Show();
+            MessageBox.Show("This is not ready yet!", "StockRom", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void OpenFolderFranco28ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -597,7 +677,7 @@ namespace RedmiNote7ToolC
             if (result == DialogResult.Yes)
             {
                 TextBox2.Text = "Checking device connection...";
-                if (android.HasConnectedDevices)
+                if (IsConnected())
                 {
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Entering to EDL mode...";
@@ -624,7 +704,7 @@ namespace RedmiNote7ToolC
         private void rebootBootloaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox2.Text = "Checking device connection...";
-            if (android.HasConnectedDevices)
+            if (IsConnected())
             {
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Bootloader mode...";
@@ -645,7 +725,7 @@ namespace RedmiNote7ToolC
         private void rebootRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox2.Text = "Checking device connection...";
-            if (android.HasConnectedDevices)
+            if (IsConnected())
             {
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Recovery mode...";
@@ -686,7 +766,62 @@ namespace RedmiNote7ToolC
 
         private void OpenFlashToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is not ready yet!", "Mi Flash By Franco28", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var f = new MiFlash();
+            f.Show();
+        }
+
+        private void toolStripMenuItemFixPersist_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Do you want to fix Persist img? Caused by: Find Device Storage Corrupted, Your Device is Unsafe Now", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (!File.Exists(@"C:\adb\.settings\persist.img"))
+                {
+                    try
+                    {
+                        TextBox2.Text = "Checking internet connection...";
+                        System.Threading.Thread.Sleep(3000);
+                        TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
+                        if (Ping("www.google.com") == true)
+                        {
+                            TextBox2.Text = "Checking internet connection: OK";
+                            MessageBox.Show("Can´t find Persist image...", "Persist Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            var downloadpersist = new DownloadPersist();
+                            downloadpersist.Show();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        TextBox2.Text = "Checking internet connection: ERROR";
+                        MessageBox.Show("ERROR: Can´t connect to the server to download Persist image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    TextBox2.Text = "Checking device connection...";
+                    if (USB_CONNECTION_STATUS.DeviceConnected.Equals(true))
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = "Flashing Persist Image...";
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
+                        FastbootExe(@"fastboot ", @"flash persist C:\adb\.settings\persist.img");
+                        FastbootExe(@"fastboot ", @"reboot");
+                        System.Threading.Thread.Sleep(3000);
+                    }
+                    else
+                    {
+                        TextBox2.Text = "Please connect your device...";
+                        System.Threading.Thread.Sleep(1000);
+                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            visual_reLoad();
+        }
+        private void flashStockSplashToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Refresh_Click(object sender, EventArgs e)
@@ -711,7 +846,7 @@ namespace RedmiNote7ToolC
                 android.Dispose();
                 try
                 {
-                    var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
+                    var cplPath = System.IO.Path.Combine(System.Environment.SystemDirectory, "control.exe");
 
                     System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
 

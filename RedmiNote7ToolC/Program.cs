@@ -16,6 +16,18 @@ namespace RedmiNote7ToolC
         [STAThread]
         static void Main()
         {
+            try
+            {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Splash());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " +ex, "Tool: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+
             var paths = new[] { "C:\\adb", "C:\\adb\\StockRom", "C:\\adb\\.settings", "C:\\adb\\TWRP", "C:\\adb\\MIFlash", "C:\\adb\\MIUnlock", "C:\\adb\\xiaomiglobalfastboot\\MI", "C:\\adb\\xiaomieu", "C:\\adb\\xiaomiglobalrecovery" };
 
             foreach (var path in paths)
@@ -34,18 +46,6 @@ namespace RedmiNote7ToolC
                 {
                     MessageBox.Show("Error: " + er, "Creating Folders: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-
-            try
-            {
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new splash());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " +ex, "Tool: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
             }
         }
     }

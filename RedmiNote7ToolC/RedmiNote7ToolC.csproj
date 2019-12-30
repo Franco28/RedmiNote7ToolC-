@@ -27,8 +27,8 @@
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
-    <ApplicationVersion>1.0.1.9</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.2.1</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -128,6 +128,10 @@
       <HintPath>..\..\AndroidLib-master\AndroidLib\bin\x64\Debug\AndroidLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MiUSB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RedmiNote7ToolC#\MiUSB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -145,7 +149,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicProgress.cs" />
     <Compile Include="BrowserCheck.cs" />
+    <Compile Include="DownloadPersist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadPersist.Designer.cs">
+      <DependentUpon>DownloadPersist.cs</DependentUpon>
+    </Compile>
     <Compile Include="DownloadMIFlash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,13 +199,19 @@
     <Compile Include="Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="splash.cs">
+    <Compile Include="MiFlash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="splash.Designer.cs">
-      <DependentUpon>splash.cs</DependentUpon>
+    <Compile Include="MiFlash.Designer.cs">
+      <DependentUpon>MiFlash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
     <Compile Include="StockRom.cs">
       <SubType>Form</SubType>
@@ -208,6 +225,10 @@
     <Compile Include="Visual.Designer.cs">
       <DependentUpon>Visual.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZipFileWithProgress.cs" />
+    <EmbeddedResource Include="DownloadPersist.resx">
+      <DependentUpon>DownloadPersist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadMIFlash.resx">
       <DependentUpon>DownloadMIFlash.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +250,9 @@
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiFlash.resx">
+      <DependentUpon>MiFlash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -239,8 +263,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="splash.resx">
-      <DependentUpon>splash.cs</DependentUpon>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockRom.resx">
       <DependentUpon>StockRom.cs</DependentUpon>

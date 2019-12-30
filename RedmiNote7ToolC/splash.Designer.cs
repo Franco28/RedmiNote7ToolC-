@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace RedmiNote7ToolC
 {
-    partial class splash
+    partial class Splash
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace RedmiNote7ToolC
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(splash));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splash));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.MiBanner = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();

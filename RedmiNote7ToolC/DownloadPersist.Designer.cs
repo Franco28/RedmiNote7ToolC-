@@ -1,6 +1,10 @@
-﻿namespace RedmiNote7ToolC
+﻿
+/* (C) 2019 Franco28 */
+/* Basic Tool C# for Redmi Note 7 */
+
+namespace RedmiNote7ToolC
 {
-    partial class DownloadMIUIFastboot
+    partial class DownloadPersist
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +32,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadMIUIFastboot));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadPersist));
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.ProgressBar1 = new System.Windows.Forms.ProgressBar();
@@ -47,7 +51,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(749, 33);
-            this.textBox2.TabIndex = 15;
+            this.textBox2.TabIndex = 18;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBox1
@@ -62,7 +66,7 @@
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ReadOnly = true;
             this.TextBox1.Size = new System.Drawing.Size(749, 33);
-            this.TextBox1.TabIndex = 14;
+            this.TextBox1.TabIndex = 17;
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ProgressBar1
@@ -70,14 +74,14 @@
             this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar1.BackColor = System.Drawing.Color.Maroon;
+            this.ProgressBar1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ProgressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ProgressBar1.Location = new System.Drawing.Point(12, 98);
             this.ProgressBar1.Name = "ProgressBar1";
             this.ProgressBar1.Size = new System.Drawing.Size(749, 37);
-            this.ProgressBar1.TabIndex = 13;
+            this.ProgressBar1.TabIndex = 16;
             // 
-            // DownloadMIUIFastboot
+            // DownloadPersist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,10 +93,10 @@
             this.Controls.Add(this.ProgressBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "DownloadMIUIFastboot";
+            this.Name = "DownloadPersist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading MIUI V11.0.4.0.PFGMIXM Firmware...";
-            this.Load += new System.EventHandler(this.DownloadMIUIFastboot_Load);
+            this.Text = "Downloading Persist...";
+            this.Load += new System.EventHandler(this.DownloadPersist_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

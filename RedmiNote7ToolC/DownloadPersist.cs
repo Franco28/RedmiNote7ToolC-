@@ -4,26 +4,35 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.IO.Compression;
-using System.Net;
 using System.IO;
+using System.Net;
 using System.Threading;
-using Microsoft.VisualBasic.FileIO;
-using Microsoft.VisualBasic;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace RedmiNote7ToolC
 {
-    public partial class DownloadMIUIFastboot : Form
+    public partial class DownloadPersist : Form
     {
+        
+        WebClient client = new WebClient();
 
-        public DownloadMIUIFastboot()
+        public DownloadPersist()
         {
             InitializeComponent();
         }
 
-        WebClient client = new WebClient();
+        public bool Ping(string host)
+        {
+            System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping();
+            if (p.Send(host, 500).Status == System.Net.NetworkInformation.IPStatus.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public void KillAsync()
         {
@@ -44,65 +53,21 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
-        private void checkfiles()
+        public void checkfiles()
         {
-
             TextBox1.Text = "Checking file...";
 
             System.Threading.Thread.Sleep(2000);
 
-            decimal sizeb = 3287682;
+            decimal sizeb = 33554432;
 
-            string fileName = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz";
+            string fileName = @"C:\adb\.settings\persist.img";
             FileInfo fi = new FileInfo(fileName);
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Fastboot Firmware", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Persist img", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
-            }
-            else
-            {
-                System.Threading.Thread.Sleep(1000);
-                KillAsync();
-                MessageBox.Show("Fastboot Firmware it´s already downloaded! Extracting, please wait!", "Fastboot Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                string archive = @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz",
-           archiveDirectory = Path.GetDirectoryName(Path.GetFullPath(archive)),
-           unpackDirectoryName = Guid.NewGuid().ToString();
-
-                ZipFileWithProgress.ExtractToDirectory(archive, unpackDirectoryName,
-                    new BasicProgress<double>(p => Console.WriteLine($"{p:P0} extracting complete")));
-            }
-        }
-
-        private void DownloadMIUIFastboot_Load(object sender, EventArgs e)
-        {
-            Directory.SetCurrentDirectory(@"C:\adb\xiaomiglobalfastboot");
-
-            string[] paths = Directory.GetFiles(@"C:\adb\xiaomiglobalfastboot\", "lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
-            if (paths.Length > 0)
-            {
-                checkfiles();
-            }
-            else
-            {
-                MessageBox.Show("Can´t find Fastboot Firmware...", "Fastboot Firmware Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                startDownload();
-            }
-        }
-
-        public void startDownload()
-        {
-            if (!this.IsDisposed)
-            {
-                Thread thread = new Thread(() =>
-                {
-                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    client.DownloadFileAsync(new Uri("http://bigota.d.miui.com/V11.0.4.0.PFGMIXM/lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz"), @"C:\adb\xiaomiglobalfastboot\lavender_global_images_V11.0.4.0.PFGMIXM_20191110.0000.00_9.0_global_774a3e8c73.tgz");
-                });
-                thread.Start();
             }
             else
             {
@@ -111,7 +76,52 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void DownloadPersist_Load(object sender, EventArgs e)
+        {
+            Directory.SetCurrentDirectory(@"C:\adb\.settings");
+
+            string[] paths = Directory.GetFiles(@"C:\adb\.settings\", "persist.img");
+            if (paths.Length > 0)
+            {
+                checkfiles();
+            }
+            else
+            {
+                startDownload();
+            }
+        }
+
+        private void startDownload()
+        {
+            if (Ping("www.google.com") == true)
+            {
+                if (!this.IsDisposed)
+                {
+                    Thread thread = new Thread(() =>
+                    {
+                        client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                        client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/persist.img"), @"C:\adb\.settings\persist.img");
+                    });
+                    thread.Start();
+                }
+                else
+                {
+                    KillAsync();
+                    closeform();
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR: Can´t connect to the server to download Persist img!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                client.Dispose();
+                client.CancelAsync();
+                KillAsync();
+                closeform();
+            }
+        }
+
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             if (this.IsDisposed)
             {
@@ -119,6 +129,7 @@ namespace RedmiNote7ToolC
                 client.CancelAsync();
                 KillAsync();
                 closeform();
+                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -137,13 +148,13 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             if (this.IsDisposed)
             {
                 client.Dispose();
                 client.CancelAsync();
-                MessageBox.Show("Download Canceled!", "Fastboot Firmware", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Download Canceled!", "Download Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 KillAsync();
                 closeform();
             }
@@ -154,13 +165,11 @@ namespace RedmiNote7ToolC
                     if (!this.IsDisposed)
                     {
                         TextBox1.Text = "Download completed!";
-
                         KillAsync();
                         closeform();
                     }
                 });
             }
         }
-
     }
 }

@@ -3,6 +3,17 @@ CHANGELOG
 ---------
 
 --------
+v1.0.2.1
+-------- 
+* Added new option to fix Persist problems
+* Added new option to flash stock splash
+* Changed way to check device status, now using MiUsb lib
+* Working on Mi Flash by Franco28
+* Working to fix fastboot extract firmware tgz
+* New UI (show device info and device status when plug phone)
+* Other small fixes
+
+--------
 v1.0.1.9
 -------- 
 * Fixed Clear all folder option
