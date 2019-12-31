@@ -1,6 +1,10 @@
-﻿
-/* (C) 2019 Franco28 */
-/* Basic Tool C# for Redmi Note 7 */
+// <copyright file=Visual>
+// Copyright (c) 2019-2020 All Rights Reserved
+// </copyright>
+// <author>Franco28</author>
+// <date> 31/12/2019 19:15:46</date>
+// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
+
 
 using System;
 using System.Diagnostics;
@@ -71,10 +75,13 @@ namespace RedmiNote7ToolC
                 listBox1.DataSource = devicelist;
 
                 ArrayList devicecheck = new ArrayList();
-                devicecheck.Add(" Device: online! ");
+                devicecheck.Add(" Device: Online! ");
                 devicecheck.Add(" Mode: USB debugging ");
                 devicecheck.Add(" Serial Number: " + serial);
-                devicecheck.Add(" Bootloader: ---");
+                devicecheck.Add(" -------------------------");
+                devicecheck.Add(" Battery: " + device.Battery.Status.ToString() + " " + device.Battery.Level.ToString() + System.Environment.NewLine + "%");
+                devicecheck.Add(" Battery Temperature: " + device.Battery.Temperature + System.Environment.NewLine + " °C");
+                devicecheck.Add(" Battery Health: " + device.Battery.Health.ToString() + System.Environment.NewLine);
                 listBox2.DataSource = devicecheck;
                 return true;
             } 
@@ -97,10 +104,13 @@ namespace RedmiNote7ToolC
                 listBox1.DataSource = devicelist;
 
                 ArrayList devicecheck = new ArrayList();
-                devicecheck.Add(" Device: offline! ");
+                devicecheck.Add(" Device: Offline! ");
                 devicecheck.Add(" Mode: --- ");
-                devicecheck.Add(" Serial Number: ---" );
-                devicecheck.Add(" Bootloader: ---");
+                devicecheck.Add(" Serial Number: --- " );
+                devicecheck.Add(" -------------------------");
+                devicecheck.Add(" Battery: --- ");
+                devicecheck.Add(" Battery Temperature: --- " );
+                devicecheck.Add(" Battery Health: --- ");
                 listBox2.DataSource = devicecheck;
                 return false;
             }
@@ -256,7 +266,9 @@ namespace RedmiNote7ToolC
             this.Refresh();
             InitializeComponent();
             create_main_folders();
+            android = AndroidController.Instance;
             InitializeRAMCounter();
+            InitialiseCPUCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + System.Environment.UserName;
         }
@@ -353,8 +365,7 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Booting into OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
-                    TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
-                    FastbootExe(@"fastboot ", @"boot C:\adb\TWRP\recovery.img");
+                    FastbootExe(@"\fastboot.exe ", @"boot C:\adb\TWRP\recovery.img");
                     System.Threading.Thread.Sleep(3000);
                 }
                 else
@@ -400,9 +411,9 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Flashing TWRP OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
-                    FastbootExe(@"fastboot ", @"flash recovery C:\adb\TWRP\recovery.img");
+                    FastbootExe(@"\fastboot.exe ", @"flash recovery C:\adb\TWRP\recovery.img");
                     System.Threading.Thread.Sleep(3000);
-                    FastbootExe(@"adb ", @"reboot recovery");
+                    FastbootExe(@"\adb.exe ", @"reboot recovery");
                     TextBox2.Text = "Booting into OrangeFox...";
                     System.Threading.Thread.Sleep(2000);
                     MessageBox.Show("TWRP Installed!", "Flash: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -682,7 +693,7 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Entering to EDL mode...";
                     System.Threading.Thread.Sleep(1000);
-                    FastbootExe(@"\fastboot_edl ", @" reboot-edl");
+                    FastbootExe(@"\fastboot_edl.exe ", @" reboot-edl");
                     System.Threading.Thread.Sleep(500);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
@@ -709,7 +720,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Bootloader mode...";
                 System.Threading.Thread.Sleep(1000);
-                FastbootExe(@"\adb ", @" reboot bootloader");
+                FastbootExe(@"\adb.exe ", @" reboot bootloader");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
@@ -730,7 +741,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Recovery mode...";
                 System.Threading.Thread.Sleep(1000);
-                FastbootExe(@"\adb ", @" reboot recovery");
+                FastbootExe(@"\adb.exe ", @" reboot recovery");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
@@ -799,7 +810,7 @@ namespace RedmiNote7ToolC
                 else
                 {
                     TextBox2.Text = "Checking device connection...";
-                    if (USB_CONNECTION_STATUS.DeviceConnected.Equals(true))
+                    if (IsConnected())
                     {
                         System.Threading.Thread.Sleep(1000);
                         TextBox2.Text = "Flashing Persist Image...";
@@ -819,9 +830,55 @@ namespace RedmiNote7ToolC
             }
             visual_reLoad();
         }
+
         private void flashStockSplashToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var result = MessageBox.Show("Do you want to Flash Stock Splash? Caused by: Maybe another ROM has flashed other Splash", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (!File.Exists(@"C:\adb\.settings\splash.img"))
+                {
+                    try
+                    {
+                        TextBox2.Text = "Checking internet connection...";
+                        System.Threading.Thread.Sleep(3000);
+                        TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
+                        if (Ping("www.google.com") == true)
+                        {
+                            TextBox2.Text = "Checking internet connection: OK";
+                            MessageBox.Show("Can´t find Splash image...", "Splash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            var downloadsplash = new DownloadSplash();
+                            downloadsplash.Show();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        TextBox2.Text = "Checking internet connection: ERROR";
+                        MessageBox.Show("ERROR: Can´t connect to the server to download Splash image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    TextBox2.Text = "Checking device connection...";
+                    if (IsConnected())
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = "Flashing Persist Image...";
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
+                        FastbootExe(@"fastboot ", @"flash splash C:\adb\.settings\splash.img");
+                        FastbootExe(@"fastboot ", @"reboot");
+                        System.Threading.Thread.Sleep(3000);
+                    }
+                    else
+                    {
+                        TextBox2.Text = "Please connect your device...";
+                        System.Threading.Thread.Sleep(1000);
+                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            visual_reLoad();
         }
 
         private void Refresh_Click(object sender, EventArgs e)

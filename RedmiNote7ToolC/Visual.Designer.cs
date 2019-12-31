@@ -1,6 +1,11 @@
-﻿
-/* (C) 2019 Franco28 */
-/* Basic Tool C# for Redmi Note 7 */
+// <copyright file=Visual.Designer>
+// Copyright (c) 2019-2020 All Rights Reserved
+// </copyright>
+// <author>Franco28</author>
+// <date> 31/12/2019 19:15:46</date>
+// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
+
+
 
 namespace RedmiNote7ToolC
 {
@@ -174,6 +179,7 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownFolders.Padding = new System.Windows.Forms.Padding(5);
             this.TaskBarDropdownFolders.Size = new System.Drawing.Size(40, 42);
             this.TaskBarDropdownFolders.Text = "Menu Folders";
+            this.TaskBarDropdownFolders.ToolTipText = "Menu Mi Folders";
             // 
             // AdbFastbootFolderToolStripMenuItem
             // 
@@ -248,7 +254,7 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownDownload.Padding = new System.Windows.Forms.Padding(5);
             this.TaskBarDropdownDownload.Size = new System.Drawing.Size(40, 42);
             this.TaskBarDropdownDownload.Text = "ToolStripDropDownButton1";
-            this.TaskBarDropdownDownload.ToolTipText = "Menu Downloads";
+            this.TaskBarDropdownDownload.ToolTipText = "Menu Mi Downloads";
             // 
             // DownloadLatestMIUIFastbootImageToolStripMenuItem
             // 
@@ -447,7 +453,7 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownHardRecovery.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.TaskBarDropdownHardRecovery.Size = new System.Drawing.Size(40, 42);
             this.TaskBarDropdownHardRecovery.Text = "Menu hard recovery";
-            this.TaskBarDropdownHardRecovery.ToolTipText = "Menu Hard Recovery";
+            this.TaskBarDropdownHardRecovery.ToolTipText = "Menu Mi Hard Recovery";
             // 
             // EnterEDLModeToolStripMenuItem
             // 
@@ -547,7 +553,7 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownMiFix.Name = "TaskBarDropdownMiFix";
             this.TaskBarDropdownMiFix.Size = new System.Drawing.Size(40, 42);
             this.TaskBarDropdownMiFix.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TaskBarDropdownMiFix.ToolTipText = "Menu Mi Flash";
+            this.TaskBarDropdownMiFix.ToolTipText = "Menu Mi Fix";
             // 
             // toolStripMenuItemFixPersist
             // 

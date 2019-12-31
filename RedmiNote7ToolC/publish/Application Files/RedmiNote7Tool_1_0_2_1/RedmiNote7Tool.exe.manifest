@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2880000">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2885632">
       <assemblyIdentity name="AndroidLib" version="1.5.5.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Sqvd0boUJA7tbrIdDrIUwsYCR9JZagbethX7OJ84U+k=</dsig:DigestValue>
+        <dsig:DigestValue>QyT+MaPn4c2HX64xMAT7ApiGAiAId4FgG49ZBG7ZI+0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="706560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="732672">
       <assemblyIdentity name="RedmiNote7Tool" version="1.0.2.1" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5iGmuHgWZXapCiG4CsCVBZwik1NM9NcNDTW8Yl5BfsQ=</dsig:DigestValue>
+        <dsig:DigestValue>sjWTXE/m5dubtO4Xhupt3E3vtL2g8jBuFX+b36YAmfc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

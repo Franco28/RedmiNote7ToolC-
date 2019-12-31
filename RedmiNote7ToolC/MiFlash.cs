@@ -1,4 +1,13 @@
-﻿using System;
+// <copyright file=MiFlash>
+// Copyright (c) 2019-2020 All Rights Reserved
+// </copyright>
+// <author>Franco28</author>
+// <date> 31/12/2019 19:15:46</date>
+// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
+
+
+
+using System;
 using System.Windows.Forms;
 using MiUSB;
 

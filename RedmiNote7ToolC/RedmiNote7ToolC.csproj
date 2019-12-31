@@ -187,6 +187,12 @@
     <Compile Include="DownloadMIUnlock.Designer.cs">
       <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="DownloadSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadSplash.Designer.cs">
+      <DependentUpon>DownloadSplash.cs</DependentUpon>
+    </Compile>
     <Compile Include="DownloadTWRP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,12 @@
     </Compile>
     <Compile Include="MiFlash.Designer.cs">
       <DependentUpon>MiFlash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiStockDebloat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiStockDebloat.Designer.cs">
+      <DependentUpon>MiStockDebloat.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +256,9 @@
     <EmbeddedResource Include="DownloadMIUnlock.resx">
       <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DownloadSplash.resx">
+      <DependentUpon>DownloadSplash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadTWRP.resx">
       <DependentUpon>DownloadTWRP.cs</DependentUpon>
     </EmbeddedResource>
@@ -252,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiFlash.resx">
       <DependentUpon>MiFlash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiStockDebloat.resx">
+      <DependentUpon>MiStockDebloat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

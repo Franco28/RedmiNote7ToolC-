@@ -1,4 +1,4 @@
-// <copyright file=DownloadPersist>
+// <copyright file=DownloadSplash>
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
@@ -16,12 +16,12 @@ using System.Windows.Forms;
 
 namespace RedmiNote7ToolC
 {
-    public partial class DownloadPersist : Form
+    public partial class DownloadSplash : Form
     {
-        
+
         WebClient client = new WebClient();
 
-        public DownloadPersist()
+        public DownloadSplash()
         {
             InitializeComponent();
         }
@@ -64,14 +64,14 @@ namespace RedmiNote7ToolC
 
             System.Threading.Thread.Sleep(2000);
 
-            decimal sizeb = 33554432;
+            decimal sizeb = 27232604;
 
-            string fileName = @"C:\adb\.settings\persist.img";
+            string fileName = @"C:\adb\.settings\splash.img";
             FileInfo fi = new FileInfo(fileName);
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: , downloading again!", "Persist img", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"File is corrupted \: , downloading again!", "Splash img", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 startDownload();
             }
             else
@@ -81,11 +81,11 @@ namespace RedmiNote7ToolC
             }
         }
 
-        private void DownloadPersist_Load(object sender, EventArgs e)
+        private void DownloadSplash_Load(object sender, EventArgs e)
         {
             Directory.SetCurrentDirectory(@"C:\adb\.settings");
 
-            string[] paths = Directory.GetFiles(@"C:\adb\.settings\", "persist.img");
+            string[] paths = Directory.GetFiles(@"C:\adb\.settings\", "splash.img");
             if (paths.Length > 0)
             {
                 checkfiles();
@@ -106,7 +106,7 @@ namespace RedmiNote7ToolC
                     {
                         client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                         client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                        client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/persist.img"), @"C:\adb\.settings\persist.img");
+                        client.DownloadFileAsync(new Uri("https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/splash.img"), @"C:\adb\.settings\splash.img");
                     });
                     thread.Start();
                 }
@@ -118,7 +118,7 @@ namespace RedmiNote7ToolC
             }
             else
             {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Persist img!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: Can´t connect to the server to download Splash img!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 client.Dispose();
                 client.CancelAsync();
                 KillAsync();
