@@ -22,6 +22,8 @@ AppContact=Support
 TouchDate=2019-12-28
 OutputBaseFilename=RedmiNote7Tool_v1.0.2.1_Setup
 InfoBeforeFile=changelog.txt
+WizardSmallImageFile=small_ico.bmp
+WizardImageFile=large_ico.bmp
 
 AppCopyright=Copyright (C) 2019 Franco28.
 AppComments=A Basic Tool for Xiaomi Redmi Note 7 Lavender

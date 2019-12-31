@@ -1,36 +1,41 @@
----------
+----------------
 CHANGELOG 
----------
+----------------
 
---------
+--------------
 v1.0.2.1
--------- 
+--------------
 * Added new option to fix Persist problems
 * Added new option to flash stock splash
+* Added battery status on device status panel
 * Changed way to check device status, now using MiUsb lib
-* Working on Mi Flash by Franco28
-* Working to fix fastboot extract firmware tgz
 * New UI (show device info and device status when plug phone)
+* Fixed AndroidLib
 * Other small fixes
 
---------
+Info: 
+* Working on Mi Flash by Franco28 - Soon
+* Working to fix fastboot extract firmware tgz - Soon
+* Updated wizard stlye
+
+--------------
 v1.0.1.9
--------- 
+--------------
 * Fixed Clear all folder option
 * adb doesnt stop before app closed (Fixed)
 * Trying to fix fastboot firmware extraction...
 * Removed uninstall option from Tool
 
---------
+--------------
 v1.0.1.8
--------- 
+--------------
 * Updated miui eu links
 * Fixed uninstall tool
 * Fixed strings on help form
 
---------
+--------------
 v1.0.1.7
--------- 
+--------------
 * Now download forms won't be shown on taskbar
 * Now when program start, if there's something wrong will show msgbox with errors
 * Added StockRom Download. This ROM will be available soon
