@@ -23,6 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
+    <SupportUrl>https://github.com/Franco28/RedmiNote7ToolC-#redmi-note-7-tool</SupportUrl>
+    <ErrorReportUrl>https://github.com/Franco28/RedmiNote7ToolC-#redmi-note-7-tool</ErrorReportUrl>
     <ProductName>RedmiNote7Tool</ProductName>
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>

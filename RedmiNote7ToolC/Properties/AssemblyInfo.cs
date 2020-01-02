@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // La información general de un ensamblado se controla mediante el siguiente 
@@ -8,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(".NET: A simple basic Tool for Redmi Note 7 Lavender")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Franco28")]
-[assembly: AssemblyProduct("Windows Tool")]
-[assembly: AssemblyCopyright("©  2019 Franco28")]
+[assembly: AssemblyProduct("Windows Tool for Redmi Note 7 Lavender")]
+[assembly: AssemblyCopyright("©  2019 - 2020 Franco28")]
 [assembly: AssemblyTrademark("Xiaomi - Redmi")]
 [assembly: AssemblyCulture("")]
 
@@ -33,3 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.2.1")]
 [assembly: AssemblyFileVersion("1.0.2.1")]
+[assembly: NeutralResourcesLanguage("")]

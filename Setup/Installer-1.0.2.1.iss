@@ -1,4 +1,5 @@
-; -- RedmiNote7Tool-Installer.iss --
+; -- RedmiNote7Tool-Installer.iss  (C) 2019 - 2020 --
+; -- This is only for RN7 Tool --
 
 #define MyAppName "RedmiNote7Tool"
 #define MyAppVersion "1.0.2.1"
@@ -19,7 +20,7 @@ UserInfoPage=no
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppContact=Support
-TouchDate=2019-12-28
+TouchDate=2020-01-02
 OutputBaseFilename=RedmiNote7Tool_v1.0.2.1_Setup
 InfoBeforeFile=changelog.txt
 WizardSmallImageFile=small_ico.bmp
