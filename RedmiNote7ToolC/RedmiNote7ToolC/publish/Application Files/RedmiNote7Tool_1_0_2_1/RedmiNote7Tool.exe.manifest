@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2885632">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2885120">
       <assemblyIdentity name="AndroidLib" version="1.5.5.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QyT+MaPn4c2HX64xMAT7ApiGAiAId4FgG49ZBG7ZI+0=</dsig:DigestValue>
+        <dsig:DigestValue>T/QOMHfmxghRTl3uMs7uKtervsH1Bkx/Q+IT4U7egV0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,7 +75,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NZWsO6LdV0L7w6PXJRanp6dnWWlZhxxZqfEpPmNB3Wg=</dsig:DigestValue>
+        <dsig:DigestValue>+Dw1Ck3uvA9mt97gqf8DjoLkQYr0m0QrII2UhKOUdaM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,7 +87,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>J7IXDYMDCok5saP3C9OJSwf70U9ClNqsF4/wNgZwP6c=</dsig:DigestValue>
+        <dsig:DigestValue>8n0Zxjd62824GUAd74yNDa+Ojh9FwoAeoW3maWCJysA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

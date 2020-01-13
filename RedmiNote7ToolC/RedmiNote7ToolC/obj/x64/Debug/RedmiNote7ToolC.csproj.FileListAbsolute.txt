@@ -3,7 +3,6 @@ C:\Users\Franco28\Desktop\RedmiNote7ToolC#\RedmiNote7Tool.exe.manifest
 C:\Users\Franco28\Desktop\RedmiNote7ToolC#\RedmiNote7Tool.application
 C:\Users\Franco28\Desktop\RedmiNote7ToolC#\RedmiNote7Tool.exe
 C:\Users\Franco28\Desktop\RedmiNote7ToolC#\RedmiNote7Tool.pdb
-C:\Users\Franco28\Desktop\VisualStudio\RedmiNote7ToolC\RedmiNote7ToolC\obj\x64\Debug\RedmiNote7ToolC.csprojAssemblyReference.cache
 C:\Users\Franco28\Desktop\VisualStudio\RedmiNote7ToolC\RedmiNote7ToolC\obj\x64\Debug\RedmiNote7ToolC.DownloadPersist.resources
 C:\Users\Franco28\Desktop\VisualStudio\RedmiNote7ToolC\RedmiNote7ToolC\obj\x64\Debug\RedmiNote7ToolC.DownloadMIFlash.resources
 C:\Users\Franco28\Desktop\VisualStudio\RedmiNote7ToolC\RedmiNote7ToolC\obj\x64\Debug\RedmiNote7ToolC.DownloadMIUIeu.resources

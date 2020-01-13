@@ -39,20 +39,14 @@ namespace RegawMOD.Android
             return FormAdbCommand("-s " + device.SerialNumber + " " + command, args);
         }
 
-        public static AdbCommand FormAdbShellCommand(Device device, bool rootShell, string executable, params object[] args)
+        public static AdbCommand FormAdbShellCommand(Device device, string executable, params object[] args)
         {
             string shellCommand = string.Format("-s {0} shell \"", device.SerialNumber);
-
-            if (rootShell)
-                shellCommand += "su -c \"";
 
             shellCommand += executable;
 
             for (int i = 0; i < args.Length; i++)
                 shellCommand += " " + args[i];
-
-            if (rootShell)
-                shellCommand += "\"";
 
             shellCommand += "\"";
 

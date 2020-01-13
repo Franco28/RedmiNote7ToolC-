@@ -21,7 +21,7 @@ namespace RegawMOD.Android
         private int level;
         private int scale;
         private int voltage;
-        private int temperature;
+        private double temperature;
         private string technology;
         private string outString;
 
@@ -123,7 +123,7 @@ namespace RegawMOD.Android
             get { Update(); return voltage; }
         }
 
-        public int Temperature
+        public double Temperature
         {
             get { Update(); return temperature; }
         }
@@ -159,7 +159,7 @@ namespace RegawMOD.Android
                 return;
             }
 
-            AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, false, "dumpsys", "battery");
+            AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, "dumpsys", "battery");
             this.dump = Adb.ExecuteAdbCommand(adbCmd);
 
             using (StringReader r = new StringReader(this.dump))
@@ -211,7 +211,7 @@ namespace RegawMOD.Android
                     else if (line.Contains("voltage"))
                         int.TryParse(line.Substring(10), out this.voltage);
                     else if (line.Contains("temp"))
-                        int.TryParse(line.Substring(15), out this.temperature);
+                       double.TryParse(line.Substring(15), out this.temperature);
                     else if (line.Contains("tech"))
                         this.technology = line.Substring(14);
                 }

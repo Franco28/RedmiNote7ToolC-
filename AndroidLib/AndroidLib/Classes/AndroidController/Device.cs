@@ -3,7 +3,6 @@
  */
 
 using System.IO;
-using System.Threading;
 
 namespace RegawMOD.Android
 {
@@ -76,52 +75,9 @@ namespace RegawMOD.Android
         public string SerialNumber { get { return this.serialNumber; } }
         public DeviceState State { get { return this.state; } internal set { this.state = value; } }
 
-
-        public void FastbootReboot()
-        {
-            if (this.State == DeviceState.FASTBOOT)
-                new Thread(new ThreadStart(FastbootRebootThread)).Start();
-        }
-
-        private void FastbootRebootThread()
-        {
-            Fastboot.ExecuteFastbootCommandNoReturn(Fastboot.FormFastbootCommand(this, "reboot"));
-        }
-
-        public void Reboot()
-        {
-            new Thread(new ThreadStart(RebootThread)).Start();
-        }
-
-        private void RebootThread()
-        {
-            Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot"));
-        }
-
-        public void RebootRecovery()
-        {
-            new Thread(new ThreadStart(RebootRecoveryThread)).Start();
-        }
-
-        private void RebootRecoveryThread()
-        {
-            Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot", "recovery"));
-        }
-
-        public void RebootBootloader()
-        {
-            new Thread(new ThreadStart(RebootBootloaderThread)).Start();
-        }
-
-        private void RebootBootloaderThread()
-        {
-            Adb.ExecuteAdbCommandNoReturn(Adb.FormAdbCommand(this, "reboot", "bootloader"));
-        }
-
         public void Update()
         {
             this.state = SetState();
-
             this.battery = new BatteryInfo(this);
             this.buildProp = new BuildProp(this);
         }

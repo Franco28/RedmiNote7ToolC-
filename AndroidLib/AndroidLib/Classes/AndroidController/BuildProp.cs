@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
  * BuildProp.cs - Developed by Dan Wager for AndroidLib.dll
  */
 
@@ -67,7 +68,7 @@ namespace RegawMOD.Android
             if (!this.prop.TryGetValue(key, out before))
                 return false;
 
-            AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, true, "setprop", key, newValue);
+            AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, "setprop", key, newValue);
             Adb.ExecuteAdbCommandNoReturn(adbCmd);
 
             Update();
@@ -100,10 +101,10 @@ namespace RegawMOD.Android
                 if (this.device.State != DeviceState.ONLINE)
                     return;
 
-                AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, false, "getprop");
+                AdbCommand adbCmd = Adb.FormAdbShellCommand(this.device, " getprop");
                 string prop = Adb.ExecuteAdbCommand(adbCmd);
 
-                string[] lines = prop.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] lines = prop.Split(new string[] { "\r \n \r \n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < lines.Length; i++)
                 {

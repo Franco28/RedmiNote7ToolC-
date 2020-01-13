@@ -58,6 +58,7 @@ namespace RedmiNote7ToolC
                 ArrayList devicelist = new ArrayList();
                 serial = android.ConnectedDevices[0];
                 device = android.GetConnectedDevice(serial);
+                double temp = device.Battery.Temperature;
 
                 devicelist.Add(" Device: Xiaomi Redmi Note 7");
                 devicelist.Add(" Codename: Lavender");
@@ -80,7 +81,7 @@ namespace RedmiNote7ToolC
                 devicecheck.Add(" Serial Number: " + serial);
                 devicecheck.Add(" -------------------------");
                 devicecheck.Add(" Battery: " + device.Battery.Status.ToString() + " " + device.Battery.Level.ToString() + System.Environment.NewLine + "%");
-                devicecheck.Add(" Battery Temperature: " + device.Battery.Temperature + System.Environment.NewLine + " °C");
+                devicecheck.Add(" Battery Temperature: " + temp + System.Environment.NewLine + " °C");
                 devicecheck.Add(" Battery Health: " + device.Battery.Health.ToString() + System.Environment.NewLine);
                 listBox2.DataSource = devicecheck;
                 return true;

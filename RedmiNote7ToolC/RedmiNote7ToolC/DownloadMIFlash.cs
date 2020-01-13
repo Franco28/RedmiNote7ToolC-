@@ -5,9 +5,6 @@
 // <date> 1/1/2020 16:57:11</date>
 // <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
 
-
-
-
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
