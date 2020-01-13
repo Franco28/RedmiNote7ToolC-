@@ -20,7 +20,7 @@ UserInfoPage=no
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppContact=Support
-TouchDate=2020-01-02
+TouchDate=2020-01-13
 OutputBaseFilename=RedmiNote7Tool_v1.0.2.1_Setup
 InfoBeforeFile=changelog.txt
 WizardSmallImageFile=small_ico.bmp
@@ -40,6 +40,7 @@ Source: "RedmiNote7Tool.exe.config"; DestDir: "{app}"
 Source: "RedmiNote7Tool.exe"; DestDir: "{app}"
 Source: "AndroidLib.dll"; DestDir: "{app}"
 Source: "MiUSB.dll"; DestDir: "{app}"
+Source: "ToolEngine.dll"; DestDir: "{app}"
 
 [Icons]
 Name: "{group}\RedmiNote7Tool"; Filename: "{app}\RedmiNote7Tool.exe"

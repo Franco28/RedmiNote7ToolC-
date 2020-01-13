@@ -8,15 +8,18 @@ v1.0.2.1
 * Added new option to fix Persist problems
 * Added new option to flash stock splash
 * Added battery status on device status panel
+* Moved all class code to a new dll
 * Changed way to check device status, now using MiUsb lib
 * New UI (show device info and device status when plug phone)
 * Fixed AndroidLib
+* Fixed Downloads forms doesnt show on top
 * Other small fixes
 
 Info: 
 * Working on Mi Flash by Franco28 - Soon
 * Working to fix fastboot extract firmware tgz - Soon
 * Updated wizard stlye
+* Updated Xiaomi eu and TWRP OrangeFox links
 
 --------------
 v1.0.1.9
