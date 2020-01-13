@@ -52,7 +52,9 @@ Tool based on C#
 ## Built with and needed by
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/es/free-developer-offers/)
-* [CopyrightTool](https://github.com/Franco28/RedmiNote7ToolC-CopyrightTool)
-* [AndroidLib](https://github.com/Franco28/AndroidLib)
+* [ToolEngine](https://github.com/Franco28/RedmiNote7ToolC-/tree/master/ToolEngine)
+* [CopyrightTool](https://github.com/Franco28/RedmiNote7ToolC-/tree/master/Copyright)
+* [AndroidLib](https://github.com/Franco28/RedmiNote7ToolC-/tree/master/AndroidLib)
+* [Setup](https://github.com/Franco28/RedmiNote7ToolC-/tree/master/Setup)
 
 #### Thanks to [regaw_leinad](https://forum.xda-developers.com/showthread.php?t=1512685) for this old lib
