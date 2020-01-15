@@ -9,7 +9,7 @@ v1.0.2.1
 * Added new option to flash stock splash
 * Added battery status on device status panel
 * Moved all class code to a new dll
-* Changed way to check device status, now using MiUsb lib
+* Changed way to check device status
 * New UI (show device info and device status when plug phone)
 * Fixed AndroidLib
 * Fixed Downloads forms doesnt show on top
