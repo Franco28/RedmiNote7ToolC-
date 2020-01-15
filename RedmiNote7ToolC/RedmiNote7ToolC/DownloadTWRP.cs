@@ -2,11 +2,8 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 1/1/2020 16:57:11</date>
-// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
-
-
-
+// <date> 15/1/2020 14:08:29</date>
+// <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
 using System.ComponentModel;

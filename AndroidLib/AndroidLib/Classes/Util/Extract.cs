@@ -10,7 +10,13 @@ namespace RegawMOD
 {
     internal static class Extract
     {
-
+        /// <summary>
+        /// Extracts Multiple Embedded Resources From Calling Assembly
+        /// </summary>
+        /// <param name="obj">Object To Derive Default Namespace From</param>
+        /// <param name="internalFolderPath">Period . Delimited path of embedded resources in assembly</param>
+        /// <param name="fullPathOfItems">Exact Names Of Embedded Resources to Extract</param>
+        /// <param name="outDirectory">Full Directory of Path For Extracted Resources</param>
         internal static void Resources(object obj, string outDirectory, string internalFolderPath, params string[] fullPathOfItems)
         {
             Assembly assembly = Assembly.GetCallingAssembly();
@@ -24,6 +30,13 @@ namespace RegawMOD
                                 w.Write(r.ReadBytes((int)s.Length));
         }
 
+        /// <summary>
+        /// Extracts Multiple Embedded Resources From Calling Assembly
+        /// </summary>
+        /// <param name="nameSpace">Namespace of calling assembly</param>
+        /// <param name="outDirectory">Full Directory of Path For Extracted Resources</param>
+        /// <param name="internalFolderPath">Period . Delimited path of embedded resources in assembly</param>
+        /// <param name="fullPathOfItems">Exact Names Of Embedded Resources to Extract</param>
         internal static void Resources(string nameSpace, string outDirectory, string internalFolderPath, params string[] fullPathOfItems)
         {
             Assembly assembly = Assembly.GetCallingAssembly();

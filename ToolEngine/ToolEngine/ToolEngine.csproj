@@ -79,6 +79,7 @@
     <Compile Include="Classes\BasicProgress.cs" />
     <Compile Include="Classes\BrowserCheck.cs" />
     <Compile Include="Classes\CheckFileSize.cs" />
+    <Compile Include="Classes\Command.cs" />
     <Compile Include="Classes\Fastboot.cs" />
     <Compile Include="Classes\Folders.cs" />
     <Compile Include="Classes\InternetCheck.cs" />

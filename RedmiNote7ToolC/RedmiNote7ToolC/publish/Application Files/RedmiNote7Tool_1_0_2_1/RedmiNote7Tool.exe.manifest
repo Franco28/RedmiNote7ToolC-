@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="2885120">
-      <assemblyIdentity name="AndroidLib" version="1.5.5.0" language="neutral" processorArchitecture="amd64" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AndroidLib.dll" size="3798528">
+      <assemblyIdentity name="AndroidLib" version="1.5.2.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>T/QOMHfmxghRTl3uMs7uKtervsH1Bkx/Q+IT4U7egV0=</dsig:DigestValue>
+        <dsig:DigestValue>Qdj4q76Zp0E7u5gP88/Xb0wbAvePUeKiMsYHATknHtA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -68,26 +68,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="727040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="727552">
       <assemblyIdentity name="RedmiNote7Tool" version="1.0.2.1" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+Dw1Ck3uvA9mt97gqf8DjoLkQYr0m0QrII2UhKOUdaM=</dsig:DigestValue>
+        <dsig:DigestValue>q0k7bV6dFtin1wYMrYMTRK8p7HX/qWVyVs8yQudlJQs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="12800">
-      <assemblyIdentity name="ToolEngine" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="17408">
+      <assemblyIdentity name="ToolEngine" version="1.0.0.1" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8n0Zxjd62824GUAd74yNDa+Ojh9FwoAeoW3maWCJysA=</dsig:DigestValue>
+        <dsig:DigestValue>uJlkz2IcR3JACl2nL/ohvCGNhBYOYq/EvyxcohYnxGY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -1,4 +1,10 @@
-﻿
+// <copyright file=CheckFileSize>
+// Copyright (c) 2019-2020 All Rights Reserved
+// </copyright>
+// <author>Franco28</author>
+// <date> 15/1/2020 14:08:29</date>
+// <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
+
 using System.IO;
 using System.Windows.Forms;
 

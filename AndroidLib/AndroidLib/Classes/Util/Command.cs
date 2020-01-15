@@ -12,7 +12,9 @@ namespace RegawMOD
 {
     internal static class Command
     {
-
+        /// <summary>
+        /// The default timeout for commands. -1 implies infinite time
+        /// </summary>
         public const int DEFAULT_TIMEOUT = -1;
         
         [Obsolete("Method is deprecated, please use RunProcessNoReturn(string, string, int) instead.")]
@@ -66,6 +68,8 @@ namespace RegawMOD
                         return HandleOutput(p, outputWaitHandle, errorWaitHandle, timeout, false);
             }
         }
+
+
 
         internal static string RunProcessReturnOutput(string executable, string arguments, bool forceRegular, int timeout)
         {

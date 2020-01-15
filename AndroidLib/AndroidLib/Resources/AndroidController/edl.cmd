@@ -3,6 +3,12 @@
 color C
 title EDL MODE MI FLASH TOOL
 
+echo.
+
 "%~dp0fastboot_edl.exe" reboot-edl
 
-pause
+echo.
+
+echo Press any key to exit... 
+
+pause>nul

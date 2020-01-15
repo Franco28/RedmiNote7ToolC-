@@ -1,0 +1,8 @@
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\bin\x64\Debug\Copyright.exe.config
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\bin\x64\Debug\Copyright.exe
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\bin\x64\Debug\Copyright.pdb
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\obj\x64\Debug\Copyright.copyright.resources
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\obj\x64\Debug\Copyright.Properties.Resources.resources
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\obj\x64\Debug\Copyright.csproj.GenerateResource.cache
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\obj\x64\Debug\Copyright.exe
+C:\Users\Franco28\Desktop\VisualStudio\Copyright\Copyright\obj\x64\Debug\Copyright.pdb

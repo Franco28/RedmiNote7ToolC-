@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AndroidLib")]
 [assembly: AssemblyDescription(".NET Communication and Management of Android devices")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dan Wager - Franco28")]
-[assembly: AssemblyProduct("AndroidLib -Mod")]
-[assembly: AssemblyCopyright("© 2012 Dan Wager - © 2019 Franco28")]
-[assembly: AssemblyTrademark("Google -  Android")]
+[assembly: AssemblyCompany("Dan Wager")]
+[assembly: AssemblyProduct("AndroidLib")]
+[assembly: AssemblyCopyright("© 2012 Dan Wager - 2020 Franco28")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ObfuscateAssembly(false)]
 
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.5.5.0")]
-[assembly: AssemblyFileVersion("1.5.5.0")]
+[assembly: AssemblyVersion("1.5.2.0")]
+[assembly: AssemblyFileVersion("1.5.2.0")]

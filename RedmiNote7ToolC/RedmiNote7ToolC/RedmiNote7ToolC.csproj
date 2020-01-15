@@ -125,9 +125,9 @@
     <ManifestKeyFile>RedmiNote7ToolC_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AndroidLib, Version=1.5.5.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="AndroidLib, Version=1.5.2.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\RedmiNote7ToolC#\AndroidLib.dll</HintPath>
+      <HintPath>..\..\AndroidLib-Stock\AndroidLib\bin\x64\Release\AndroidLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MiUSB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

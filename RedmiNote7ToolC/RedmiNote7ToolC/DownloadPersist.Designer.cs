@@ -2,11 +2,8 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 1/1/2020 16:57:11</date>
-// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
-
-
-
+// <date> 15/1/2020 14:08:29</date>
+// <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 namespace RedmiNote7ToolC
 {
@@ -101,7 +98,7 @@ namespace RedmiNote7ToolC
             this.MaximizeBox = false;
             this.Name = "DownloadPersist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading Persist...";
+            this.Text = "Downloading Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM..";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.DownloadPersist_Load);
             this.ResumeLayout(false);

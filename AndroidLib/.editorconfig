@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS1570: El comentario XML tiene XML formado incorrectamente
+dotnet_diagnostic.CS1570.severity = suggestion

@@ -2,8 +2,8 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 1/1/2020 16:57:11</date>
-// <summary>A basic simple Tool based on C# for Xiaomi Redmi Note 7 Lavender </summary>
+// <date> 15/1/2020 14:08:29</date>
+// <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
 using System.Diagnostics;
@@ -13,7 +13,7 @@ using RegawMOD.Android;
 using MiUSB;
 using System.Collections;
 using Franco28Tool.Engine;
-using Fastboot = Franco28Tool.Engine.Fastboot;
+using Adb = Franco28Tool.Engine.Adb;
 
 namespace RedmiNote7ToolC
 {
@@ -79,6 +79,7 @@ namespace RedmiNote7ToolC
                 devicecheck.Add(" Device: Online! ");
                 devicecheck.Add(" Mode: USB debugging ");
                 devicecheck.Add(" Serial Number: " + serial);
+                devicecheck.Add(" Crypto State: " + device.BuildProp.GetProp("ro.crypto.state") + System.Environment.NewLine);
                 devicecheck.Add(" -------------------------");
                 devicecheck.Add(" Battery: " + device.Battery.Status.ToString() + " " + device.Battery.Level.ToString() + System.Environment.NewLine + "%");
                 devicecheck.Add(" Battery Temperature: " + temp + System.Environment.NewLine + " °C");
@@ -207,7 +208,7 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Locking bootloader...";
                     System.Threading.Thread.Sleep(1000);
-                    Fastboot.FastbootExe(@"\fastboot.exe", @"oem lock");
+                    Adb.FastbootExecuteCommand(@"\fastboot.exe", @"oem lock");
                     System.Threading.Thread.Sleep(500);
                     visual_reLoad();
                 }
@@ -257,7 +258,7 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Booting into OrangeFox...";
                     System.Threading.Thread.Sleep(1000);
-                    Fastboot.FastbootExe(@"\fastboot.exe ", @"boot C:\adb\TWRP\recovery.img");
+                    Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"boot C:\adb\TWRP\recovery.img");
                     System.Threading.Thread.Sleep(3000);
                 }
                 else
@@ -310,9 +311,9 @@ namespace RedmiNote7ToolC
                         System.Threading.Thread.Sleep(1000);
                         TextBox2.Text = "Flashing TWRP OrangeFox...";
                         System.Threading.Thread.Sleep(1000);
-                        Fastboot.FastbootExe(@"\fastboot.exe ", @"flash recovery C:\adb\TWRP\recovery.img");
+                        Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"flash recovery C:\adb\TWRP\recovery.img");
                         System.Threading.Thread.Sleep(3000);
-                        Fastboot.FastbootExe(@"\adb.exe ", @"reboot recovery");
+                        Adb.FastbootExecuteCommand(@"\adb.exe ", @"reboot recovery");
                         TextBox2.Text = "Booting into OrangeFox...";
                         System.Threading.Thread.Sleep(2000);
                         MessageBox.Show("TWRP Installed!", "Flash: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -593,7 +594,7 @@ namespace RedmiNote7ToolC
                     System.Threading.Thread.Sleep(1000);
                     TextBox2.Text = "Entering to EDL mode...";
                     System.Threading.Thread.Sleep(1000);
-                    Fastboot.FastbootExe(@"\fastboot_edl.exe ", @" reboot-edl");
+                    Adb.FastbootExecuteCommand(@"\fastboot_edl.exe ", @" reboot-edl");
                     System.Threading.Thread.Sleep(500);
                     TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                 }
@@ -620,7 +621,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Bootloader mode...";
                 System.Threading.Thread.Sleep(1000);
-                Fastboot.FastbootExe(@"\adb.exe ", @" reboot bootloader");
+                Adb.FastbootExecuteCommand(@"\adb.exe ", @" reboot bootloader");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
@@ -641,7 +642,7 @@ namespace RedmiNote7ToolC
                 System.Threading.Thread.Sleep(1000);
                 TextBox2.Text = "Entering to Recovery mode...";
                 System.Threading.Thread.Sleep(1000);
-                Fastboot.FastbootExe(@"\adb.exe ", @" reboot recovery");
+                Adb.FastbootExecuteCommand(@"\adb.exe ", @" reboot recovery");
                 System.Threading.Thread.Sleep(500);
                 TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             }
@@ -686,7 +687,7 @@ namespace RedmiNote7ToolC
             var result = MessageBox.Show("Do you want to fix Persist img? Caused by: Find Device Storage Corrupted, Your Device is Unsafe Now", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                if (!File.Exists(@"C:\adb\.settings\persist.img"))
+                if (!File.Exists(@"C:\adb\.settings\Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip"))
                 {
                     try
                     {
@@ -713,18 +714,20 @@ namespace RedmiNote7ToolC
                     if (IsConnected())
                     {
                         System.Threading.Thread.Sleep(1000);
-                        TextBox2.Text = "Flashing Persist Image...";
+                        TextBox2.Text = "Entering to Recovery mode...";
                         System.Threading.Thread.Sleep(1000);
-                        TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
-                        Fastboot.FastbootExe(@"fastboot ", @"flash persist C:\adb\.settings\persist.img");
-                        Fastboot.FastbootExe(@"fastboot ", @"reboot");
-                        System.Threading.Thread.Sleep(3000);
+                        Adb.FastbootExecuteCommand(@"\adb.exe ", @" reboot recovery");
+                        System.Threading.Thread.Sleep(500);
+                        MessageBox.Show("Hey! Now flash this Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip, this will fix the sensors problems!", "IMPORTANT READ!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Franco28Tool.Engine.Folders.OpenFolder(@"adb\.settings");
+                        TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                     }
                     else
                     {
                         TextBox2.Text = "Please connect your device...";
                         System.Threading.Thread.Sleep(1000);
-                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "RECOVERY: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TextBox2.Text = "Remember to always Backup your efs and persist folders!";
                     }
                 }
             }
@@ -766,8 +769,8 @@ namespace RedmiNote7ToolC
                         TextBox2.Text = "Flashing Persist Image...";
                         System.Threading.Thread.Sleep(1000);
                         TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
-                        Fastboot.FastbootExe(@"fastboot ", @"flash splash C:\adb\.settings\splash.img");
-                        Fastboot.FastbootExe(@"fastboot ", @"reboot");
+                        Adb.FastbootExecuteCommand(@"fastboot ", @"flash splash C:\adb\.settings\splash.img");
+                        Adb.FastbootExecuteCommand(@"fastboot ", @"reboot");
                         System.Threading.Thread.Sleep(3000);
                     }
                     else
@@ -824,7 +827,7 @@ namespace RedmiNote7ToolC
         public void Visual_Closed(object sender, EventArgs e)
         {
             android.Dispose();
-            Fastboot.FastbootExe("adb ", "kill-server");
+            Adb.FastbootExecuteCommand("adb ", "kill-server");
             Process myprocess = new Process();
             string arg = @"/c taskkill /f";
             try
