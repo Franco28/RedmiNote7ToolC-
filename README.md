@@ -42,9 +42,7 @@ Tool based on C#
 
 ## Downloads
 
-#### Download the Tool v1.0.1.9 "Stable" from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.1.9) 
-
-#### Download the Tool v1.0.2.1 "Beta (Pre-Release)" from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.2.1) 
+#### Download the Tool v1.0.2.2 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.2.2) 
 
 ## Contact 
 #### [Telegram](https://t.me/francom28) 
