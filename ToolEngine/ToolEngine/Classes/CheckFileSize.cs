@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 15/1/2020 14:08:29</date>
+// <date> 19/1/2020 18:01:53</date>
 // <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
 
 using System;
@@ -135,7 +135,7 @@ namespace Franco28Tool.Engine
             }
             else
             {
-                MessageBox.Show("Mi Recovery ROM it´s already downloaded!", "Mi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mi Recovery ROM itï¿½s already downloaded!", "Mi Recovery ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 try
                 {
                     Folders.OpenFolder(@"adb\xiaomiglobalrecovery");
@@ -162,7 +162,7 @@ namespace Franco28Tool.Engine
             }
             else
             {
-                MessageBox.Show("Xiaomi.eu it´s already downloaded!", "Xiaomi eu ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xiaomi.eu itï¿½s already downloaded!", "Xiaomi eu ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 try
                 {
                     Folders.OpenFolder(@"adb\xiaomieu");

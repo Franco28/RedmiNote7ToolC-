@@ -1,4 +1,10 @@
-﻿using System;
+// <copyright file=DownloadPersist>
+// Copyright (c) 2019-2020 All Rights Reserved
+// </copyright>
+// <author>Franco28</author>
+// <date> 19/1/2020 18:01:53</date>
+// <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Net;
