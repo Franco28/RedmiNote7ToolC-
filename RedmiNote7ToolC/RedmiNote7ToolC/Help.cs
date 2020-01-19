@@ -21,7 +21,7 @@ namespace RedmiNote7ToolC
         private void Help_Load(object sender, EventArgs e)
         {
             label1.Text = "Hey! " + Environment.UserName + " thanks for using this simple tool, if you have any problem you can contact me!";
-            label2.Text = "© 2019 Franco28: A simple IT student - Argentina";
+            label2.Text = "© 2019 - 2020 Franco28: A simple IT student - Argentina";
         }
 
         private void button1_Click_1(object sender, EventArgs e)
