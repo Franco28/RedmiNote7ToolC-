@@ -35,7 +35,7 @@ namespace Franco28Tool.Engine
         internal const string FASTBOOT_VERSION = "3db08f2c6889-android";
 
         public static void FastbootExecuteCommand(string fpath, string command)
-            {
+        {
                 try
                 {
                     Directory.SetCurrentDirectory(@"C:\adb\");
