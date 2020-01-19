@@ -4,6 +4,7 @@
 // <author>Franco28</author>
 // <date> 19/1/2020 18:01:53</date>
 // <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
+
 namespace Franco28Tool.Engine
 {
     partial class DownloadMIUnlock
