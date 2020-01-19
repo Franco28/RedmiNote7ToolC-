@@ -58,7 +58,7 @@ namespace RedmiNote7ToolC
                 ArrayList devicelist = new ArrayList();
                 serial = android.ConnectedDevices[0];
                 device = android.GetConnectedDevice(serial);
-                double temp = device.Battery.Temperature;
+                decimal temp = device.Battery.Temperature;
 
                 devicelist.Add(" Device: Xiaomi Redmi Note 7");
                 devicelist.Add(" Codename: Lavender");
@@ -79,7 +79,6 @@ namespace RedmiNote7ToolC
                 devicecheck.Add(" Device: Online! ");
                 devicecheck.Add(" Mode: USB debugging ");
                 devicecheck.Add(" Serial Number: " + serial);
-                devicecheck.Add(" Crypto State: " + device.BuildProp.GetProp("ro.crypto.state") + System.Environment.NewLine);
                 devicecheck.Add(" -------------------------");
                 devicecheck.Add(" Battery: " + device.Battery.Status.ToString() + " " + device.Battery.Level.ToString() + System.Environment.NewLine + "%");
                 devicecheck.Add(" Battery Temperature: " + temp + System.Environment.NewLine + " °C");
@@ -106,6 +105,7 @@ namespace RedmiNote7ToolC
                 listBox1.DataSource = devicelist;
 
                 ArrayList devicecheck = new ArrayList();
+                devicecheck.Add(" Remember to always have enable USB DEBUGGING! ");
                 devicecheck.Add(" Device: Offline! ");
                 devicecheck.Add(" Mode: --- ");
                 devicecheck.Add(" Serial Number: --- " );
@@ -229,7 +229,7 @@ namespace RedmiNote7ToolC
 
         private void boottwrp_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
+            if (!File.Exists(@"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip"))
             {
                 try
                 {
@@ -242,33 +242,66 @@ namespace RedmiNote7ToolC
                         MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         var downloadtwrp = new DownloadTWRP();
                         downloadtwrp.Show();
+                        visual_reLoad();
                     }
                 }
                 catch (Exception)
                 {
                     TextBox2.Text = "Checking internet connection: ERROR";
                     MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    visual_reLoad();
                 }
             }
             else
             {
-                TextBox2.Text = "Checking device connection...";
-                if (IsConnected())
+                if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
                 {
-                    System.Threading.Thread.Sleep(1000);
-                    TextBox2.Text = "Booting into OrangeFox...";
-                    System.Threading.Thread.Sleep(1000);
-                    Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"boot C:\adb\TWRP\recovery.img");
-                    System.Threading.Thread.Sleep(3000);
+
+                    decimal sizeb = 50077781;
+
+                    string fileName = @"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip";
+                    FileInfo fi = new FileInfo(fileName);
+
+                    if (fi.Length < sizeb)
+                    {
+                        MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP OrangeFox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        var downloadtwrp = new DownloadTWRP();
+                        downloadtwrp.Show();
+                    }
+                    else
+                    {
+                        TextBox1.Text = "Extracting files!";
+                        System.Threading.Thread.Sleep(1000);
+                        Unzip.Unzippy(@"TWRP\OrangeFox-R10.1_01-Stable-lavender.zip", @"TWRP", true);
+                        System.Threading.Thread.Sleep(1000);
+                    }
                 }
                 else
                 {
-                    TextBox2.Text = "Please connect your device...";
-                    System.Threading.Thread.Sleep(1000);
-                    MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Boot: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TextBox2.Text = "Checking device connection...";
+                    if (IsConnected())
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = "Flashing TWRP OrangeFox...";
+                        System.Threading.Thread.Sleep(1000);
+                        Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"flash recovery C:\adb\TWRP\recovery.img");
+                        System.Threading.Thread.Sleep(3000);
+                        Adb.FastbootExecuteCommand(@"\adb.exe ", @"reboot recovery");
+                        TextBox2.Text = "Booting into OrangeFox...";
+                        System.Threading.Thread.Sleep(2000);
+                        MessageBox.Show("TWRP Installed!", "Flash: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        visual_reLoad();
+                    }
+                    else
+                    {
+                        TextBox2.Text = "Please connect your device...";
+                        System.Threading.Thread.Sleep(1000);
+                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        visual_reLoad();
+                    }
                 }
+                visual_reLoad();
             }
-            visual_reLoad();
         }
 
         private void flashtwrp_Click(object sender, EventArgs e)
@@ -300,9 +333,8 @@ namespace RedmiNote7ToolC
             {
                 if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
                 {
-                    CheckFileSize.checkingfilesSize(@"TWRP\OrangeFox-R10.1_01-Stable-lavender.zip", 50077781);
-                    Unzip.Unzippy(@"TWRP\OrangeFox-R10.1_01-Stable-lavender.zip", @"TWRP", true);
-                } 
+                  CheckFileSize.TWRP();
+                }
                 else
                 {
                     TextBox2.Text = "Checking device connection...";
@@ -326,7 +358,8 @@ namespace RedmiNote7ToolC
                         MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         visual_reLoad();
                     }
-                } 
+                }
+                visual_reLoad();
             }
         }
 
@@ -347,7 +380,8 @@ namespace RedmiNote7ToolC
             try
             {
                 Folders.OpenFolder(@"adb\MIFlash");
-            } catch (Exception er)
+            } 
+            catch (Exception er)
             {
                 MessageBox.Show("Error: " +er, "Open Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -389,20 +423,7 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIFastbootImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TextBox2.Text = "Checking internet connection and file...";
-                if (InternetCheck.Ping("www.google.com") == true)
-                {
-                    var downloadfastbootfirmware = new DownloadMIUIFastboot();
-                    downloadfastbootfirmware.Show();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Fastboot Firmware!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Windows.Forms.Application.Restart();
-            }
+            MessageBox.Show("This option its not ready yet!", "Option not available!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             visual_reLoad();
         }
 
@@ -784,6 +805,11 @@ namespace RedmiNote7ToolC
             visual_reLoad();
         }
 
+        private void flashStockRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Refresh_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
@@ -850,5 +876,6 @@ namespace RedmiNote7ToolC
             Application.ExitThread();
             base.Dispose(Disposing);
         }
+
     }
 }

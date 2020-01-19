@@ -68,7 +68,7 @@ namespace RedmiNote7ToolC
             this.OpenFlashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskBarDropdownMiFix = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItemFixPersist = new System.Windows.Forms.ToolStripMenuItem();
-            this.flashStockSplashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flashStockRecoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TextBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.flashtwrp = new System.Windows.Forms.Button();
@@ -87,6 +87,7 @@ namespace RedmiNote7ToolC
             this.Refresh = new System.Windows.Forms.ToolStripButton();
             this.UninstallTool = new System.Windows.Forms.ToolStripButton();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.flashStockSplashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -350,7 +351,7 @@ namespace RedmiNote7ToolC
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image")));
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Name = "DownloadLatestMIUIByXiaomieuToolStripMenuItem";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 20.1.9 - 10";
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 20.1.16 v11";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 by Xiaomi.eu";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click);
             // 
@@ -543,7 +544,8 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownMiFix.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.TaskBarDropdownMiFix.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemFixPersist,
-            this.flashStockSplashToolStripMenuItem});
+            this.flashStockSplashToolStripMenuItem,
+            this.flashStockRecoveryToolStripMenuItem});
             this.TaskBarDropdownMiFix.ForeColor = System.Drawing.Color.DimGray;
             this.TaskBarDropdownMiFix.Image = ((System.Drawing.Image)(resources.GetObject("TaskBarDropdownMiFix.Image")));
             this.TaskBarDropdownMiFix.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -561,22 +563,23 @@ namespace RedmiNote7ToolC
             this.toolStripMenuItemFixPersist.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripMenuItemFixPersist.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemFixPersist.Image")));
             this.toolStripMenuItemFixPersist.Name = "toolStripMenuItemFixPersist";
-            this.toolStripMenuItemFixPersist.Size = new System.Drawing.Size(224, 22);
+            this.toolStripMenuItemFixPersist.Size = new System.Drawing.Size(406, 22);
             this.toolStripMenuItemFixPersist.Text = "Fix Persist image";
             this.toolStripMenuItemFixPersist.ToolTipText = "Fix: Find Device Storage Corrupted, Your Device is Unsafe Now";
             this.toolStripMenuItemFixPersist.Click += new System.EventHandler(this.toolStripMenuItemFixPersist_Click);
             // 
-            // flashStockSplashToolStripMenuItem
+            // flashStockRecoveryToolStripMenuItem
             // 
-            this.flashStockSplashToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
-            this.flashStockSplashToolStripMenuItem.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
-            this.flashStockSplashToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flashStockSplashToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.flashStockSplashToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flashStockSplashToolStripMenuItem.Image")));
-            this.flashStockSplashToolStripMenuItem.Name = "flashStockSplashToolStripMenuItem";
-            this.flashStockSplashToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.flashStockSplashToolStripMenuItem.Text = "Flash Stock Splash";
-            this.flashStockSplashToolStripMenuItem.Click += new System.EventHandler(this.flashStockSplashToolStripMenuItem_Click);
+            this.flashStockRecoveryToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.flashStockRecoveryToolStripMenuItem.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
+            this.flashStockRecoveryToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flashStockRecoveryToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.flashStockRecoveryToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flashStockRecoveryToolStripMenuItem.Image")));
+            this.flashStockRecoveryToolStripMenuItem.Name = "flashStockRecoveryToolStripMenuItem";
+            this.flashStockRecoveryToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
+            this.flashStockRecoveryToolStripMenuItem.Text = "Flash Stock Recovery  V11.0.4.0.PFGMIXM";
+            this.flashStockRecoveryToolStripMenuItem.ToolTipText = "Flash: Stock Recovery Global Firmware";
+            this.flashStockRecoveryToolStripMenuItem.Click += new System.EventHandler(this.flashStockRecoveryToolStripMenuItem_Click);
             // 
             // TextBox2
             // 
@@ -907,6 +910,19 @@ namespace RedmiNote7ToolC
             this.listBox2.Size = new System.Drawing.Size(546, 184);
             this.listBox2.TabIndex = 40;
             // 
+            // flashStockSplashToolStripMenuItem
+            // 
+            this.flashStockSplashToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.flashStockSplashToolStripMenuItem.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
+            this.flashStockSplashToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flashStockSplashToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.flashStockSplashToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flashStockSplashToolStripMenuItem.Image")));
+            this.flashStockSplashToolStripMenuItem.Name = "flashStockSplashToolStripMenuItem";
+            this.flashStockSplashToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
+            this.flashStockSplashToolStripMenuItem.Text = "Flash Stock Splash";
+            this.flashStockSplashToolStripMenuItem.ToolTipText = "Flash: Stock Boot Splash";
+            this.flashStockSplashToolStripMenuItem.Click += new System.EventHandler(this.flashStockSplashToolStripMenuItem_Click);
+            // 
             // Visual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -995,7 +1011,7 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.ToolStripMenuItem OpenFolderFranco28ToolStripMenuItem;
         internal System.Windows.Forms.ToolStripDropDownButton TaskBarDropdownMiFix;
         internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFixPersist;
-        private System.Windows.Forms.ToolStripMenuItem flashStockSplashToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flashStockRecoveryToolStripMenuItem;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox1;
         internal System.Windows.Forms.Label label6;
@@ -1004,5 +1020,6 @@ namespace RedmiNote7ToolC
         internal new System.Windows.Forms.ToolStripButton Refresh;
         internal System.Windows.Forms.ToolStripButton UninstallTool;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ToolStripMenuItem flashStockSplashToolStripMenuItem;
     }
 }

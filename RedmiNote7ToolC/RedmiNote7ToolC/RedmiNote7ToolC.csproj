@@ -29,8 +29,8 @@
     <PublisherName>Franco28</PublisherName>
     <SuiteName>RedmiNote7Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.2.1</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.2.2</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -155,54 +155,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DownloadPersist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadPersist.Designer.cs">
-      <DependentUpon>DownloadPersist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadMIFlash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadMIFlash.Designer.cs">
-      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadMIUIeu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadMIUIeu.Designer.cs">
-      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadMIUIFastboot.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadMIUIFastboot.Designer.cs">
-      <DependentUpon>DownloadMIUIFastboot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadMIUIRecovery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadMIUIRecovery.Designer.cs">
-      <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadMIUnlock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadMIUnlock.Designer.cs">
-      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadSplash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadSplash.Designer.cs">
-      <DependentUpon>DownloadSplash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DownloadTWRP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadTWRP.Designer.cs">
-      <DependentUpon>DownloadTWRP.cs</DependentUpon>
-    </Compile>
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,30 +193,6 @@
     <Compile Include="Visual.Designer.cs">
       <DependentUpon>Visual.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DownloadPersist.resx">
-      <DependentUpon>DownloadPersist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadMIFlash.resx">
-      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadMIUIeu.resx">
-      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadMIUIFastboot.resx">
-      <DependentUpon>DownloadMIUIFastboot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadMIUIRecovery.resx">
-      <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadMIUnlock.resx">
-      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadSplash.resx">
-      <DependentUpon>DownloadSplash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadTWRP.resx">
-      <DependentUpon>DownloadTWRP.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>

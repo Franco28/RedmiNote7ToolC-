@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="727552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="728064">
       <assemblyIdentity name="RedmiNote7Tool" version="1.0.2.1" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>q0k7bV6dFtin1wYMrYMTRK8p7HX/qWVyVs8yQudlJQs=</dsig:DigestValue>
+        <dsig:DigestValue>1QEt+oRWCNGMwGyK3dUZZKmqxH6li2u3ehGZCEY+0lo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

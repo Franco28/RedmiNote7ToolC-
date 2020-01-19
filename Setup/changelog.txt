@@ -3,6 +3,19 @@ CHANGELOG
 ----------------
 
 --------------
+v1.0.2.2
+--------------
+* Fixed Persist option
+* Fixed device info when plug device
+* Fixed AndroidLib
+* Fixed checksize crash Tool
+* Fixed Download forms when form was closed
+* Optimized the code when check if the file its corrupet or not
+* Optimized more code to make it a litte bit fast
+* Moved all Download forms and some code to dll ToolEngine
+* Other small fixes
+
+--------------
 v1.0.2.1
 --------------
 * Added new option to fix Persist problems
@@ -14,12 +27,6 @@ v1.0.2.1
 * Fixed AndroidLib
 * Fixed Downloads forms doesnt show on top
 * Other small fixes
-
-Info: 
-* Working on Mi Flash by Franco28 - Soon
-* Working to fix fastboot extract firmware tgz - Soon
-* Updated wizard stlye
-* Updated Xiaomi eu and TWRP OrangeFox links
 
 --------------
 v1.0.1.9
@@ -44,6 +51,14 @@ v1.0.1.7
 * Added StockRom Download. This ROM will be available soon
 * Fixed dll error when load
 * Added missing strings on SR Form
+
+-------------------------------------------------------
+Info 19.01.2020: 
+* Working on Mi Flash by Franco28 - Soon
+* Working to fix fastboot extract firmware tgz - Soon
+* Updated wizard stlye
+* Updated Xiaomi eu and TWRP OrangeFox links
+-------------------------------------------------------
 
 For more info check old releases
 
