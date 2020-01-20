@@ -1,13 +1,12 @@
-// <copyright file=DownloadMIUnlock.Designer>
+// <copyright file=DownloadEngineVisual.Designer>
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 19/1/2020 18:01:53</date>
+// <date> 20/1/2020 17:44:26</date>
 // <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
-
 namespace Franco28Tool.Engine
 {
-    partial class DownloadMIUnlock
+    partial class DownloadEngineVisual
     {
         /// <summary>
         /// Required designer variable.
@@ -33,9 +32,9 @@ namespace Franco28Tool.Engine
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadMIUnlock));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadEngineVisual));
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.ProgressBar1 = new System.Windows.Forms.ProgressBar();
@@ -54,7 +53,7 @@ namespace Franco28Tool.Engine
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(749, 33);
-            this.textBox2.TabIndex = 30;
+            this.textBox2.TabIndex = 21;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBox1
@@ -69,22 +68,22 @@ namespace Franco28Tool.Engine
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ReadOnly = true;
             this.TextBox1.Size = new System.Drawing.Size(749, 33);
-            this.TextBox1.TabIndex = 29;
+            this.TextBox1.TabIndex = 20;
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ProgressBar1
             // 
-            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProgressBar1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ProgressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ProgressBar1.Location = new System.Drawing.Point(12, 98);
             this.ProgressBar1.Name = "ProgressBar1";
             this.ProgressBar1.Size = new System.Drawing.Size(749, 37);
-            this.ProgressBar1.TabIndex = 28;
+            this.ProgressBar1.TabIndex = 19;
             // 
-            // DownloadMIUnlock
+            // DownloadEngineVisual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,11 +95,10 @@ namespace Franco28Tool.Engine
             this.Controls.Add(this.ProgressBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "DownloadMIUnlock";
+            this.Name = "DownloadEngineVisual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Downloading MI Unlock...";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.DownloadMIUnlock_Load);
+            this.Load += new System.EventHandler(this.DownloadEngineVisual_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

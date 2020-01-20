@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Application Files\RedmiNote7Tool_1_0_2_2\RedmiNote7Tool.exe.manifest" size="7314">
+    <dependentAssembly dependencyType="install" codebase="Application Files\RedmiNote7Tool_1_0_2_2\RedmiNote7Tool.exe.manifest" size="7313">
       <assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.2.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LGsaFw7jBEshLMJNyhwxtgJ2UIAB21fnL19o/BLRiN0=</dsig:DigestValue>
+        <dsig:DigestValue>DTcU4nCA1t/pOV96ZN5AU851+umpgbFvU5TAx9IP13w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

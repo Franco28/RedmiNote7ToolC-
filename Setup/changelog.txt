@@ -10,8 +10,10 @@ v1.0.2.2
 * Fixed AndroidLib
 * Fixed checksize crash Tool
 * Fixed Download forms when form was closed
+* Fixed loop on checking files
 * Optimized the code when check if the file its corrupet or not
 * Optimized more code to make it a litte bit fast
+* Optimized Download code, all downloads moved to a one simple form
 * Moved all Download forms and some code to dll ToolEngine
 * Other small fixes
 
@@ -53,7 +55,7 @@ v1.0.1.7
 * Added missing strings on SR Form
 
 -------------------------------------------------------
-Info 19.01.2020: 
+Info 20.01.2020: 
 * Working on Mi Flash by Franco28 - Soon
 * Working to fix fastboot extract firmware tgz - Soon
 * Updated wizard stlye

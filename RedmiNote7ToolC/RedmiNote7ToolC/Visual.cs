@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 19/1/2020 18:01:53</date>
+// <date> 20/1/2020 17:44:26</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -17,7 +17,6 @@ using Adb = Franco28Tool.Engine.Adb;
 
 namespace RedmiNote7ToolC
 {
-
     public partial class Visual : Form
     {
         [System.ComponentModel.Browsable(false)]
@@ -42,6 +41,26 @@ namespace RedmiNote7ToolC
             timer.Interval = (1 * 1000); 
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
+            Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
+            label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
+            Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
+            IsConnected();
+        }
+
+        private void InitialiseCPUCounter()
+        {
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
+            IsConnected();
+        }
+
+        private void InitializeRAMCounter()
+        {
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
+            IsConnected();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
@@ -119,23 +138,6 @@ namespace RedmiNote7ToolC
 
         }
 
-        private void InitialiseCPUCounter()
-        {
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-        }
-
-        private void InitializeRAMCounter()
-        {
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
-            label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
-            Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
-        }
-
         private void Visual_Load(object sender, EventArgs e)
         {
             Folders.create_main_folders();
@@ -169,7 +171,6 @@ namespace RedmiNote7ToolC
         private void unlockbootloader_Click(object sender, EventArgs e)
         {
             string[] paths = Directory.GetFiles(@"C:\adb\MIUnlock", "miflash_unlock.exe");
-
             if (paths.Length > 0)
                 try 
                 {
@@ -179,10 +180,10 @@ namespace RedmiNote7ToolC
                 catch (Exception)
                 {
                     MessageBox.Show("Mi Unlock Closed...", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            }
             else
             {
-                MessageBox.Show("Error on loading Mi Unlock, seems to be missing... Please download it!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              MessageBox.Show("Error on loading Mi Unlock, seems to be missing... Please download it!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (System.IO.File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") & System.IO.File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe")  == true)
@@ -198,11 +199,9 @@ namespace RedmiNote7ToolC
         private void LockBootloader_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Do you want to Lock the bootloader? This will erase all your data!", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 TextBox2.Text = "Checking device connection...";
-
                 if (IsConnected())
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -231,50 +230,14 @@ namespace RedmiNote7ToolC
         {
             if (!File.Exists(@"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip"))
             {
-                try
-                {
-                    TextBox2.Text = "Checking internet connection...";
-                    System.Threading.Thread.Sleep(3000);
-                    TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
-                    if (InternetCheck.Ping("www.google.com") == true)
-                    {
-                        TextBox2.Text = "Checking internet connection: OK";
-                        MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadtwrp = new DownloadTWRP();
-                        downloadtwrp.Show();
-                        visual_reLoad();
-                    }
-                }
-                catch (Exception)
-                {
-                    TextBox2.Text = "Checking internet connection: ERROR";
-                    MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    visual_reLoad();
-                }
+                MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Downloads.downloadcall("Downloading OrangeFox-R10.1_01-Stable-lavender...", "https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.1_01-Stable-lavender.zip", @"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip");
             }
             else
             {
                 if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
                 {
-
-                    decimal sizeb = 50077781;
-
-                    string fileName = @"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip";
-                    FileInfo fi = new FileInfo(fileName);
-
-                    if (fi.Length < sizeb)
-                    {
-                        MessageBox.Show(@"File is corrupted \: , downloading again!", "TWRP OrangeFox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadtwrp = new DownloadTWRP();
-                        downloadtwrp.Show();
-                    }
-                    else
-                    {
-                        TextBox1.Text = "Extracting files!";
-                        System.Threading.Thread.Sleep(1000);
-                        Unzip.Unzippy(@"TWRP\OrangeFox-R10.1_01-Stable-lavender.zip", @"TWRP", true);
-                        System.Threading.Thread.Sleep(1000);
-                    }
+                    CheckFileSize.TWRP();
                 }
                 else
                 {
@@ -282,14 +245,11 @@ namespace RedmiNote7ToolC
                     if (IsConnected())
                     {
                         System.Threading.Thread.Sleep(1000);
-                        TextBox2.Text = "Flashing TWRP OrangeFox...";
-                        System.Threading.Thread.Sleep(1000);
-                        Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"flash recovery C:\adb\TWRP\recovery.img");
-                        System.Threading.Thread.Sleep(3000);
-                        Adb.FastbootExecuteCommand(@"\adb.exe ", @"reboot recovery");
                         TextBox2.Text = "Booting into OrangeFox...";
+                        System.Threading.Thread.Sleep(1000);
+                        Adb.FastbootExecuteCommand(@"\fastboot.exe ", @"boot C:\adb\TWRP\recovery.img");
                         System.Threading.Thread.Sleep(2000);
-                        MessageBox.Show("TWRP Installed!", "Flash: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("TWRP Booted!", "Boot: TWRP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         visual_reLoad();
                     }
                     else
@@ -308,32 +268,14 @@ namespace RedmiNote7ToolC
         {
             if (!File.Exists(@"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip"))
             {
-                try
-                {
-                    TextBox2.Text = "Checking internet connection...";
-                    System.Threading.Thread.Sleep(3000);
-                    TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
-                    if (InternetCheck.Ping("www.google.com") == true)
-                    {
-                        TextBox2.Text = "Checking internet connection: OK";
-                        MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadtwrp = new DownloadTWRP();
-                        downloadtwrp.Show();
-                        visual_reLoad();
-                    }
-                }
-                catch (Exception)
-                {
-                    TextBox2.Text = "Checking internet connection: ERROR";
-                    MessageBox.Show("ERROR: Can´t connect to the server to download TWRP OrangeFox image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    visual_reLoad();
-                }
+                MessageBox.Show("Can´t find TWRP OrangeFox image...", "TWRP Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Downloads.downloadcall("Downloading OrangeFox-R10.1_01-Stable-lavender...", "https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.1_01-Stable-lavender.zip", @"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip");
             }
             else
             {
                 if (!File.Exists(@"C:\adb\TWRP\recovery.img"))
                 {
-                  CheckFileSize.TWRP();
+                    CheckFileSize.TWRP();
                 }
                 else
                 {
@@ -359,7 +301,7 @@ namespace RedmiNote7ToolC
                         visual_reLoad();
                     }
                 }
-                visual_reLoad();
+                 visual_reLoad();
             }
         }
 
@@ -453,20 +395,7 @@ namespace RedmiNote7ToolC
 
         private void DownloadLatestMIUIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TextBox2.Text = "Checking internet connection and file...";
-                if (InternetCheck.Ping("www.google.com") == true)
-                {
-                    var downloadmiuirecovery = new DownloadMIUIRecovery();
-                    downloadmiuirecovery.Show();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Windows.Forms.Application.Restart();
-            }
+            Downloads.downloadcall("Downloading MI Recovery GLOBAL-V11.0.4.0.PFGMIXM...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/recovery.img", @"C:\adb\.settings\recovery.img");
             visual_reLoad();
         }
 
@@ -496,20 +425,7 @@ namespace RedmiNote7ToolC
 
         public void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(3000);
-            try
-            {
-                if (InternetCheck.Ping("www.google.com") == true)
-                {
-                    var downloadmiuieu = new DownloadMIUIeu();
-                    downloadmiuieu.Show();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Can´t connect to the server to download Xiaomi.eu ROM! ", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                visual_reLoad();
-            }
+            Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.16_v11-10...", "https://qc5.androidfilehost.com/dl/S9oQnzzY8Bu7VUdlzvjb5w/1579692787/4349826312261702702/xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip");
             visual_reLoad();
         }
 
@@ -558,20 +474,8 @@ namespace RedmiNote7ToolC
         {
             if (!File.Exists(@"C:\adb\MIFlash\XiaoMiFlash.exe"))
             {
-                try
-                {
-                    if (InternetCheck.Ping("www.google.com") == true)
-                    {
-                        MessageBox.Show("Can´t find Mi Flash...", "Mi FLash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadmiflash = new DownloadMIFlash();
-                        downloadmiflash.Show();
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download Mi Flash!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    System.Windows.Forms.Application.Restart();
-                }
+                MessageBox.Show("Can´t find Mi Flash...", "Mi FLash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Downloads.downloadcall("Downloading MI Flash...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/MiFlash20181115.zip", @"C:\adb\MIFlash\MiFlash20181115.zip");
             }
             else
             {
@@ -583,20 +487,8 @@ namespace RedmiNote7ToolC
         {
             if (!File.Exists(@"C:\adb\MIUnlock\miflash_unlock.exe"))
             {
-                try
-                {
-                    if (InternetCheck.Ping("www.google.com") == true)
-                    {
-                        MessageBox.Show("Can´t find Mi Unlock...", "Mi Unlock Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        var downloadmiunlock = new DownloadMIUnlock();
-                        downloadmiunlock.Show();
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ERROR: Can´t connect to the server to download Mi Unlock!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    System.Windows.Forms.Application.Restart();
-                }
+                MessageBox.Show("Can´t find Mi Unlock...", "Mi Unlock Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Downloads.downloadcall("Downloading MI Unlock...", "http://miuirom.xiaomi.com/rom/u1106245679/3.5.1128.45/miflash_unlock-en-3.5.1128.45.zip", @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip");
             }
             else
             {
@@ -699,8 +591,7 @@ namespace RedmiNote7ToolC
 
         private void OpenFlashToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var f = new MiFlash();
-            f.Show();
+            MessageBox.Show("This is not ready yet!", "Mi Flash by Franco28", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void toolStripMenuItemFixPersist_Click(object sender, EventArgs e)
@@ -710,24 +601,8 @@ namespace RedmiNote7ToolC
             {
                 if (!File.Exists(@"C:\adb\.settings\Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip"))
                 {
-                    try
-                    {
-                        TextBox2.Text = "Checking internet connection...";
-                        System.Threading.Thread.Sleep(3000);
-                        TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
-                        if (InternetCheck.Ping("www.google.com") == true)
-                        {
-                            TextBox2.Text = "Checking internet connection: OK";
-                            MessageBox.Show("Can´t find Persist image...", "Persist Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            var downloadpersist = new DownloadPersist();
-                            downloadpersist.Show();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        TextBox2.Text = "Checking internet connection: ERROR";
-                        MessageBox.Show("ERROR: Can´t connect to the server to download Persist image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Can´t find Persist image...", "Persist Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Downloads.downloadcall("Downloading Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip", @"C:\adb\.settings\Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip");
                 }
                 else
                 {
@@ -762,24 +637,8 @@ namespace RedmiNote7ToolC
             {
                 if (!File.Exists(@"C:\adb\.settings\splash.img"))
                 {
-                    try
-                    {
-                        TextBox2.Text = "Checking internet connection...";
-                        System.Threading.Thread.Sleep(3000);
-                        TextBox2.Text = "Checking internet connection ERROR: Please click the option again!";
-                        if (InternetCheck.Ping("www.google.com") == true)
-                        {
-                            TextBox2.Text = "Checking internet connection: OK";
-                            MessageBox.Show("Can´t find Splash image...", "Splash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            var downloadsplash = new DownloadSplash();
-                            downloadsplash.Show();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        TextBox2.Text = "Checking internet connection: ERROR";
-                        MessageBox.Show("ERROR: Can´t connect to the server to download Splash image!", "Network Lost", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Can´t find Splash image...", "Splash Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Downloads.downloadcall("Downloading MI Splash...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/splash.img", @"C:\adb\.settings\splash.img");
                 }
                 else
                 {
@@ -801,6 +660,7 @@ namespace RedmiNote7ToolC
                         MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                visual_reLoad();
             }
             visual_reLoad();
         }

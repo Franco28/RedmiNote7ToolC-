@@ -82,54 +82,13 @@
     <Compile Include="Classes\BrowserCheck.cs" />
     <Compile Include="Classes\CheckFileSize.cs" />
     <Compile Include="Classes\Command.cs" />
-    <Compile Include="Classes\DownloadMIFlash.cs">
+    <Compile Include="Classes\DownloadEngineVisual.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\DownloadMIFlash.Designer.cs">
-      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
+    <Compile Include="Classes\DownloadEngineVisual.Designer.cs">
+      <DependentUpon>DownloadEngineVisual.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\DownloadMIUIeu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadMIUIeu.Designer.cs">
-      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadMIUIRecovery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadMIUIRecovery.Designer.cs">
-      <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadMIUnlock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadMIUnlock.Designer.cs">
-      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadPersist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadPersist.Designer.cs">
-      <DependentUpon>DownloadPersist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadSplash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadSplash.Designer.cs">
-      <DependentUpon>DownloadSplash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadStockRecovery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadStockRecovery.Designer.cs">
-      <DependentUpon>DownloadStockRecovery.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\DownloadTWRP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Classes\DownloadTWRP.Designer.cs">
-      <DependentUpon>DownloadTWRP.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\Downloads.cs" />
     <Compile Include="Classes\Fastboot.cs" />
     <Compile Include="Classes\Folders.cs" />
     <Compile Include="Classes\InternetCheck.cs" />
@@ -138,29 +97,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Classes\DownloadMIFlash.resx">
-      <DependentUpon>DownloadMIFlash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadMIUIeu.resx">
-      <DependentUpon>DownloadMIUIeu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadMIUIRecovery.resx">
-      <DependentUpon>DownloadMIUIRecovery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadMIUnlock.resx">
-      <DependentUpon>DownloadMIUnlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadPersist.resx">
-      <DependentUpon>DownloadPersist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadSplash.resx">
-      <DependentUpon>DownloadSplash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadStockRecovery.resx">
-      <DependentUpon>DownloadStockRecovery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DownloadTWRP.resx">
-      <DependentUpon>DownloadTWRP.cs</DependentUpon>
+    <EmbeddedResource Include="Classes\DownloadEngineVisual.resx">
+      <DependentUpon>DownloadEngineVisual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
