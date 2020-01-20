@@ -11,6 +11,7 @@ v1.0.2.2
 * Fixed checksize crash Tool
 * Fixed Download forms when form was closed
 * Fixed loop on checking files
+* Fixed when plug device tool enter to a loop and freeze
 * Optimized the code when check if the file its corrupet or not
 * Optimized more code to make it a litte bit fast
 * Optimized Download code, all downloads moved to a one simple form

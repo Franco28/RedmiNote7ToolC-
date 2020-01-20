@@ -94,6 +94,7 @@
     <Compile Include="Classes\InternetCheck.cs" />
     <Compile Include="Classes\Unzip.cs" />
     <Compile Include="Classes\ZipFileWithProgress.cs" />
+    <Compile Include="GiftImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

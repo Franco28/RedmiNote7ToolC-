@@ -2,8 +2,9 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 17:44:26</date>
+// <date> 20/1/2020 18:15:10</date>
 // <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
+
 namespace Franco28Tool.Engine
 {
     partial class DownloadEngineVisual

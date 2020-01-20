@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 17:44:26</date>
+// <date> 20/1/2020 18:15:10</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -44,19 +44,16 @@ namespace RedmiNote7ToolC
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
-            IsConnected();
         }
 
         private void InitialiseCPUCounter()
         {
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-            IsConnected();
         }
 
         private void InitializeRAMCounter()
         {
             ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
-            IsConnected();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -64,7 +61,6 @@ namespace RedmiNote7ToolC
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
             label4.Text = "CPU: " + Convert.ToInt64(cpuCounter.NextValue()).ToString() + " %";
             Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
-            IsConnected();
         }
 
         bool IsConnected() 
@@ -144,6 +140,7 @@ namespace RedmiNote7ToolC
             InitializeRAMCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + System.Environment.UserName;
+            IsConnected();
         }
 
         public void RefreshTool()
@@ -153,6 +150,7 @@ namespace RedmiNote7ToolC
             var visual = new Visual();
             visual.Refresh();
             InitializeComponent();
+            IsConnected();
         }
 
         public void visual_reLoad()
@@ -166,6 +164,7 @@ namespace RedmiNote7ToolC
             InitialiseCPUCounter();
             updateTimer_Tick();
             Label3.Text = "User: " + System.Environment.UserName;
+            IsConnected();
         }
 
         private void unlockbootloader_Click(object sender, EventArgs e)
