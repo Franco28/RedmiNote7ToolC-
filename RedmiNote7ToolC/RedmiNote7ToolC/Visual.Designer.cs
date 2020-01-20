@@ -88,11 +88,9 @@ namespace RedmiNote7ToolC
             this.Refresh = new System.Windows.Forms.ToolStripButton();
             this.UninstallTool = new System.Windows.Forms.ToolStripButton();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TaskBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Label3
@@ -925,15 +923,6 @@ namespace RedmiNote7ToolC
             this.listBox2.Size = new System.Drawing.Size(546, 184);
             this.listBox2.TabIndex = 40;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.InitialImage = global::RedmiNote7ToolC.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(889, 211);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 75);
-            this.pictureBox1.TabIndex = 41;
-            this.pictureBox1.TabStop = false;
-            // 
             // Visual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -941,7 +930,6 @@ namespace RedmiNote7ToolC
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1214, 629);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label6);
@@ -974,7 +962,6 @@ namespace RedmiNote7ToolC
             ((System.ComponentModel.ISupportInitialize)(this.MiBanner)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1034,6 +1021,5 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.ToolStripButton UninstallTool;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ToolStripMenuItem flashStockSplashToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

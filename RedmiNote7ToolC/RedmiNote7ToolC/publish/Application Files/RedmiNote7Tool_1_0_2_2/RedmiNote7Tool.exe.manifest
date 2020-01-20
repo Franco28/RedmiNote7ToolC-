@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="619520">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="620032">
       <assemblyIdentity name="RedmiNote7Tool" version="1.0.2.2" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lAiD264NOxjsn7odwW+hUb1l+DHXip1p89/3Ih0JUNE=</dsig:DigestValue>
+        <dsig:DigestValue>PPv2WHoYXygLwOG7wcMwS+sy7WYSVswKbqQYRAzNNw8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,7 +87,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iQv1joukn7wx5m0ySuvRlsh5FfYmBNI5tgEAa7PtVWQ=</dsig:DigestValue>
+        <dsig:DigestValue>5jj5VLaGYG2qJOelOx24u65Qjm8N1P2+9BJPkxbDUB0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -666,7 +666,32 @@ namespace RedmiNote7ToolC
 
         private void flashStockRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+                if (!File.Exists(@"C:\adb\.settings\splash.img"))
+                {
+                    MessageBox.Show("Can´t find Stock Recovery image...", "Recovery Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Downloads.downloadcall("Downloading MI Recovery GLOBAL-V11.0.4.0.PFGMIXM...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/recovery.img", @"C:\adb\.settings\recovery.img");
+                }
+                else
+                {
+                    TextBox2.Text = "Checking device connection...";
+                    if (IsConnected())
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = "Flashing Stock Recovery...";
+                        System.Threading.Thread.Sleep(1000);
+                        TextBox2.Text = USB_HUB_NODE.UsbHub.ToString();
+                        Adb.FastbootExecuteCommand(@"fastboot ", @"flash splash C:\adb\.settings\recovery.img");
+                        Adb.FastbootExecuteCommand(@"fastboot ", @"reboot");
+                        System.Threading.Thread.Sleep(3000);
+                    }
+                    else
+                    {
+                        TextBox2.Text = "Please connect your device...";
+                        System.Threading.Thread.Sleep(1000);
+                        MessageBox.Show("Device doesn´t found, Please connect the phone and check if developer (adb) options are enabled", "Flash: Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                 visual_reLoad();
         }
 
         private void Refresh_Click(object sender, EventArgs e)
