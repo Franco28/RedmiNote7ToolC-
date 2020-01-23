@@ -15,7 +15,7 @@ Tool based on C#
 
 ## Install
 
-- Start the "RedmiNote7Tool_v1.0.2.2_Setup.exe"
+- Start the "RedmiNote7Tool_v1.0.2.3_Setup.exe"
 
 - The installer will create a desktop shortcut
 
@@ -47,6 +47,8 @@ Tool based on C#
 ## Downloads
 
 #### Download the Tool v1.0.2.2 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.2.2) 
+
+#### Download the Tool v1.0.2.3 from here (BETA) * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.2.3) 
 
 ## Contact 
 #### [Telegram](https://t.me/francom28) 
