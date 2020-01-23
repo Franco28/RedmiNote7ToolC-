@@ -40,6 +40,10 @@ Tool based on C#
 
 ![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/tool.png "Tool")
 
+## Mi Debloat 
+
+![Tool](https://raw.githubusercontent.com/Franco28/RedmiNote7ToolC-/master/midebloat.png "Mi Debloat")
+
 ## Downloads
 
 #### Download the Tool v1.0.2.2 from here * [RedmiNote7Tool](https://github.com/Franco28/RedmiNote7ToolC-/releases/tag/v1.0.2.2) 
