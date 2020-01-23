@@ -3,6 +3,21 @@ CHANGELOG
 ----------------
 
 --------------
+v1.0.2.3
+--------------
+* Fixed when Mi Unlock and Mi Flash where downloaded, wasnt extract, so now should
+* Fixed some string text
+* Moved some text strings to a class to omptimize code
+* Updated Mi banners 
+* Updated XiaomiEU ROM links to 20.1.21
+* Updated Mi Debloat option (BETA)
+* The Tool now its certificated
+
+Mi Debloat Info
+* This is on BETA, so if you see something wrong, please tell me!
+* If you want to add another app, tell me too!
+
+--------------
 v1.0.2.2
 --------------
 * Fixed Persist option
@@ -56,11 +71,10 @@ v1.0.1.7
 * Added missing strings on SR Form
 
 -------------------------------------------------------
-Info 20.01.2020: 
+Info: 
 * Working on Mi Flash by Franco28 - Soon
 * Working to fix fastboot extract firmware tgz - Soon
-* Updated wizard stlye
-* Updated Xiaomi eu and TWRP OrangeFox links
+* Working on Mi Debloat - Soon
 -------------------------------------------------------
 
 For more info check old releases

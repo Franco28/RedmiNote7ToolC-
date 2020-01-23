@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 18:15:10</date>
+// <date> 22/1/2020 23:39:56</date>
 // <summary>A DLL Lib needed by Redmi Note 7 Tool</summary>
 
 using System;
@@ -13,7 +13,6 @@ namespace Franco28Tool.Engine
 {
     public class CheckFileSize
     {
-
         public static void TWRP()
         {
             System.Threading.Thread.Sleep(2000);
@@ -23,7 +22,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading OrangeFox-R10.1_01-Stable-lavender...", "https://files.orangefox.tech/OrangeFox-Stable/lavender/OrangeFox-R10.1_01-Stable-lavender.zip", @"C:\adb\TWRP\OrangeFox-R10.1_01-Stable-lavender.zip");
             }
             else
@@ -41,7 +40,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading MI Recovery GLOBAL-V11.0.4.0.PFGMIXM...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/recovery.img", @"C:\adb\.settings\recovery.img");
             }
         }
@@ -55,7 +54,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip", @"C:\adb\.settings\Persist-Fix-Lavender-GLOBAL-V11.0.4.0.PFGMIXM.zip");
             }
             else
@@ -81,7 +80,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading MI Splash...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/splash.img", @"C:\adb\.settings\splash.img");
             }
         }
@@ -95,7 +94,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading MI Unlock...", "http://miuirom.xiaomi.com/rom/u1106245679/3.5.1128.45/miflash_unlock-en-3.5.1128.45.zip", @"C:\adb\MIUnlock\miflash_unlock-en-3.5.1128.45.zip");
             }
             else
@@ -113,7 +112,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading MI Flash...", "https://bitbucket.org/Franco28/flashtool-motorola-moto-g5-g5plus/downloads/MiFlash20181115.zip", @"C:\adb\MIFlash\MiFlash20181115.zip");
             }
             else
@@ -131,7 +130,7 @@ namespace Franco28Tool.Engine
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Strings.MSGBOXFileCorrupted();
                 Downloads.downloadcall("Downloading V11.0.4.0.PFGMIXM Recovery ROM...", "https://bigota.d.miui.com/V11.0.4.0.PFGMIXM/miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip", @"C:\adb\xiaomiglobalrecovery\miui_LAVENDERGlobal_V11.0.4.0.PFGMIXM_ab70af5e76_9.0.zip");
             }
             else
@@ -151,18 +150,18 @@ namespace Franco28Tool.Engine
         public static void MIXiaomieuROM()
         {
             System.Threading.Thread.Sleep(2000);
-            decimal sizeb = 1964300229;
-            string fileName = @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip";
+            decimal sizeb = 1773230245;
+            string fileName = @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip";
             FileInfo fi = new FileInfo(fileName);
 
             if (fi.Length < sizeb)
             {
-                MessageBox.Show(@"File is corrupted \: Downloading again!", "Check File Engine", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.16_v11-10...", "https://qc5.androidfilehost.com/dl/S9oQnzzY8Bu7VUdlzvjb5w/1579692787/4349826312261702702/xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip");
+                Strings.MSGBOXFileCorrupted();
+                Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.21_v11-10...", "https://qc1.androidfilehost.com/dl/Pja-D8YntZZlXt7bLpoGJw/1579883127/4349826312261707904/xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip");
             }
             else
             {
-                MessageBox.Show("Xiaomi.eu it�s already downloaded!", "Xiaomi eu ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xiaomi.eu its already downloaded!", "XiaomiEU ROM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 try
                 {
                     Folders.OpenFolder(@"adb\xiaomieu");

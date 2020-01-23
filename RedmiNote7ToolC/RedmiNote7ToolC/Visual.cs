@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 18:15:10</date>
+// <date> 22/1/2020 23:39:56</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -63,7 +63,7 @@ namespace RedmiNote7ToolC
             Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
         }
 
-        bool IsConnected() 
+        public bool IsConnected() 
         {
             AndroidController android = null;
             android = AndroidController.Instance;
@@ -170,6 +170,8 @@ namespace RedmiNote7ToolC
         private void unlockbootloader_Click(object sender, EventArgs e)
         {
             string[] paths = Directory.GetFiles(@"C:\adb\MIUnlock", "miflash_unlock.exe");
+            string[] paths2 = Directory.GetFiles(@"C:\adb\MIUnlock", "miflash_unlock-en-3.5.1128.45.zip");
+
             if (paths.Length > 0)
                 try 
                 {
@@ -182,7 +184,20 @@ namespace RedmiNote7ToolC
             }
             else
             {
-              MessageBox.Show("Error on loading Mi Unlock, seems to be missing... Please download it!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (paths2.Length > 0)
+                {
+                    Unzip.Unzippy(@"MIUnlock\miflash_unlock-en-3.5.1128.45.zip", @"MIUnlock", true);
+
+                    string[] zipfile = Directory.GetFiles(@"C:\adb\MIUnlock\", "*.zip");
+
+                    foreach (string f in zipfile)
+                    {
+                        File.Delete(f);
+                    }
+                    MessageBox.Show("Mi Unlock extracted! Click again this option!", "Mi Unlock", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    visual_reLoad();
+                }
+                MessageBox.Show("Error on loading Mi Unlock, seems to be missing... Please download it!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (System.IO.File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") & System.IO.File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe")  == true)
@@ -569,7 +584,9 @@ namespace RedmiNote7ToolC
 
         private void FlashFirmwareBetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string[] paths = System.IO.Directory.GetFiles(@"C:\adb\MIFlash", "XiaoMiFlash.exe");
+            string[] paths = Directory.GetFiles(@"C:\adb\MIFlash", "XiaoMiFlash.exe");
+            string[] paths2 = Directory.GetFiles(@"C:\adb\MIFlash", "MiFlash20181115.zip");
+
             if (paths.Length > 0)
             {
                 try
@@ -584,8 +601,21 @@ namespace RedmiNote7ToolC
             }
             else
             {
+                if (paths2.Length > 0)
+                {
+                    Unzip.Unzippy(@"MIFlash\MiFlash20181115.zip", @"MIFlash", true);
+
+                    string[] zipfile = Directory.GetFiles(@"C:\adb\MIFlash\", "*.zip");
+
+                    foreach (string f in zipfile)
+                    {
+                        File.Delete(f);
+                    }
+                    MessageBox.Show("Mi Flash extracted! Click again this option!", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    visual_reLoad();
+                }
                 MessageBox.Show("Error on loading XiaoMiFlash, seems to be missing... You can download it on Download Mi Flash", "Mi Flash", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }     
+            }
         }
 
         private void OpenFlashToolStripMenuItem_Click(object sender, EventArgs e)
@@ -716,9 +746,9 @@ namespace RedmiNote7ToolC
                 android.Dispose();
                 try
                 {
-                    var cplPath = System.IO.Path.Combine(System.Environment.SystemDirectory, "control.exe");
+                    var cplPath = Path.Combine(System.Environment.SystemDirectory, "control.exe");
 
-                    System.Diagnostics.Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
+                    Process.Start(cplPath, "/name Microsoft.ProgramsAndFeatures");
 
                     android.Dispose();
 
@@ -761,5 +791,75 @@ namespace RedmiNote7ToolC
             base.Dispose(Disposing);
         }
 
+        private void miStockDebloattoolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var d = new MiStockDebloat();
+            d.Show();
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void recoverylabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MiBanner_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void unlockbootlaoderlabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TaskBar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

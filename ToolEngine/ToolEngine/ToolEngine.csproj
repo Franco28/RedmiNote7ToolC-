@@ -92,6 +92,7 @@
     <Compile Include="Classes\Fastboot.cs" />
     <Compile Include="Classes\Folders.cs" />
     <Compile Include="Classes\InternetCheck.cs" />
+    <Compile Include="Classes\Strings.cs" />
     <Compile Include="Classes\Unzip.cs" />
     <Compile Include="Classes\ZipFileWithProgress.cs" />
     <Compile Include="GiftImage.cs" />

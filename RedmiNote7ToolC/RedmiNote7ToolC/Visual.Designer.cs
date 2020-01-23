@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 18:15:10</date>
+// <date> 22/1/2020 23:39:56</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 namespace RedmiNote7ToolC
@@ -69,7 +69,8 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownMiFix = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItemFixPersist = new System.Windows.Forms.ToolStripMenuItem();
             this.flashStockSplashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flashStockRecoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStockDebloatMIUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStockDebloattoolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.TextBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.flashtwrp = new System.Windows.Forms.Button();
@@ -95,6 +96,9 @@ namespace RedmiNote7ToolC
             // 
             // Label3
             // 
+            this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Label3.BackColor = System.Drawing.Color.DimGray;
             this.Label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -106,9 +110,13 @@ namespace RedmiNote7ToolC
             this.Label3.Size = new System.Drawing.Size(641, 38);
             this.Label3.TabIndex = 30;
             this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // Label2
             // 
+            this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Label2.BackColor = System.Drawing.Color.DimGray;
             this.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -124,6 +132,9 @@ namespace RedmiNote7ToolC
             // 
             // Label1
             // 
+            this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Label1.BackColor = System.Drawing.Color.DimGray;
             this.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -136,9 +147,13 @@ namespace RedmiNote7ToolC
             this.Label1.Size = new System.Drawing.Size(188, 33);
             this.Label1.TabIndex = 28;
             this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // TaskBar
             // 
+            this.TaskBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TaskBar.AutoSize = false;
             this.TaskBar.BackColor = System.Drawing.Color.DimGray;
             this.TaskBar.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
@@ -159,6 +174,7 @@ namespace RedmiNote7ToolC
             this.TaskBar.Size = new System.Drawing.Size(653, 48);
             this.TaskBar.TabIndex = 21;
             this.TaskBar.Text = "TaskBar";
+            this.TaskBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.TaskBar_ItemClicked);
             // 
             // TaskBarDropdownFolders
             // 
@@ -351,7 +367,7 @@ namespace RedmiNote7ToolC
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadLatestMIUIByXiaomieuToolStripMenuItem.Image")));
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Name = "DownloadLatestMIUIByXiaomieuToolStripMenuItem";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Size = new System.Drawing.Size(496, 22);
-            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 20.1.16 v11";
+            this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Text = "Download MIUI by Xiaomi.eu: 20.1.21 v11";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.ToolTipText = "Click me to download latest MIUI 11 by Xiaomi.eu";
             this.DownloadLatestMIUIByXiaomieuToolStripMenuItem.Click += new System.EventHandler(this.DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click);
             // 
@@ -404,7 +420,7 @@ namespace RedmiNote7ToolC
             this.OpenFolderFranco28ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.OpenFolderFranco28ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenFolderFranco28ToolStripMenuItem.Image")));
             this.OpenFolderFranco28ToolStripMenuItem.Name = "OpenFolderFranco28ToolStripMenuItem";
-            this.OpenFolderFranco28ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OpenFolderFranco28ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OpenFolderFranco28ToolStripMenuItem.Text = "Open Folder";
             this.OpenFolderFranco28ToolStripMenuItem.ToolTipText = "Open Folder";
             this.OpenFolderFranco28ToolStripMenuItem.Click += new System.EventHandler(this.OpenFolderFranco28ToolStripMenuItem_Click);
@@ -545,7 +561,8 @@ namespace RedmiNote7ToolC
             this.TaskBarDropdownMiFix.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemFixPersist,
             this.flashStockSplashToolStripMenuItem,
-            this.flashStockRecoveryToolStripMenuItem});
+            this.miStockDebloatMIUIToolStripMenuItem,
+            this.miStockDebloattoolStripMenuItem3});
             this.TaskBarDropdownMiFix.ForeColor = System.Drawing.Color.DimGray;
             this.TaskBarDropdownMiFix.Image = ((System.Drawing.Image)(resources.GetObject("TaskBarDropdownMiFix.Image")));
             this.TaskBarDropdownMiFix.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -581,18 +598,31 @@ namespace RedmiNote7ToolC
             this.flashStockSplashToolStripMenuItem.ToolTipText = "Flash: Stock Boot Splash";
             this.flashStockSplashToolStripMenuItem.Click += new System.EventHandler(this.flashStockSplashToolStripMenuItem_Click);
             // 
-            // flashStockRecoveryToolStripMenuItem
+            // miStockDebloatMIUIToolStripMenuItem
             // 
-            this.flashStockRecoveryToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
-            this.flashStockRecoveryToolStripMenuItem.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
-            this.flashStockRecoveryToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flashStockRecoveryToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.flashStockRecoveryToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flashStockRecoveryToolStripMenuItem.Image")));
-            this.flashStockRecoveryToolStripMenuItem.Name = "flashStockRecoveryToolStripMenuItem";
-            this.flashStockRecoveryToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
-            this.flashStockRecoveryToolStripMenuItem.Text = "Flash Stock Recovery  V11.0.4.0.PFGMIXM";
-            this.flashStockRecoveryToolStripMenuItem.ToolTipText = "Flash: Stock Recovery Global Firmware";
-            this.flashStockRecoveryToolStripMenuItem.Click += new System.EventHandler(this.flashStockRecoveryToolStripMenuItem_Click);
+            this.miStockDebloatMIUIToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.miStockDebloatMIUIToolStripMenuItem.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
+            this.miStockDebloatMIUIToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miStockDebloatMIUIToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.miStockDebloatMIUIToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("miStockDebloatMIUIToolStripMenuItem.Image")));
+            this.miStockDebloatMIUIToolStripMenuItem.Name = "miStockDebloatMIUIToolStripMenuItem";
+            this.miStockDebloatMIUIToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
+            this.miStockDebloatMIUIToolStripMenuItem.Text = "Flash Stock Recovery  V11.0.4.0.PFGMIXM";
+            this.miStockDebloatMIUIToolStripMenuItem.ToolTipText = "Flash: Stock Recovery Global Firmware";
+            this.miStockDebloatMIUIToolStripMenuItem.Click += new System.EventHandler(this.flashStockRecoveryToolStripMenuItem_Click);
+            // 
+            // miStockDebloattoolStripMenuItem3
+            // 
+            this.miStockDebloattoolStripMenuItem3.BackColor = System.Drawing.Color.Transparent;
+            this.miStockDebloattoolStripMenuItem3.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
+            this.miStockDebloattoolStripMenuItem3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miStockDebloattoolStripMenuItem3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.miStockDebloattoolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("miStockDebloattoolStripMenuItem3.Image")));
+            this.miStockDebloattoolStripMenuItem3.Name = "miStockDebloattoolStripMenuItem3";
+            this.miStockDebloattoolStripMenuItem3.Size = new System.Drawing.Size(406, 22);
+            this.miStockDebloattoolStripMenuItem3.Text = "Mi Stock Debloat MIUI";
+            this.miStockDebloattoolStripMenuItem3.ToolTipText = "Debloater: Remove Apps from System";
+            this.miStockDebloattoolStripMenuItem3.Click += new System.EventHandler(this.miStockDebloattoolStripMenuItem3_Click);
             // 
             // TextBox2
             // 
@@ -612,6 +642,7 @@ namespace RedmiNote7ToolC
             this.TextBox2.TabIndex = 27;
             this.TextBox2.Text = "Remember to always Backup your efs and persist folders!";
             this.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // TextBox1
             // 
@@ -623,14 +654,15 @@ namespace RedmiNote7ToolC
             this.TextBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.TextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.TextBox1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.TextBox1.Location = new System.Drawing.Point(10, 211);
+            this.TextBox1.Location = new System.Drawing.Point(10, 224);
             this.TextBox1.Multiline = true;
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ReadOnly = true;
-            this.TextBox1.Size = new System.Drawing.Size(643, 38);
+            this.TextBox1.Size = new System.Drawing.Size(643, 31);
             this.TextBox1.TabIndex = 25;
             this.TextBox1.Text = "Welcome To Redmi Note 7 Basic Tool";
             this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // flashtwrp
             // 
@@ -684,6 +716,9 @@ namespace RedmiNote7ToolC
             // 
             // unlockbootlaoderlabel
             // 
+            this.unlockbootlaoderlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.unlockbootlaoderlabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unlockbootlaoderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold);
             this.unlockbootlaoderlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -696,6 +731,7 @@ namespace RedmiNote7ToolC
             this.unlockbootlaoderlabel.TabIndex = 17;
             this.unlockbootlaoderlabel.Text = "Bootloader";
             this.unlockbootlaoderlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.unlockbootlaoderlabel.Click += new System.EventHandler(this.unlockbootlaoderlabel_Click);
             // 
             // recoverylabel
             // 
@@ -715,9 +751,13 @@ namespace RedmiNote7ToolC
             this.recoverylabel.TabIndex = 22;
             this.recoverylabel.Text = "Recovery";
             this.recoverylabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.recoverylabel.Click += new System.EventHandler(this.recoverylabel_Click);
             // 
             // LockBootloader
             // 
+            this.LockBootloader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LockBootloader.BackColor = System.Drawing.Color.LightGray;
             this.LockBootloader.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LockBootloader.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
@@ -740,19 +780,26 @@ namespace RedmiNote7ToolC
             // 
             // MiBanner
             // 
+            this.MiBanner.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MiBanner.BackColor = System.Drawing.Color.Transparent;
-            this.MiBanner.Image = ((System.Drawing.Image)(resources.GetObject("MiBanner.Image")));
+            this.MiBanner.Image = global::RedmiNote7ToolC.Properties.Resources.banner_large;
             this.MiBanner.ImageLocation = "";
             this.MiBanner.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MiBanner.InitialImage = null;
-            this.MiBanner.Location = new System.Drawing.Point(0, 26);
+            this.MiBanner.Location = new System.Drawing.Point(0, 38);
             this.MiBanner.Name = "MiBanner";
-            this.MiBanner.Size = new System.Drawing.Size(653, 154);
+            this.MiBanner.Size = new System.Drawing.Size(653, 163);
             this.MiBanner.TabIndex = 19;
             this.MiBanner.TabStop = false;
+            this.MiBanner.Click += new System.EventHandler(this.MiBanner_Click);
             // 
             // unlockbootloader
             // 
+            this.unlockbootloader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.unlockbootloader.BackColor = System.Drawing.Color.LightGray;
             this.unlockbootloader.Cursor = System.Windows.Forms.Cursors.Hand;
             this.unlockbootloader.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
@@ -775,6 +822,9 @@ namespace RedmiNote7ToolC
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.BackColor = System.Drawing.Color.DimGray;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -787,6 +837,7 @@ namespace RedmiNote7ToolC
             this.label4.Size = new System.Drawing.Size(163, 33);
             this.label4.TabIndex = 31;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -824,6 +875,7 @@ namespace RedmiNote7ToolC
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBox1.Size = new System.Drawing.Size(546, 284);
             this.listBox1.TabIndex = 34;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -843,9 +895,13 @@ namespace RedmiNote7ToolC
             this.label6.TabIndex = 35;
             this.label6.Text = "Device Status";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.Color.DimGray;
             this.toolStrip1.BackgroundImage = global::RedmiNote7ToolC.Properties.Resources.banner;
@@ -864,6 +920,7 @@ namespace RedmiNote7ToolC
             this.toolStrip1.Size = new System.Drawing.Size(564, 48);
             this.toolStrip1.TabIndex = 38;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // Help
             // 
@@ -922,6 +979,7 @@ namespace RedmiNote7ToolC
             this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBox2.Size = new System.Drawing.Size(546, 184);
             this.listBox2.TabIndex = 40;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // Visual
             // 
@@ -954,7 +1012,7 @@ namespace RedmiNote7ToolC
             this.MaximizeBox = false;
             this.Name = "Visual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Redmi Note 7 Basic Tool - v1.0.2.2";
+            this.Text = "Redmi Note 7 Basic Tool - v1.0.2.3";
             this.Closed += new System.EventHandler(this.Visual_Closed);
             this.Load += new System.EventHandler(this.Visual_Load);
             this.TaskBar.ResumeLayout(false);
@@ -1011,7 +1069,7 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.ToolStripMenuItem OpenFolderFranco28ToolStripMenuItem;
         internal System.Windows.Forms.ToolStripDropDownButton TaskBarDropdownMiFix;
         internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFixPersist;
-        private System.Windows.Forms.ToolStripMenuItem flashStockRecoveryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miStockDebloatMIUIToolStripMenuItem;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox1;
         internal System.Windows.Forms.Label label6;
@@ -1021,5 +1079,6 @@ namespace RedmiNote7ToolC
         internal System.Windows.Forms.ToolStripButton UninstallTool;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ToolStripMenuItem flashStockSplashToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miStockDebloattoolStripMenuItem3;
     }
 }

@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 20/1/2020 18:15:10</date>
+// <date> 22/1/2020 23:39:56</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -57,13 +57,13 @@ namespace RedmiNote7ToolC
             // MiBanner
             // 
             this.MiBanner.BackColor = System.Drawing.Color.Transparent;
-            this.MiBanner.Image = ((System.Drawing.Image)(resources.GetObject("MiBanner.Image")));
+            this.MiBanner.Image = global::RedmiNote7ToolC.Properties.Resources.banner_small;
             this.MiBanner.ImageLocation = "";
             this.MiBanner.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MiBanner.InitialImage = null;
-            this.MiBanner.Location = new System.Drawing.Point(-139, -2);
+            this.MiBanner.Location = new System.Drawing.Point(0, 1);
             this.MiBanner.Name = "MiBanner";
-            this.MiBanner.Size = new System.Drawing.Size(669, 155);
+            this.MiBanner.Size = new System.Drawing.Size(375, 155);
             this.MiBanner.TabIndex = 20;
             this.MiBanner.TabStop = false;
             // 
@@ -82,7 +82,7 @@ namespace RedmiNote7ToolC
             this.label1.Text = "Welcome To Redmi Note 7 Tool";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // splash
+            // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,7 +97,7 @@ namespace RedmiNote7ToolC
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "splash";
+            this.Name = "Splash";
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome To Redmi Note 7 Tool";
