@@ -76,6 +76,7 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BasicProgress.cs" />
@@ -91,11 +92,12 @@
     <Compile Include="Classes\Downloads.cs" />
     <Compile Include="Classes\Fastboot.cs" />
     <Compile Include="Classes\Folders.cs" />
+    <Compile Include="Classes\GifImage.cs" />
     <Compile Include="Classes\InternetCheck.cs" />
+    <Compile Include="Classes\Lang.cs" />
     <Compile Include="Classes\Strings.cs" />
     <Compile Include="Classes\Unzip.cs" />
     <Compile Include="Classes\ZipFileWithProgress.cs" />
-    <Compile Include="GiftImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

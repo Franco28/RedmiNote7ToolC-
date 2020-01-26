@@ -420,7 +420,7 @@ namespace RedmiNote7ToolC
             this.OpenFolderFranco28ToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.OpenFolderFranco28ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenFolderFranco28ToolStripMenuItem.Image")));
             this.OpenFolderFranco28ToolStripMenuItem.Name = "OpenFolderFranco28ToolStripMenuItem";
-            this.OpenFolderFranco28ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenFolderFranco28ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OpenFolderFranco28ToolStripMenuItem.Text = "Open Folder";
             this.OpenFolderFranco28ToolStripMenuItem.ToolTipText = "Open Folder";
             this.OpenFolderFranco28ToolStripMenuItem.Click += new System.EventHandler(this.OpenFolderFranco28ToolStripMenuItem_Click);
@@ -580,7 +580,7 @@ namespace RedmiNote7ToolC
             this.toolStripMenuItemFixPersist.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripMenuItemFixPersist.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemFixPersist.Image")));
             this.toolStripMenuItemFixPersist.Name = "toolStripMenuItemFixPersist";
-            this.toolStripMenuItemFixPersist.Size = new System.Drawing.Size(406, 22);
+            this.toolStripMenuItemFixPersist.Size = new System.Drawing.Size(401, 22);
             this.toolStripMenuItemFixPersist.Text = "Fix Persist image";
             this.toolStripMenuItemFixPersist.ToolTipText = "Fix: Find Device Storage Corrupted, Your Device is Unsafe Now";
             this.toolStripMenuItemFixPersist.Click += new System.EventHandler(this.toolStripMenuItemFixPersist_Click);
@@ -593,7 +593,7 @@ namespace RedmiNote7ToolC
             this.flashStockSplashToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.flashStockSplashToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flashStockSplashToolStripMenuItem.Image")));
             this.flashStockSplashToolStripMenuItem.Name = "flashStockSplashToolStripMenuItem";
-            this.flashStockSplashToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
+            this.flashStockSplashToolStripMenuItem.Size = new System.Drawing.Size(401, 22);
             this.flashStockSplashToolStripMenuItem.Text = "Flash Stock Splash";
             this.flashStockSplashToolStripMenuItem.ToolTipText = "Flash: Stock Boot Splash";
             this.flashStockSplashToolStripMenuItem.Click += new System.EventHandler(this.flashStockSplashToolStripMenuItem_Click);
@@ -606,8 +606,8 @@ namespace RedmiNote7ToolC
             this.miStockDebloatMIUIToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.miStockDebloatMIUIToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("miStockDebloatMIUIToolStripMenuItem.Image")));
             this.miStockDebloatMIUIToolStripMenuItem.Name = "miStockDebloatMIUIToolStripMenuItem";
-            this.miStockDebloatMIUIToolStripMenuItem.Size = new System.Drawing.Size(406, 22);
-            this.miStockDebloatMIUIToolStripMenuItem.Text = "Flash Stock Recovery  V11.0.4.0.PFGMIXM";
+            this.miStockDebloatMIUIToolStripMenuItem.Size = new System.Drawing.Size(401, 22);
+            this.miStockDebloatMIUIToolStripMenuItem.Text = "Flash Stock Recovery V11.0.4.0.PFGMIXM";
             this.miStockDebloatMIUIToolStripMenuItem.ToolTipText = "Flash: Stock Recovery Global Firmware";
             this.miStockDebloatMIUIToolStripMenuItem.Click += new System.EventHandler(this.flashStockRecoveryToolStripMenuItem_Click);
             // 
@@ -619,7 +619,7 @@ namespace RedmiNote7ToolC
             this.miStockDebloattoolStripMenuItem3.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.miStockDebloattoolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("miStockDebloattoolStripMenuItem3.Image")));
             this.miStockDebloattoolStripMenuItem3.Name = "miStockDebloattoolStripMenuItem3";
-            this.miStockDebloattoolStripMenuItem3.Size = new System.Drawing.Size(406, 22);
+            this.miStockDebloattoolStripMenuItem3.Size = new System.Drawing.Size(401, 22);
             this.miStockDebloattoolStripMenuItem3.Text = "Mi Stock Debloat MIUI";
             this.miStockDebloattoolStripMenuItem3.ToolTipText = "Debloater: Remove Apps from System";
             this.miStockDebloattoolStripMenuItem3.Click += new System.EventHandler(this.miStockDebloattoolStripMenuItem3_Click);

@@ -20,7 +20,6 @@ namespace RedmiNote7ToolC
     public partial class Visual : Form
     {
         [System.ComponentModel.Browsable(false)]
-
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
         RegawMOD.Android.Device device; AndroidController android = null; string serial;
@@ -139,8 +138,8 @@ namespace RedmiNote7ToolC
             Folders.create_main_folders();
             InitializeRAMCounter();
             updateTimer_Tick();
-            Label3.Text = "User: " + System.Environment.UserName;
             IsConnected();
+            Label3.Text = "User: " + System.Environment.UserName;
         }
 
         public void RefreshTool()
@@ -439,7 +438,7 @@ namespace RedmiNote7ToolC
 
         public void DownloadLatestMIUIByXiaomieuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.16_v11-10...", "https://qc5.androidfilehost.com/dl/S9oQnzzY8Bu7VUdlzvjb5w/1579692787/4349826312261702702/xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.16_v11-10.zip");
+            Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.21_v11-10...", "https://qc1.androidfilehost.com/dl/ppdBGi8VYCMrcKSJ1tvgog/1580287554/4349826312261709661/xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip");
             visual_reLoad();
         }
 

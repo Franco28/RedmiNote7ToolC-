@@ -75,19 +75,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>inYrRYyRKeDl+guweHxLHd31UGY7+FvKL4LNZmPZHpU=</dsig:DigestValue>
+        <dsig:DigestValue>zDoVk1U98cPtdEVw6yS0Hv+HrhJ3tSET/FZShqNUUw8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="39936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="40448">
       <assemblyIdentity name="ToolEngine" version="1.0.2.2" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZL93UZM8ZtJsXyrBsgO3ojqLyg5sEkCn24OD5ojDh24=</dsig:DigestValue>
+        <dsig:DigestValue>K9UXIRFtiqxaUv93XadFOUmGALddXGyoFXZXCOK8jMQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

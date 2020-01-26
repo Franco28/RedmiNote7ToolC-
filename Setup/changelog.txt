@@ -3,15 +3,14 @@ CHANGELOG
 ----------------
 
 --------------
-v1.0.2.3
+v1.0.2.3 - 26-01-2020
 --------------
 * Fixed when Mi Unlock and Mi Flash where downloaded, wasnt extract, so now should
 * Fixed some string text
 * Moved some text strings to a class to omptimize code
 * Updated Mi banners 
-* Updated XiaomiEU ROM links to 20.1.21
+* Updated XiaomiEU ROM links to 20.1.21 (Updated to V3)
 * Updated Mi Debloat option (BETA)
-* The Tool now its certificated
 
 Mi Debloat Info
 * This is on BETA, so if you see something wrong, please tell me!

@@ -150,14 +150,14 @@ namespace Franco28Tool.Engine
         public static void MIXiaomieuROM()
         {
             System.Threading.Thread.Sleep(2000);
-            decimal sizeb = 1773230245;
+            decimal sizeb = 1773338347;
             string fileName = @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip";
             FileInfo fi = new FileInfo(fileName);
 
             if (fi.Length < sizeb)
             {
                 Strings.MSGBOXFileCorrupted();
-                Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.21_v11-10...", "https://qc1.androidfilehost.com/dl/Pja-D8YntZZlXt7bLpoGJw/1579883127/4349826312261707904/xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip");
+                Downloads.downloadcall("Downloading xiaomi.eu_multi_HMNote7_20.1.21_v11-10...", "https://qc1.androidfilehost.com/dl/ppdBGi8VYCMrcKSJ1tvgog/1580287554/4349826312261709661/xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip", @"C:\adb\xiaomieu\xiaomi.eu_multi_HMNote7_20.1.21_v11-10.zip");
             }
             else
             {

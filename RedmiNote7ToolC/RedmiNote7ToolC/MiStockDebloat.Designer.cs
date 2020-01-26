@@ -103,7 +103,7 @@ namespace RedmiNote7ToolC
             this.listBox1.Items.AddRange(new object[] {
             "Google Duo",
             "Google Music",
-            "Play Movies",
+            "Google Play Movies",
             "Mi Browser",
             "Mi Feedback",
             "Mi Compass",
