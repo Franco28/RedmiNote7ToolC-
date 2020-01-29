@@ -3,6 +3,13 @@ CHANGELOG
 ----------------
 
 --------------
+v1.0.2.4 - Latest Alpha Build (Dropped: Due to i don't have anymore the device)
+--------------
+* BOOT TWRP Option was disable, due to not booting TWRP
+* New Language Engine, so English and Spanish now are available (Not working)
+* Updated Links
+
+--------------
 v1.0.2.3 - 26-01-2020
 --------------
 * Fixed when Mi Unlock and Mi Flash where downloaded, wasnt extract, so now should

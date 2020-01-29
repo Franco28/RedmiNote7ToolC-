@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 22/1/2020 23:39:56</date>
+// <date> 29/1/2020 13:16:41</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -14,6 +14,8 @@ using MiUSB;
 using System.Collections;
 using Franco28Tool.Engine;
 using Adb = Franco28Tool.Engine.Adb;
+using System.Globalization;
+using Timer = System.Windows.Forms.Timer;
 
 namespace RedmiNote7ToolC
 {
@@ -22,7 +24,9 @@ namespace RedmiNote7ToolC
         [System.ComponentModel.Browsable(false)]
         private PerformanceCounter ramCounter;
         private PerformanceCounter cpuCounter;
+        private CConfigMng oConfigMng = new CConfigMng();
         RegawMOD.Android.Device device; AndroidController android = null; string serial;
+        CultureInfo cul;
 
         public Visual()
         {
@@ -37,7 +41,7 @@ namespace RedmiNote7ToolC
         private void updateTimer_Tick()
         {
             Timer timer = new Timer();
-            timer.Interval = (1 * 1000); 
+            timer.Interval = (1 * 1000);
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
             Label1.Text = "Free RAM: " + Convert.ToInt64(ramCounter.NextValue()).ToString() + " MB";
@@ -62,12 +66,12 @@ namespace RedmiNote7ToolC
             Label2.Text = @"Folder Size: C:\adb " + CheckFileSize.GetDirectorySize(@"C:\adb") + " MB";
         }
 
-        public bool IsConnected() 
+        public bool IsConnected()
         {
             AndroidController android = null;
             android = AndroidController.Instance;
 
-            if (android.HasConnectedDevices) 
+            if (android.HasConnectedDevices)
             {
                 ArrayList devicelist = new ArrayList();
                 serial = android.ConnectedDevices[0];
@@ -99,7 +103,7 @@ namespace RedmiNote7ToolC
                 devicecheck.Add(" Battery Health: " + device.Battery.Health.ToString() + System.Environment.NewLine);
                 listBox2.DataSource = devicecheck;
                 return true;
-            } 
+            }
             else
             {
                 ArrayList devicelist = new ArrayList();
@@ -122,19 +126,25 @@ namespace RedmiNote7ToolC
                 devicecheck.Add(" Remember to always have enable USB DEBUGGING! ");
                 devicecheck.Add(" Device: Offline! ");
                 devicecheck.Add(" Mode: --- ");
-                devicecheck.Add(" Serial Number: --- " );
+                devicecheck.Add(" Serial Number: --- ");
                 devicecheck.Add(" -------------------------");
                 devicecheck.Add(" Battery: --- ");
-                devicecheck.Add(" Battery Temperature: --- " );
+                devicecheck.Add(" Battery Temperature: --- ");
                 devicecheck.Add(" Battery Health: --- ");
                 listBox2.DataSource = devicecheck;
                 return false;
             }
 
         }
-
+        
         private void Visual_Load(object sender, EventArgs e)
         {
+            oConfigMng.LoadConfig();
+            if (oConfigMng.Config.StartPos.X != 0 || oConfigMng.Config.StartPos.Y != 0)
+            {
+                Location = oConfigMng.Config.StartPos;
+                Size = oConfigMng.Config.StartSize;
+            }
             Folders.create_main_folders();
             InitializeRAMCounter();
             updateTimer_Tick();
@@ -765,6 +775,9 @@ namespace RedmiNote7ToolC
 
         public void Visual_Closed(object sender, EventArgs e)
         {
+            oConfigMng.Config.StartPos = Location;
+            oConfigMng.Config.StartSize = Size;
+            oConfigMng.SaveConfig();
             android.Dispose();
             Adb.FastbootExecuteCommand("adb ", "kill-server");
             Process myprocess = new Process();
@@ -796,69 +809,37 @@ namespace RedmiNote7ToolC
             d.Show();
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            espanolToolStripMenuItem_Click(null, null);
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        public void espanolToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (espanolToolStripMenuItem.Checked == true) 
+            {
+                espanolToolStripMenuItem.Checked = false;
+                englishToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                espanolToolStripMenuItem.Checked = true;
+                englishToolStripMenuItem.Checked = false;
+            }
 
+            switch_language();
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        public void switch_language()
         {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void recoverylabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MiBanner_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void unlockbootlaoderlabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TaskBar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
+            if (espanolToolStripMenuItem.Checked == true)  
+            {
+                cul = CultureInfo.CreateSpecificCulture("es");        
+            }
+            else if (englishToolStripMenuItem.Checked == true)        
+            {
+                cul = CultureInfo.CreateSpecificCulture("en");        
+            }
         }
     }
 }

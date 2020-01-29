@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 22/1/2020 23:39:56</date>
+// <date> 29/1/2020 13:16:41</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -14,8 +14,7 @@ using RegawMOD.Android;
 namespace RedmiNote7ToolC
 {
     public partial class Splash : Form
-    {
-
+    {      
         private AndroidController android;
         private BackgroundWorker bw = new BackgroundWorker();
 
@@ -41,11 +40,12 @@ namespace RedmiNote7ToolC
 
         private void splash_Load(object sender, EventArgs e)
         {
+            this.label1.Text = "Checking Files... " + @"C:\adb\ ";
+
             if (bw.IsBusy != true)
             {
                 bw.RunWorkerAsync();
             }
-
         }
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
@@ -61,7 +61,6 @@ namespace RedmiNote7ToolC
                 }
                 else
                 {
-                    // Perform a time consuming operation and report progress.
                     System.Threading.Thread.Sleep(300);
                     worker.ReportProgress((i * 10));
                 }
@@ -98,7 +97,7 @@ namespace RedmiNote7ToolC
         {
             progressBar1.Maximum = 100;
             progressBar1.Minimum = 1;
-            this.label1.Text = @"Checking files...  C:\adb\ " + (e.ProgressPercentage.ToString() + "%");
+            this.label1.Text = "Checking Files... " + @"C:\adb\ " + (e.ProgressPercentage.ToString() + "%");
             progressBar1.Value = int.Parse(e.ProgressPercentage.ToString());
         }
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.2.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
+  <asmv1:assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.2.3" publicKeyToken="8a785c200cba06c3" language="neutral" processorArchitecture="amd64" type="win32" />
   <description asmv2:iconFile="2.ico" asmv2:publisher="Franco28" co.v1:suiteName="RedmiNote7Tool" asmv2:product="RedmiNote7Tool" asmv2:supportUrl="https://github.com/Franco28/RedmiNote7ToolC-#redmi-note-7-tool" co.v1:errorReportUrl="https://github.com/Franco28/RedmiNote7ToolC-#redmi-note-7-tool" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -68,26 +68,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="636928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RedmiNote7Tool.exe" size="709616">
       <assemblyIdentity name="RedmiNote7Tool" version="1.0.2.3" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zDoVk1U98cPtdEVw6yS0Hv+HrhJ3tSET/FZShqNUUw8=</dsig:DigestValue>
+        <dsig:DigestValue>2Hlm3H9jo8jEP4VuVuMSOw5e35AGXHVMRjU13KFWXQY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="40448">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="en\RedmiNote7Tool.resources.dll" size="3584">
+      <assemblyIdentity name="RedmiNote7Tool.resources" version="1.0.2.3" language="en" processorArchitecture="amd64" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>E7O/rDcefeB1OdyMTOPpzvkSyykB5xWdR9nt/+wKKj8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\RedmiNote7Tool.resources.dll" size="3584">
+      <assemblyIdentity name="RedmiNote7Tool.resources" version="1.0.2.3" language="es" processorArchitecture="amd64" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bnEVWfkLSrAEZu01AqvqKQr48/xPViswLZU3UBtL0zI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToolEngine.dll" size="53248">
       <assemblyIdentity name="ToolEngine" version="1.0.2.2" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>K9UXIRFtiqxaUv93XadFOUmGALddXGyoFXZXCOK8jMQ=</dsig:DigestValue>
+        <dsig:DigestValue>pMrocIB2onbU9bPnBgDxmRXAJBuwYR9FaFSkgAwQMC0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -126,4 +150,4 @@
       <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
     </application>
   </compatibility>
-</asmv1:assembly>
+<publisherIdentity name="CN=DESKTOP-GKNLUN6\Franco28" issuerKeyHash="08e256b05a8a20a774f5a0b5402edda488f03684" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>KEJPvoxHhMDi1twMttNJm0Jt2nQpbHW+2DP/Q/eB8VA=</DigestValue></Reference></SignedInfo><SignatureValue>k43gp7UR5VrJ5bKS6tsDdo+kS8/oztxWVLkKx2xpxA3ugVqlo+COIBLXrWqxEFdAuKcrnf+lV0AjAN4omqzPxH/WceYtMmviBc3Sc9eKJFeakTASDYKTEzaUUkLbyr4SkkJgB6FX0iXuMKwoVD9+Pemj/GqgbnFGMKAsTR55rMk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>ttRaEnJyRYjYRw8/ItgN8xQRtSe7CSbD+kaS+L+rB3ouKt6SOHsfB8k+8Jpm7bMKKergj1grJqzGlcT1N5+UDBNHNezNCmcsgZ74TDnV/Wlkp09QgZ2KG0vHagvKJ3oYwQvdr4WLxX1oMxaBcFdqAkQNrAr6vo+qczlnCymhwM0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="50f181f743ff33d8be756c2974da6d429b49d3b60cdcd6e2c084478cbe4f4228" Description="" Url=""><as:assemblyIdentity name="RedmiNote7Tool.exe" version="1.0.2.3" publicKeyToken="8a785c200cba06c3" language="neutral" processorArchitecture="amd64" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-GKNLUN6\Franco28</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>jqZ/OqpS1JHDyfYhDhWc4bCkDWX0ATCWKVNh29Bxmac=</DigestValue></Reference></SignedInfo><SignatureValue>by/s3dvWNoHNOHqFDbn5IbZ5Y5CnPc6FMDy7PC2Ye4sl+HnuwvNutCp/MFtSj4m9jc4CRchXGIJ+6MpqLe4A0MH7UBGvm6ScxLNnzJnSUgmPS6boHHRwezWz6I81507boUDNtDNGXjOgkpFYuAEpIDCgmm9LBT2DbIzONBnyOFs=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>ttRaEnJyRYjYRw8/ItgN8xQRtSe7CSbD+kaS+L+rB3ouKt6SOHsfB8k+8Jpm7bMKKergj1grJqzGlcT1N5+UDBNHNezNCmcsgZ74TDnV/Wlkp09QgZ2KG0vHagvKJ3oYwQvdr4WLxX1oMxaBcFdqAkQNrAr6vo+qczlnCymhwM0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB+TCCAWKgAwIBAgIQQtvziqHJXLtPPfmuFMen2jANBgkqhkiG9w0BAQsFADA7MTkwNwYDVQQDHjAARABFAFMASwBUAE8AUAAtAEcASwBOAEwAVQBOADYAXABGAHIAYQBuAGMAbwAyADgwHhcNMTkxMjA1MTU1MzQ4WhcNMjAxMjA0MjE1MzQ4WjA7MTkwNwYDVQQDHjAARABFAFMASwBUAE8AUAAtAEcASwBOAEwAVQBOADYAXABGAHIAYQBuAGMAbwAyADgwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALbUWhJyckWI2EcPPyLYDfMUEbUnuwkmw/pGkvi/qwd6Lirekjh7HwfJPvCaZu2zCinq4I9YKyasxpXE9TeflAwTRzXszQpnLIGe+Ew51f1pZKdPUIGdihtLx2oLyid6GMEL3a+Fi8V9aDMWgXBXagJEDawK+r6PqnM5ZwspocDNAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAWh/xGB201ojSOazx3rM93a760VEHatTOQgfDcKKpLcF2Je1VUY0aJnquyFdrTI7Cxm9N+gqMlH7GlMZOXuXKkj37zeLRLYe3SDkcB4Apg6pnemQELSHwIXQsNQ2wyy8QrPhvIrSizqjs84H5D9EEjrS7yzy7Bz3KVaDUP0b3qsU=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

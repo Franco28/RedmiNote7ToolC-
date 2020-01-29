@@ -2,7 +2,7 @@
 // Copyright (c) 2019-2020 All Rights Reserved
 // </copyright>
 // <author>Franco28</author>
-// <date> 22/1/2020 23:39:56</date>
+// <date> 29/1/2020 13:16:41</date>
 // <summary>A simple Tool based on C# for Xiaomi Redmi Note 7 Lavender</summary>
 
 using System;
@@ -79,7 +79,6 @@ namespace RedmiNote7ToolC
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(346, 23);
             this.label1.TabIndex = 21;
-            this.label1.Text = "Welcome To Redmi Note 7 Tool";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Splash
