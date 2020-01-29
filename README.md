@@ -1,4 +1,4 @@
-# Redmi Note 7 Tool 
+# Redmi Note 7 Tool (Dropped: Due to i don't have anymore the device)
 
 Tool based on C#
 
